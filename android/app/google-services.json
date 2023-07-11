@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1093609987643",
+    "firebase_url": "https://spirit-summoner-679be-default-rtdb.firebaseio.com",
+    "project_id": "spirit-summoner-679be",
+    "storage_bucket": "spirit-summoner-679be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093609987643:android:4e6f06e23b6e1217e7061e",
+        "android_client_info": {
+          "package_name": "com.SpiritSummoner.Firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093609987643-c3hivn2ce08ekgg2plvq60at9apuq7om.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.SpiritSummoner.Firebase",
+            "certificate_hash": "af39aeea8ef932922f2e46d7915073fd84024626"
+          }
+        },
+        {
+          "client_id": "1093609987643-n868f3tp1vtajb83rd3ld4u071tf987r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAblN2x-hDg6LdDitfEQSZqVkf4D3GUZl0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093609987643-n868f3tp1vtajb83rd3ld4u071tf987r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1093609987643-89uqjdcjsnf777rrf4vsagiaq5g4s9i1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterCompleteGuide"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
