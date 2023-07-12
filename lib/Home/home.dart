@@ -15,7 +15,6 @@ class HomeScreen extends StatelessWidget {
           children: [
             AppBarPane(),
             Container(
-              height: MediaQuery.of(context).size.height * 0.66,
               child: Stack(
                 children: [
                   Column(

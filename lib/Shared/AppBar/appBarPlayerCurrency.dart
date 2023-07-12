@@ -9,12 +9,11 @@ class PlayerCurrency extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        top: 8.0,
         left: 8.0,
         right: 8.0,
       ),
       child: Container(
-          height: 30,
+          height: MediaQuery.of(context).size.height * 0.025,
           width: double.infinity,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,7 +40,7 @@ class PlayerCurrency extends StatelessWidget {
                       Text(
                         "9,999,999",
                         style: GoogleFonts.poppins(
-                          fontSize: 14,
+                          fontSize: 12,
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
                         ),
@@ -72,7 +71,7 @@ class PlayerCurrency extends StatelessWidget {
                       Text(
                         "9,999,999",
                         style: GoogleFonts.poppins(
-                          fontSize: 14,
+                          fontSize: 12,
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
                         ),
@@ -103,7 +102,7 @@ class PlayerCurrency extends StatelessWidget {
                       Text(
                         "9,999,999",
                         style: GoogleFonts.poppins(
-                          fontSize: 14,
+                          fontSize: 12,
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
                         ),
