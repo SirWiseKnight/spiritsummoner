@@ -20,7 +20,7 @@ class _BouncingImageState extends State<BouncingImage>
 
     // Set up the animation controller
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2))
+        AnimationController(vsync: this, duration: Duration(milliseconds: 1500))
           ..repeat(reverse: true);
 
     // Set up the animation
@@ -49,7 +49,10 @@ class _BouncingImageState extends State<BouncingImage>
   Widget build(BuildContext context) {
     return Transform.translate(
       offset: Offset(_animation.value.dx * 10, _animation.value.dy * 10),
-      child: Image.asset(widget.imageUrl),
+      child: Image.asset(
+        widget.imageUrl,
+        fit: BoxFit.contain,
+      ),
     );
   }
 }

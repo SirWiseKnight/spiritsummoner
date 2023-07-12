@@ -44,8 +44,8 @@ class PlayerEXP extends StatelessWidget {
                 return Row(
                   children: [
                     Container(
-                      height: 6,
-                      width: 185,
+                      height: MediaQuery.of(context).size.height * 0.005,
+                      width: MediaQuery.of(context).size.width * 0.3,
                       child: LinearProgressIndicator(
                         value: (double.parse(playerEXPcurr) /
                             double.parse(playerEXPmax)),
@@ -59,13 +59,13 @@ class PlayerEXP extends StatelessWidget {
                       width: 8,
                     ),
                     Container(
-                      height: 20,
-                      width: 110,
+                      height: MediaQuery.of(context).size.height * 0.03,
+                      width: MediaQuery.of(context).size.width * 0.3,
                       alignment: Alignment.centerRight,
                       child: Text(
                         playerEXPcurr + "/" + playerEXPmax + " EXP",
                         style: GoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: 10,
                           fontWeight: FontWeight.w500,
                           shadows: <Shadow>[
                             Shadow(

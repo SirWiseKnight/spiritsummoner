@@ -26,15 +26,11 @@ class PartnerImageWIP extends StatelessWidget {
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return Center(
-              child: Text('No stats found.'),
+              child: Text('No image found.'),
             );
           }
           return Container(
-            height: 60,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              padding: EdgeInsets.only(top: 8.0),
+            child: Column(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;

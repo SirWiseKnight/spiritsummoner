@@ -29,23 +29,24 @@ class PartnerStatsWIP extends StatelessWidget {
             child: Text('No stats found.'),
           );
         }
-        return Container(
-          height: 225,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              Map<String, dynamic> data =
-                  document.data() as Map<String, dynamic>;
-              String partnerATK = data['stat-atk'] ?? '';
-              String partnerDEF = data['stat-def'] ?? '';
-              String partnerMGK = data['stat-mgk'] ?? '';
-              String partnerMDF = data['stat-mdf'] ?? '';
-              String partnerSPD = data['stat-spd'] ?? '';
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 200,
+        return Padding(
+          padding: const EdgeInsets.only(
+            left: 8.0,
+            bottom: 8.0,
+          ),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.25,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                    document.data() as Map<String, dynamic>;
+                String partnerATK = data['stat-atk'] ?? '';
+                String partnerDEF = data['stat-def'] ?? '';
+                String partnerMGK = data['stat-mgk'] ?? '';
+                String partnerMDF = data['stat-mdf'] ?? '';
+                String partnerSPD = data['stat-spd'] ?? '';
+                return Container(
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(12),
@@ -54,32 +55,31 @@ class PartnerStatsWIP extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        height: 150,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        height: MediaQuery.of(context).size.height * 0.17,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Container(
-                                    width: 40,
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'ATK',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'ATK',
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  height: 15,
-                                  width: 108,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.018,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.25,
                                   child: Container(
-                                    height: 20,
                                     child: ClipRRect(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
@@ -96,12 +96,12 @@ class PartnerStatsWIP extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  width: 40,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
                                   alignment: Alignment.center,
                                   child: Text(
                                     partnerATK,
                                     style: GoogleFonts.poppins(
-                                      fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -112,25 +112,23 @@ class PartnerStatsWIP extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Container(
-                                    width: 40,
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'DEF',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'DEF',
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  height: 15,
-                                  width: 108,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.018,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.25,
                                   child: Container(
-                                    height: 20,
                                     child: ClipRRect(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
@@ -147,12 +145,12 @@ class PartnerStatsWIP extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  width: 40,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
                                   alignment: Alignment.center,
                                   child: Text(
                                     partnerDEF,
                                     style: GoogleFonts.poppins(
-                                      fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -163,25 +161,23 @@ class PartnerStatsWIP extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Container(
-                                    width: 40,
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'MGK',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'MGK',
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  height: 15,
-                                  width: 108,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.018,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.25,
                                   child: Container(
-                                    height: 20,
                                     child: ClipRRect(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
@@ -198,12 +194,12 @@ class PartnerStatsWIP extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  width: 40,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
                                   alignment: Alignment.center,
                                   child: Text(
                                     partnerMGK,
                                     style: GoogleFonts.poppins(
-                                      fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -214,25 +210,23 @@ class PartnerStatsWIP extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Container(
-                                    width: 40,
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'MDF',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'MDF',
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  height: 15,
-                                  width: 108,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.018,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.25,
                                   child: Container(
-                                    height: 20,
                                     child: ClipRRect(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
@@ -249,12 +243,12 @@ class PartnerStatsWIP extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  width: 40,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
                                   alignment: Alignment.center,
                                   child: Text(
                                     partnerMDF,
                                     style: GoogleFonts.poppins(
-                                      fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -265,25 +259,23 @@ class PartnerStatsWIP extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Container(
-                                    width: 40,
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'SPD',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'SPD',
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  height: 15,
-                                  width: 108,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.018,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.25,
                                   child: Container(
-                                    height: 20,
                                     child: ClipRRect(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
@@ -300,12 +292,12 @@ class PartnerStatsWIP extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  width: 40,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
                                   alignment: Alignment.center,
                                   child: Text(
                                     partnerSPD,
                                     style: GoogleFonts.poppins(
-                                      fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -316,40 +308,43 @@ class PartnerStatsWIP extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Container(
-                        width: 188,
-                        height: 35,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            overlayColor: MaterialStateProperty.all<Color>(
-                                Colors.redAccent.shade100),
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.red),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              overlayColor: MaterialStateProperty.all<Color>(
+                                  Colors.redAccent.shade100),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(Colors.red),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8)),
+                                ),
                               ),
                             ),
-                          ),
-                          onPressed: () {
-                            print("You pressed the Edit Stats Button!");
-                          },
-                          child: Text(
-                            'Edit',
-                            style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              color: Colors.white,
+                            onPressed: () {
+                              print("You pressed the Edit Stats Button!");
+                            },
+                            child: Text(
+                              'Edit',
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              );
-            }).toList(),
+                );
+              }).toList(),
+            ),
           ),
         );
       },

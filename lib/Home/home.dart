@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:spirit_summoner/Home/homeBarrel.dart';
 import 'package:spirit_summoner/Home/homePartnerHP%20copy.dart';
 import 'package:spirit_summoner/Home/homePartnerName%20copy.dart';
-import 'package:spirit_summoner/Home/homePartnerStats%20copy.dart';
 import 'package:spirit_summoner/Shared/barrel.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,86 +10,80 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: SafeArea(
-          child: Column(
-            children: [
-              AppBarPane(),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SafeArea(
-                  child: Stack(
+      body: SafeArea(
+        child: Column(
+          children: [
+            AppBarPane(),
+            Stack(
+              children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.315,
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      width: MediaQuery.of(context).size.width * 0.95,
+                      child: Image.asset(
+                        'assets/Platforms/platformWater.webp',
+                      ),
+                    ),
+                  ],
+                ),
+                Center(
+                  child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 230.0),
-                        child: Container(
-                          height: 200,
-                          width: 500,
-                          child: Image.asset(
-                            'assets/Platforms/platformWater.webp',
-                          ),
-                        ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.115,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 60.0,
-                          left: 60.0,
-                        ),
-                        child: Center(
-                          child: Container(
-                            height: 350,
-                            width: 350,
-                            child: PartnerImageWIP(),
-                          ),
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 8.0,
-                              bottom: 8.0,
-                              left: 8.0,
-                              right: 8.0,
-                            ),
-                            child: PartnerNameWIP(),
-                          ),
-                          PartnerHPWIP(),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              SizedBox(
-                                height: 335,
-                              ),
-                              Container(
-                                height: 250,
-                                child: PartnerStatsWIP(),
-                              ),
-                            ],
-                          ),
-                          Expanded(child: Container()),
-                          Column(
-                            children: [
-                              SizedBox(
-                                height: 335,
-                              ),
-                              PartnerActionButtons(),
-                            ],
-                          ),
-                        ],
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        child: PartnerImageWIP(),
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
-          ),
+                Center(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.125,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        PartnerNameWIP(),
+                        PartnerHPWIP(),
+                      ],
+                    ),
+                  ),
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.4,
+                        ),
+                        PartnerStatsWIP(),
+                      ],
+                    ),
+                    Expanded(child: Container()),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.4,
+                        ),
+                        PartnerActionButtons(),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavBar(),

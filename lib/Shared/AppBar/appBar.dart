@@ -10,7 +10,8 @@ class AppBarPane extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 150,
+        height: MediaQuery.of(context).size.height * 0.205,
+        width: MediaQuery.of(context).size.width * 0.95,
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.23),
           border: GradientBoxBorder(
