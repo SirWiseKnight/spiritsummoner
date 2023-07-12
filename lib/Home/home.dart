@@ -14,74 +14,88 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             AppBarPane(),
-            Stack(
-              children: [
-                Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.315,
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width * 0.95,
-                      child: Image.asset(
-                        'assets/Platforms/platformWater.webp',
-                      ),
-                    ),
-                  ],
-                ),
-                Center(
-                  child: Column(
+            Container(
+              height: MediaQuery.of(context).size.height * 0.66,
+              child: Stack(
+                children: [
+                  Column(
                     children: [
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.115,
+                        height: MediaQuery.of(context).size.height * 0.315,
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.4,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: PartnerImageWIP(),
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        width: MediaQuery.of(context).size.width * 0.95,
+                        child: Image.asset(
+                          'assets/Platforms/platformWater.webp',
+                        ),
                       ),
                     ],
                   ),
-                ),
-                Center(
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.125,
-                    width: MediaQuery.of(context).size.width * 0.8,
+                  Center(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        PartnerNameWIP(),
-                        PartnerHPWIP(),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.115,
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: PartnerImageWIP(),
+                        ),
                       ],
                     ),
                   ),
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.4,
+                  Row(
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.125,
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.125,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            PartnerNameWIP(),
+                            PartnerHPWIP(),
+                          ],
                         ),
-                        PartnerStatsWIP(),
-                      ],
-                    ),
-                    Expanded(child: Container()),
-                    Column(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.4,
-                        ),
-                        PartnerActionButtons(),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.125,
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.4,
+                          ),
+                          PartnerStatsWIP(),
+                        ],
+                      ),
+                      Expanded(child: Container()),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.4,
+                          ),
+                          PartnerActionButtons(),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
