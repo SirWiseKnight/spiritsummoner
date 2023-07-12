@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spirit_summoner/Home/homePartnerBackground.dart';
-import 'package:spirit_summoner/Home/homePartnerButtons%20copy.dart';
+import 'package:spirit_summoner/Home/homePartnerButtons.dart';
 import 'package:spirit_summoner/Home/homePartnerPlatform.dart';
 import 'package:spirit_summoner/Shared/bottomNavBar.dart';
 import 'package:spirit_summoner/Home/homePartnerHP copy.dart';
@@ -58,7 +58,7 @@ class ChatScreen extends StatelessWidget {
                     child: PartnerNameWIP(),
                   ),
                   PartnerHPWIP(),
-                  SpiritActionButtons(),
+                  PartnerActionButtons(),
                   Container(height: 280),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

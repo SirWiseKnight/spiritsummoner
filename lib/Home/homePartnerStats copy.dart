@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spirit_summoner/Services/auth.dart';
@@ -34,6 +35,22 @@ class PartnerStatsWIP extends StatelessWidget {
             left: 8.0,
           ),
           child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.3),
+              border: GradientBoxBorder(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                    Colors.white.withOpacity(0.15),
+                    Colors.white.withOpacity(0.01),
+                    Colors.white.withOpacity(0.1),
+                  ],
+                ),
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(23),
+            ),
             height: MediaQuery.of(context).size.height * 0.25,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -46,10 +63,6 @@ class PartnerStatsWIP extends StatelessWidget {
                 String partnerMDF = data['stat-mdf'] ?? '';
                 String partnerSPD = data['stat-spd'] ?? '';
                 return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [

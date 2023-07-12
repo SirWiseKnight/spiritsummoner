@@ -19,9 +19,6 @@ class QuestTaskScreen extends StatelessWidget {
           child: Column(
             children: [
               AppBarPane(),
-              SizedBox(
-                height: 6,
-              ),
               Padding(
                 padding: const EdgeInsets.only(
                   left: 12.0,
@@ -40,8 +37,8 @@ class QuestTaskScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        height: 64,
-                        width: 64,
+                        height: MediaQuery.of(context).size.height * 0.075,
+                        width: MediaQuery.of(context).size.height * 0.075,
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.23),
                           border: GradientBoxBorder(
@@ -78,8 +75,8 @@ class QuestTaskScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      height: 64,
-                      width: 64,
+                      height: MediaQuery.of(context).size.height * 0.075,
+                      width: MediaQuery.of(context).size.height * 0.075,
                     ),
                   ],
                 ),

@@ -38,6 +38,8 @@ class PartnerImageWIP extends StatelessWidget {
                 String partnerName = data['name'] ?? '';
 
                 return Container(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  width: MediaQuery.of(context).size.width * 0.8,
                   child: BouncingImage(
                       imageUrl: 'assets/Spirits/' +
                           partnerIndexNumber +

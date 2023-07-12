@@ -8,8 +8,8 @@ class PlayerIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 72,
-      height: 72,
+      height: MediaQuery.of(context).size.height * 0.09,
+      width: MediaQuery.of(context).size.width * 0.175,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -24,8 +24,8 @@ class PlayerIcon extends StatelessWidget {
         ),
       ),
       child: Container(
-        width: 72,
-        height: 72,
+        height: MediaQuery.of(context).size.height * 0.09,
+        width: MediaQuery.of(context).size.width * 0.175,
         child: IconButton(
           onPressed: () {
             Navigator.push(
@@ -35,7 +35,7 @@ class PlayerIcon extends StatelessWidget {
           },
           icon: Icon(
             FontAwesomeIcons.idCardClip,
-            size: 28,
+            color: Colors.white,
             shadows: <Shadow>[
               Shadow(
                 color: Colors.black.withOpacity(0.7),

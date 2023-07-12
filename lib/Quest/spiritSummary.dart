@@ -8,7 +8,7 @@ class SpiritCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 125,
+      height: MediaQuery.of(context).size.height * 0.15,
       width: double.infinity,
       child: Container(
         decoration: BoxDecoration(
@@ -73,7 +73,7 @@ class SpiritCard extends StatelessWidget {
                             Text(
                               'Tottoc',
                               style: GoogleFonts.poppins(
-                                fontSize: 24,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
@@ -81,14 +81,14 @@ class SpiritCard extends StatelessWidget {
                             Text(
                               'Lvl ' + '1',
                               style: GoogleFonts.poppins(
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             ),
                             Container(
-                              height: 35,
-                              width: 35,
+                              height: MediaQuery.of(context).size.height * 0.03,
+                              width: MediaQuery.of(context).size.height * 0.03,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                 alignment: Alignment.centerLeft,
@@ -115,15 +115,14 @@ class SpiritCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Container(
-                            width: 15,
+                            width: MediaQuery.of(context).size.width * 0.0375,
                             height: double.infinity,
                             child: RotatedBox(
                               quarterTurns: -1,
                               child: Container(
-                                height: 15,
-                                width: 108,
+                                width:
+                                    MediaQuery.of(context).size.width * 0.0375,
                                 child: Container(
-                                  height: 20,
                                   child: ClipRRect(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
@@ -141,15 +140,14 @@ class SpiritCard extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            width: 15,
+                            width: MediaQuery.of(context).size.width * 0.0375,
                             height: double.infinity,
                             child: RotatedBox(
                               quarterTurns: -1,
                               child: Container(
-                                height: 15,
-                                width: 108,
+                                width:
+                                    MediaQuery.of(context).size.width * 0.0375,
                                 child: Container(
-                                  height: 20,
                                   child: ClipRRect(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
@@ -167,15 +165,14 @@ class SpiritCard extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            width: 15,
+                            width: MediaQuery.of(context).size.width * 0.0375,
                             height: double.infinity,
                             child: RotatedBox(
                               quarterTurns: -1,
                               child: Container(
-                                height: 15,
-                                width: 108,
+                                width:
+                                    MediaQuery.of(context).size.width * 0.0375,
                                 child: Container(
-                                  height: 20,
                                   child: ClipRRect(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
@@ -193,15 +190,14 @@ class SpiritCard extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            width: 15,
+                            width: MediaQuery.of(context).size.width * 0.0375,
                             height: double.infinity,
                             child: RotatedBox(
                               quarterTurns: -1,
                               child: Container(
-                                height: 15,
-                                width: 108,
+                                width:
+                                    MediaQuery.of(context).size.width * 0.0375,
                                 child: Container(
-                                  height: 20,
                                   child: ClipRRect(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
@@ -219,15 +215,14 @@ class SpiritCard extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            width: 15,
+                            width: MediaQuery.of(context).size.width * 0.0375,
                             height: double.infinity,
                             child: RotatedBox(
                               quarterTurns: -1,
                               child: Container(
-                                height: 15,
-                                width: 108,
+                                width:
+                                    MediaQuery.of(context).size.width * 0.0375,
                                 child: Container(
-                                  height: 20,
                                   child: ClipRRect(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),

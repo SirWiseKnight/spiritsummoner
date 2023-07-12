@@ -13,7 +13,7 @@ class AppBarPane extends StatelessWidget {
         height: MediaQuery.of(context).size.height * 0.16,
         width: MediaQuery.of(context).size.width * 0.95,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.23),
+          color: Colors.black.withOpacity(0.4),
           border: GradientBoxBorder(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -24,7 +24,7 @@ class AppBarPane extends StatelessWidget {
                 Colors.white.withOpacity(0.1),
               ],
             ),
-            width: 1.4,
+            width: 1,
           ),
           borderRadius: BorderRadius.circular(23),
         ),
@@ -32,28 +32,23 @@ class AppBarPane extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 8.0,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    PlayerIcon(),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          PlayerInfo(),
-                          PlayerEXP(),
-                        ],
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PlayerIcon(),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        PlayerInfo(),
+                        PlayerEXP(),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               PlayerCurrency(),
             ],

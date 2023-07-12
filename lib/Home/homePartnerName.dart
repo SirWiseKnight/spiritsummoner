@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rxdart/rxdart.dart';
+//import 'package:rxdart/rxdart.dart';
 import 'package:spirit_summoner/Services/models.dart';
-import 'package:spirit_summoner/Services/auth.dart';
+//import 'package:spirit_summoner/Services/auth.dart';
 
 class PartnerName extends StatefulWidget {
   const PartnerName({Key? key}) : super(key: key);

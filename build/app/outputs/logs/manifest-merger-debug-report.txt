@@ -27,6 +27,10 @@ MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\mason\.gradle\
 MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\mason\.gradle\caches\transforms-3\9fbc87df91f7f3e59c0c60c985f1cab1\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:24:5-37:19
 MERGED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\mason\.gradle\caches\transforms-3\39f14004be1cca243eb84e580f952ced\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\mason\.gradle\caches\transforms-3\39f14004be1cca243eb84e580f952ced\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-games:22.0.1] C:\Users\mason\.gradle\caches\transforms-3\42c4650a53e96de5791e920132ad4a3b\transformed\jetified-play-services-games-22.0.1\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-games:22.0.1] C:\Users\mason\.gradle\caches\transforms-3\42c4650a53e96de5791e920132ad4a3b\transformed\jetified-play-services-games-22.0.1\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\mason\.gradle\caches\transforms-3\a4b066618445bb433e142f056b60b59c\transformed\jetified-play-services-drive-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\mason\.gradle\caches\transforms-3\a4b066618445bb433e142f056b60b59c\transformed\jetified-play-services-drive-17.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\mason\.gradle\caches\transforms-3\9c1debb7a6ae6728c09e397d0fe25147\transformed\jetified-play-services-fido-20.0.1\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\mason\.gradle\caches\transforms-3\9c1debb7a6ae6728c09e397d0fe25147\transformed\jetified-play-services-fido-20.0.1\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\mason\.gradle\caches\transforms-3\4eef5c53c78812d37516d2ccb0db9e2a\transformed\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
@@ -59,6 +63,7 @@ MERGED from [:cloud_firestore] C:\Users\mason\Documents\GitHub\spiritsummoner\bu
 MERGED from [:firebase_core] C:\Users\mason\Documents\GitHub\spiritsummoner\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:sign_in_with_apple] C:\Users\mason\Documents\GitHub\spiritsummoner\build\sign_in_with_apple\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:path_provider_android] C:\Users\mason\Documents\GitHub\spiritsummoner\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:games_services] C:\Users\mason\Documents\GitHub\spiritsummoner\build\games_services\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:google_sign_in_android] C:\Users\mason\Documents\GitHub\spiritsummoner\build\google_sign_in_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\mason\.gradle\caches\transforms-3\981e9f56578abd1a82f4cde37f09e724\transformed\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\mason\.gradle\caches\transforms-3\9e4157ebef73258ec6c747e4db136383\transformed\jetified-firebase-auth-21.3.0\AndroidManifest.xml:17:1-75:12
@@ -71,6 +76,8 @@ MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\mason\.g
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.1.1] C:\Users\mason\.gradle\caches\transforms-3\7d3c8799eb39eaf5c2433365e4690d28\transformed\jetified-firebase-appcheck-interop-16.1.1\AndroidManifest.xml:15:1-25:12
 MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\mason\.gradle\caches\transforms-3\9fbc87df91f7f3e59c0c60c985f1cab1\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:15:1-39:12
 MERGED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\mason\.gradle\caches\transforms-3\39f14004be1cca243eb84e580f952ced\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-games:22.0.1] C:\Users\mason\.gradle\caches\transforms-3\42c4650a53e96de5791e920132ad4a3b\transformed\jetified-play-services-games-22.0.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\mason\.gradle\caches\transforms-3\a4b066618445bb433e142f056b60b59c\transformed\jetified-play-services-drive-17.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\mason\.gradle\caches\transforms-3\ba94ade58f3b3f5951002db4552a9d15\transformed\jetified-play-services-auth-api-phone-18.0.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\mason\.gradle\caches\transforms-3\98506d0aaefe844f873b934bdb217016\transformed\jetified-play-services-auth-base-18.0.4\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\mason\.gradle\caches\transforms-3\9c1debb7a6ae6728c09e397d0fe25147\transformed\jetified-play-services-fido-20.0.1\AndroidManifest.xml:2:1-10:12
@@ -134,6 +141,8 @@ MERGED from [:sign_in_with_apple] C:\Users\mason\Documents\GitHub\spiritsummoner
 MERGED from [:sign_in_with_apple] C:\Users\mason\Documents\GitHub\spiritsummoner\build\sign_in_with_apple\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\mason\Documents\GitHub\spiritsummoner\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\mason\Documents\GitHub\spiritsummoner\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:games_services] C:\Users\mason\Documents\GitHub\spiritsummoner\build\games_services\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:games_services] C:\Users\mason\Documents\GitHub\spiritsummoner\build\games_services\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:google_sign_in_android] C:\Users\mason\Documents\GitHub\spiritsummoner\build\google_sign_in_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:google_sign_in_android] C:\Users\mason\Documents\GitHub\spiritsummoner\build\google_sign_in_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\mason\.gradle\caches\transforms-3\981e9f56578abd1a82f4cde37f09e724\transformed\multidex-2.0.0\AndroidManifest.xml:20:5-43
@@ -158,6 +167,10 @@ MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\mason\.gradle\
 MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\mason\.gradle\caches\transforms-3\9fbc87df91f7f3e59c0c60c985f1cab1\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\mason\.gradle\caches\transforms-3\39f14004be1cca243eb84e580f952ced\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\mason\.gradle\caches\transforms-3\39f14004be1cca243eb84e580f952ced\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-games:22.0.1] C:\Users\mason\.gradle\caches\transforms-3\42c4650a53e96de5791e920132ad4a3b\transformed\jetified-play-services-games-22.0.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-games:22.0.1] C:\Users\mason\.gradle\caches\transforms-3\42c4650a53e96de5791e920132ad4a3b\transformed\jetified-play-services-games-22.0.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\mason\.gradle\caches\transforms-3\a4b066618445bb433e142f056b60b59c\transformed\jetified-play-services-drive-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\mason\.gradle\caches\transforms-3\a4b066618445bb433e142f056b60b59c\transformed\jetified-play-services-drive-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\mason\.gradle\caches\transforms-3\ba94ade58f3b3f5951002db4552a9d15\transformed\jetified-play-services-auth-api-phone-18.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\mason\.gradle\caches\transforms-3\ba94ade58f3b3f5951002db4552a9d15\transformed\jetified-play-services-auth-api-phone-18.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\mason\.gradle\caches\transforms-3\98506d0aaefe844f873b934bdb217016\transformed\jetified-play-services-auth-base-18.0.4\AndroidManifest.xml:5:5-44

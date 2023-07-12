@@ -71,7 +71,6 @@ class QuestScreen extends StatelessWidget {
               Expanded(child: Container()),
               Padding(
                 padding: const EdgeInsets.only(
-                  right: 8.0,
                   left: 8.0,
                 ),
                 child: AreaList(),

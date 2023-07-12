@@ -30,7 +30,7 @@ class QuestList extends StatelessWidget {
           );
         }
         return Container(
-          height: 340,
+          height: MediaQuery.of(context).size.height * 0.35,
           child: ListView(
             shrinkWrap: false,
             padding: EdgeInsets.only(top: 8.0),
@@ -52,7 +52,7 @@ class QuestList extends StatelessWidget {
                   top: 8.0,
                 ),
                 child: Container(
-                  height: 75,
+                  height: MediaQuery.of(context).size.height * 0.1,
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.23),
                     border: GradientBoxBorder(
@@ -65,7 +65,7 @@ class QuestList extends StatelessWidget {
                           Colors.white.withOpacity(0.1),
                         ],
                       ),
-                      width: 1.4,
+                      width: 1,
                     ),
                     borderRadius: BorderRadius.circular(16),
                   ),

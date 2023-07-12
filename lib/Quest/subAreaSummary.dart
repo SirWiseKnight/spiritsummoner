@@ -32,7 +32,7 @@ class SubAreaList extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: Container(
-            height: 150,
+            height: MediaQuery.of(context).size.height * 0.18,
             child: ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: false,
@@ -48,7 +48,7 @@ class SubAreaList extends StatelessWidget {
                       print(subAreaName);
                     },
                     child: Container(
-                      width: 250,
+                      width: MediaQuery.of(context).size.width * 0.6,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(
                           Radius.circular(16),
@@ -57,7 +57,7 @@ class SubAreaList extends StatelessWidget {
                       child: Stack(
                         children: [
                           Container(
-                            width: 250,
+                            width: MediaQuery.of(context).size.width * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(16),
@@ -72,7 +72,7 @@ class SubAreaList extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            width: 250,
+                            width: MediaQuery.of(context).size.width * 0.6,
                             alignment: Alignment.bottomCenter,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
@@ -90,7 +90,7 @@ class SubAreaList extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            width: 250,
+                            width: MediaQuery.of(context).size.width * 0.6,
                             decoration: BoxDecoration(
                               border: GradientBoxBorder(
                                 gradient: LinearGradient(
