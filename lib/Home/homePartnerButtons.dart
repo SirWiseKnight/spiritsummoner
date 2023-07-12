@@ -10,7 +10,6 @@ class PartnerActionButtons extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(
         right: 8.0,
-        bottom: 8.0,
       ),
       child: Container(
         height: MediaQuery.of(context).size.height * 0.25,
