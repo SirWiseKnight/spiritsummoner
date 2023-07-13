@@ -198,9 +198,24 @@ class QuestList extends StatelessWidget {
                                 ),
                               ),
                               onPressed: () {
-                                print("You need " +
-                                    questStamina +
-                                    " energy points to complete this quest.");
+                                final snackBar = SnackBar(
+                                  content: Text('You gained ' +
+                                      questEXP +
+                                      ' EXP and ' +
+                                      questGold +
+                                      ' gold!'),
+                                  action: SnackBarAction(
+                                    label: 'Close',
+                                    onPressed: () {
+                                      // Some code to undo the change.
+                                    },
+                                  ),
+                                );
+
+                                // Find the ScaffoldMessenger in the widget tree
+                                // and use it to show a SnackBar.
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(4.0),

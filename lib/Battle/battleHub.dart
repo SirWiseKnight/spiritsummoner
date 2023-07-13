@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:spirit_summoner/Home/home.dart';
 import 'package:spirit_summoner/Services/auth.dart';
+import 'package:spirit_summoner/Shared/bottomNavNew.dart';
 
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',
@@ -39,90 +40,92 @@ class _BattleScreenState extends State<BattleScreen> {
       body: Container(
         padding: const EdgeInsets.all(30),
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const FlutterLogo(
-                size: 150,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const FlutterLogo(
+              size: 150,
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: Container(
+                child: Text(
+                  'Welcome back, Summoner',
+                  style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
-              SizedBox(
-                height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24.0),
+              child: Container(
+                child: Text(
+                  'Update your username!',
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
+                ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: Container(
-                  child: Text(
-                    'Welcome back, Summoner',
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            TextField(
+                keyboardType: TextInputType.name,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  username = value;
+                  //Do something with the user input.
+                },
+                decoration:
+                    kTextFieldDecoration.copyWith(hintText: 'New Username')),
+            SizedBox(
+              height: 8,
+            ),
+            ElevatedButton(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child: Icon(FontAwesomeIcons.user),
+                    ),
+                  ),
+                  Text(
+                    'Update Username',
                     style: GoogleFonts.poppins(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                       color: Colors.white,
                     ),
                   ),
-                ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 24.0),
-                child: Container(
-                  child: Text(
-                    'Update your username!',
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              TextField(
-                  keyboardType: TextInputType.name,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    username = value;
-                    //Do something with the user input.
-                  },
-                  decoration:
-                      kTextFieldDecoration.copyWith(hintText: 'New Username')),
-              SizedBox(
-                height: 8,
-              ),
-              ElevatedButton(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        child: Icon(FontAwesomeIcons.user),
-                      ),
-                    ),
-                    Text(
-                      'Update Username',
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                onPressed: () {
-                  FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(AuthService().uid)
-                      .update(
-                    {'username': username},
-                  );
+              onPressed: () {
+                FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(AuthService().uid)
+                    .update(
+                  {'username': username},
+                );
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  );
-                },
-              ),
-            ]),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+            ),
+            BottomNavBubbles(),
+          ],
+        ),
       ),
     );
   }

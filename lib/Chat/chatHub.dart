@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:spirit_summoner/Home/homeBarrel.dart';
-import 'package:spirit_summoner/Home/homePartnerHP%20copy.dart';
-import 'package:spirit_summoner/Home/homePartnerName%20copy.dart';
-import 'package:spirit_summoner/Shared/barrel.dart';
+import 'package:gradient_borders/gradient_borders.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:spirit_summoner/Battle/battleHub.dart';
+import 'package:spirit_summoner/Home/home.dart';
+import 'package:spirit_summoner/Quest/questHub.dart';
+import 'package:spirit_summoner/Shared/bottomNavNew.dart';
+import 'package:spirit_summoner/Shop/shopHub.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -10,40 +13,11 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            SafeArea(
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.205,
-                width: MediaQuery.of(context).size.width * 0.95,
-                child: AppBarPane(),
-              ),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.795,
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  PartnerNameWIP(),
-                  PartnerHPWIP(),
-                  PartnerImageWIP(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      PartnerStatsWIP(),
-                      PartnerActionButtons(),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavBar(),
-    );
+        body: Column(
+      children: [
+        Expanded(child: Container()),
+        BottomNavBubbles(),
+      ],
+    ));
   }
 }

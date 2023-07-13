@@ -31,7 +31,7 @@ class AreaList extends StatelessWidget {
           );
         }
         return Container(
-          height: MediaQuery.of(context).size.height * 0.45,
+          height: MediaQuery.of(context).size.height * 0.425,
           child: ListView(
             scrollDirection: Axis.horizontal,
             shrinkWrap: false,
@@ -51,7 +51,7 @@ class AreaList extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 0.45,
+                    height: MediaQuery.of(context).size.height * 0.425,
                     width: MediaQuery.of(context).size.width * 0.5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(

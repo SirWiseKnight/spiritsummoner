@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:spirit_summoner/Shared/bottomNavNew.dart';
 import 'package:spirit_summoner/Shop/shopSummary.dart';
 import 'package:spirit_summoner/Shared/barrel.dart';
 
@@ -96,11 +97,11 @@ class ShopScreen extends StatelessWidget {
                 ),
                 child: ShopList(),
               ),
+              BottomNavBubbles(),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

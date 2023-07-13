@@ -3,6 +3,7 @@ import 'package:spirit_summoner/Home/homeBarrel.dart';
 import 'package:spirit_summoner/Home/homePartnerHP%20copy.dart';
 import 'package:spirit_summoner/Home/homePartnerName%20copy.dart';
 import 'package:spirit_summoner/Shared/barrel.dart';
+import 'package:spirit_summoner/Shared/bottomNavNew.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -102,11 +103,11 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              BottomNavBubbles(),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

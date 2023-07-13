@@ -6,6 +6,7 @@ import 'package:spirit_summoner/Quest/questHub.dart';
 import 'package:spirit_summoner/Quest/subAreaSummary.dart';
 import 'package:spirit_summoner/Quest/questList.dart';
 import 'package:spirit_summoner/Shared/barrel.dart';
+import 'package:spirit_summoner/Shared/bottomNavNew.dart';
 
 class QuestTaskScreen extends StatelessWidget {
   const QuestTaskScreen({Key? key}) : super(key: key);
@@ -100,11 +101,11 @@ class QuestTaskScreen extends StatelessWidget {
                 ),
                 child: QuestList(),
               ),
+              BottomNavBubbles(),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

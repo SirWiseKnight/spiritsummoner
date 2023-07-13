@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spirit_summoner/Quest/areaSummary.dart';
 import 'package:spirit_summoner/Shared/barrel.dart';
+import 'package:spirit_summoner/Shared/bottomNavNew.dart';
 
 class QuestScreen extends StatelessWidget {
   const QuestScreen({Key? key}) : super(key: key);
@@ -76,11 +77,11 @@ class QuestScreen extends StatelessWidget {
                 child: AreaList(),
               ),
               Expanded(child: Container()),
+              BottomNavBubbles(),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
     );
   }
 }
