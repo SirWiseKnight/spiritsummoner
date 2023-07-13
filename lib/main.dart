@@ -1,10 +1,10 @@
 /// External Files
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:spirit_summoner/Shared/themes.dart';
+import 'package:spirit_summoner/config/interface/colors/themes.dart';
 
 /// Project Files
-import 'package:spirit_summoner/Shared/routes.dart';
+import 'package:spirit_summoner/domain/navigation/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
