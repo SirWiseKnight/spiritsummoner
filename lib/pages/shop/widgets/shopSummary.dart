@@ -40,7 +40,11 @@ class ShopList extends StatelessWidget {
                   document.data() as Map<String, dynamic>;
               String shopName = data['name'] ?? '';
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(
+                  top: 8.0,
+                  left: 8.0,
+                  bottom: 8.0,
+                ),
                 child: GestureDetector(
                   onTap: () {
                     print(shopName + " Shop");
