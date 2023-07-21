@@ -1,1 +1,1 @@
-export 'package:spirit_summoner/pages/chat/widgets/chatWidgetExample.dart';
+export 'package:spirit_summoner/pages/chat/widgets/chatScreen1.dart';

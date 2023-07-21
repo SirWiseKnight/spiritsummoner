@@ -9,23 +9,16 @@ class PlayerIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.09,
-      width: MediaQuery.of(context).size.width * 0.175,
+      width: MediaQuery.of(context).size.height * 0.09,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.deepPurpleAccent,
-            Colors.deepPurple,
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: Color.fromARGB(255, 255, 103, 0),
         borderRadius: BorderRadius.all(
           Radius.circular(50),
         ),
       ),
       child: Container(
         height: MediaQuery.of(context).size.height * 0.09,
-        width: MediaQuery.of(context).size.width * 0.175,
+        width: MediaQuery.of(context).size.height * 0.09,
         child: IconButton(
           onPressed: () {
             Navigator.push(

@@ -9,76 +9,98 @@ class QuestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          height: double.infinity,
-          child: Column(
-            children: [
-              AppBarPane(),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 16.0,
-                  left: 16.0,
-                  right: 16.0,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Partner',
-                        style: GoogleFonts.poppins(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                          Color.fromARGB(255, 50, 215, 75).withOpacity(0.75),
-                        ),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(100.0),
-                            ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 219, 208, 189),
+              Color.fromARGB(255, 219, 208, 189),
+              Color.fromARGB(255, 73, 62, 43),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Column(
+          children: [
+            AppBarPane(),
+            SafeArea(
+              top: false,
+              child: Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.615,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 16.0,
+                            left: 16.0,
+                            right: 16.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Partner',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                    Color.fromARGB(255, 50, 215, 75)
+                                        .withOpacity(0.75),
+                                  ),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(100.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  print("You pressed the Spirits button!");
+                                },
+                                child: Text(
+                                  'Spirits',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                      onPressed: () {
-                        print("You pressed the Spirits button!");
-                      },
-                      child: Text(
-                        'Spirits',
-                        style: TextStyle(fontSize: 16),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            right: 16.0,
+                            left: 16.0,
+                            top: 16.0,
+                          ),
+                          child: SpiritCard(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 8.0,
+                          ),
+                          child: AreaList(),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  BottomNavBubbles(),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  right: 16.0,
-                  left: 16.0,
-                  top: 16.0,
-                ),
-                child: SpiritCard(),
-              ),
-              Expanded(child: Container()),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 8.0,
-                ),
-                child: AreaList(),
-              ),
-              Expanded(child: Container()),
-              BottomNavBubbles(),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

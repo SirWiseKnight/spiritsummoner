@@ -31,10 +31,9 @@ class PlayerEXP extends StatelessWidget {
             );
           }
           return Container(
-            height: 20,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
+            height: MediaQuery.of(context).size.height * 0.03,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
@@ -42,10 +41,11 @@ class PlayerEXP extends StatelessWidget {
                 String playerEXPmax = data['levelEXPmax'] ?? '';
 
                 return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       height: MediaQuery.of(context).size.height * 0.005,
-                      width: MediaQuery.of(context).size.width * 0.3,
+                      width: MediaQuery.of(context).size.width * 0.4,
                       child: LinearProgressIndicator(
                         value: (double.parse(playerEXPcurr) /
                             double.parse(playerEXPmax)),
@@ -56,16 +56,16 @@ class PlayerEXP extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      width: 8,
+                      width: MediaQuery.of(context).size.width * 0.005,
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height * 0.03,
                       width: MediaQuery.of(context).size.width * 0.3,
-                      alignment: Alignment.centerRight,
+                      alignment: Alignment.center,
                       child: Text(
                         playerEXPcurr + "/" + playerEXPmax + " EXP",
                         style: GoogleFonts.poppins(
-                          fontSize: 10,
+                          fontSize: 12,
                           fontWeight: FontWeight.w500,
                           shadows: <Shadow>[
                             Shadow(

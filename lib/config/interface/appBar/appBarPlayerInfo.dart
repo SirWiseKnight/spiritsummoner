@@ -31,8 +31,9 @@ class PlayerInfo extends StatelessWidget {
             );
           }
           return Container(
-            height: MediaQuery.of(context).size.height * 0.075,
+            height: MediaQuery.of(context).size.height * 0.06,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;

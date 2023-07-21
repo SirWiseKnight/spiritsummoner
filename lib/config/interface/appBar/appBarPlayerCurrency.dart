@@ -13,7 +13,7 @@ class PlayerCurrency extends StatelessWidget {
         right: 8.0,
       ),
       child: Container(
-          height: MediaQuery.of(context).size.height * 0.025,
+          height: MediaQuery.of(context).size.height * 0.04,
           width: double.infinity,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,7 +24,7 @@ class PlayerCurrency extends StatelessWidget {
                   height: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: Colors.yellow.shade800.withOpacity(0.75),
+                    color: Color.fromARGB(255, 252, 250, 239),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -33,16 +33,16 @@ class PlayerCurrency extends StatelessWidget {
                       Container(
                         child: Icon(
                           FontAwesomeIcons.moneyBills,
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 12, 84, 70),
                           size: 16,
                         ),
                       ),
                       Text(
                         "9,999,999",
                         style: GoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 12, 84, 70),
                         ),
                       ),
                     ],
@@ -57,7 +57,7 @@ class PlayerCurrency extends StatelessWidget {
                   height: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: Colors.purple.withOpacity(0.75),
+                    color: Color.fromARGB(255, 252, 250, 239),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -66,14 +66,14 @@ class PlayerCurrency extends StatelessWidget {
                       Icon(
                         FontAwesomeIcons.piggyBank,
                         size: 16,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 12, 84, 70),
                       ),
                       Text(
                         "9,999,999",
                         style: GoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 12, 84, 70),
                         ),
                       ),
                     ],
@@ -88,7 +88,7 @@ class PlayerCurrency extends StatelessWidget {
                   height: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: Colors.deepOrange.withOpacity(0.75),
+                    color: Color.fromARGB(255, 252, 250, 239),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -97,14 +97,14 @@ class PlayerCurrency extends StatelessWidget {
                       Icon(
                         FontAwesomeIcons.ticket,
                         size: 16,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 12, 84, 70),
                       ),
                       Text(
                         "9,999,999",
                         style: GoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 12, 84, 70),
                         ),
                       ),
                     ],

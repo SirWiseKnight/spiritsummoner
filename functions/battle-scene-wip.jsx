@@ -1,3 +1,16 @@
+// The Cloud Functions for Firebase SDK to create Cloud Functions and triggers.
+const {logger} = require("firebase-functions");
+const {onRequest} = require("firebase-functions/v2/https");
+const {onDocumentCreated} = require("firebase-functions/v2/firestore");
+
+// The Firebase Admin SDK to access Firestore.
+const {initializeApp} = require("firebase-admin/app");
+const {getFirestore} = require("firebase-admin/firestore");
+
+initializeApp();
+
+// need to call both teams, assign their values, and lock them in
+
 // define the Move class
 class Move {
   constructor(name, elementType, moveType, power) {
@@ -204,3 +217,5 @@ console.log("Team2 wins!");
 } else if (team2.every(pokemon => pokemon.health <=0)) {
 console.log("Team1 wins!");
 }
+
+// need to have each step of the battle write itself out to return to the app via JSON

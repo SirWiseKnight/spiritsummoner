@@ -50,8 +50,8 @@ class ShopList extends StatelessWidget {
                     print(shopName + " Shop");
                   },
                   child: Container(
-                    height: 150,
-                    width: 200,
+                    height: MediaQuery.of(context).size.height * 0.35,
+                    width: MediaQuery.of(context).size.width * 0.5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
                         Radius.circular(16),
