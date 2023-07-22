@@ -1,13 +1,13 @@
 // The Cloud Functions for Firebase SDK to create Cloud Functions and triggers.
-const {logger} = require("firebase-functions");
-const {onRequest} = require("firebase-functions/v2/https");
-const {onDocumentCreated} = require("firebase-functions/v2/firestore");
+// const {logger} = require("firebase-functions");
+// const {onRequest} = require("firebase-functions/v2/https");
+// const {onDocumentCreated} = require("firebase-functions/v2/firestore");
 
 // The Firebase Admin SDK to access Firestore.
-const {initializeApp} = require("firebase-admin/app");
-const {getFirestore} = require("firebase-admin/firestore");
+// const {initializeApp} = require("firebase-admin/app");
+// const {getFirestore} = require("firebase-admin/firestore");
 
-initializeApp();
+// initializeApp();
 
 // need to call both teams, assign their values, and lock them in
 
@@ -38,38 +38,38 @@ class Pokemon {
 
   // method to calculate damage dealt by a move
   calculateMoveDamage(move, opponent) {
-    let damage;
-
-    //move ability and held item multipliers here to have them factor into the move.power calculation to ensure more accurate damage totals
-    
-    if (move.moveType === "Physical") {
-      damage = move.power + Math.max(0, this.attack - opponent.defense);
-    } else if (move.moveType === "Magical") {
-      damage = move.power + Math.max(0, this.magicAttack - opponent.magicDefense);
-    }
-
-    // apply ability effects
+    // Apply ability effects
+    let abilityDamageMultiplier = 1;
     if (this.ability === "Strong Jaw" && move.moveType === "Physical") {
-      damage *= 1.5;
+      abilityDamageMultiplier = 1.5;
     } else if (this.ability === "Tough Claws" && move.moveType === "Physical") {
-      damage *= 1.3;
+      abilityDamageMultiplier = 1.3;
     } else if (this.ability === "Mega Launcher" && move.moveType === "Magical") {
-      damage *= 1.5;
+      abilityDamageMultiplier = 1.5;
     } else if (this.ability === "Sheer Force" && move.moveType === "Magical") {
-      damage *= 1.3;
+      abilityDamageMultiplier = 1.3;
     }
 
-    // apply held item effects
+    // Apply held item effects
+    let itemDamageMultiplier = 1;
     if (this.heldItem === "Choice Band" && move.moveType === "Physical") {
-      damage *= 1.5;
+      itemDamageMultiplier = 1.5;
     } else if (this.heldItem === "Choice Specs" && move.moveType === "Magical") {
-      damage *= 1.5;
+      itemDamageMultiplier = 1.5;
     } else if (this.heldItem === "Life Orb") {
-      damage *= 1.3;
+      itemDamageMultiplier = 1.3;
       this.takeDamage(this.health * 0.1);
     }
 
-    // ensure that damage is at least 1
+    // Calculate the damage with adjusted attack power
+    let damage;
+    if (move.moveType === "Physical") {
+      damage = (move.power + Math.max(0, this.attack - opponent.defense)) * abilityDamageMultiplier * itemDamageMultiplier * 0.2;
+    } else if (move.moveType === "Magical") {
+      damage = (move.power + Math.max(0, this.magicAttack - opponent.magicDefense)) * abilityDamageMultiplier * itemDamageMultiplier * 0.2;
+    }
+
+    // Ensure that damage is at least 1
     return Math.max(1, damage);
   }
 
@@ -107,33 +107,72 @@ class Battle {
     this.team2 = team2;
   }
 
-   // method to simulate a round of battle
-   battleRound() {
-     // sort the teams by speed
-     let sortedTeam1= [...this.team1].sort((a,b)=>b.speed-a.speed);
-     let sortedTeam2= [...this.team2].sort((a,b)=>b.speed-a.speed);
-     
-     // each Pokemon attacks in order of speed
-     for(let i=0;i<sortedTeam1.length;i++){
-       let attacker1= sortedTeam1[i];
-       let defender1= sortedTeam2[i];
-       let bestMove1= attacker1.chooseBestMove(defender1);
-       let numAttacks1= attacker1.speed/defender1.speed >=3 ?3:attacker1.speed/defender1.speed >=2 ?2:1 ;
-       for(let j=0;j<numAttacks1;j++){
-         let damage1= attacker1.calculateMoveDamage(bestMove1,defender1);
-         defender1.takeDamage(damage1);
-       }
-       
-       let attacker2= sortedTeam2[i];
-       let defender2= sortedTeam1[i];
-       let bestMove2= attacker2.chooseBestMove(defender2);
-       let numAttacks2= attacker2.speed/defender2.speed >=3 ?3:attacker2.speed/defender2.speed >=2 ?2:1 ;
-       for(let j=0;j<numAttacks2;j++){
-         let damage2= attacker2.calculateMoveDamage(bestMove2,defender2);
-         defender2.takeDamage(damage2);
-       }
-     }
-   }
+// method to simulate a round of battle
+battleRound() {
+  let index1 = 0;
+  let index2 = 0;
+
+  // Continue the battle until all Pokémon on one team have fainted
+  while (index1 < this.team1.length && index2 < this.team2.length) {
+    let attacker1 = this.team1[index1];
+    let defender1 = this.team2[index1];
+
+    if (attacker1.health > 0) {
+      console.log(`${attacker1.name} attacks ${defender1.name}`);
+
+      let bestMove1 = attacker1.chooseBestMove(defender1);
+      let numAttacks1 = attacker1.speed / defender1.speed >= 3 ? 3 : attacker1.speed / defender1.speed >= 2 ? 2 : 1;
+
+      for (let j = 0; j < numAttacks1; j++) {
+        let damage1 = attacker1.calculateMoveDamage(bestMove1, defender1);
+        defender1.takeDamage(damage1);
+        console.log(`${attacker1.name} uses ${bestMove1.name}, dealing ${damage1} damage to ${defender1.name}`);
+        console.log(`${defender1.name} has ${defender1.health} health remaining`);
+
+        // Check if defender1's health is 0 or less and remove from the team if true
+        if (defender1.health <= 0) {
+          console.log(`${defender1.name} has fainted and is removed from Team 2`);
+          this.team2.splice(index1, 1);
+          //index1++;
+          // No need to break here; we want the same attacker to attack again
+        }
+      }
+    }
+
+
+    // Check if both teams still have Pokemon available to battle
+    if (index2 >= this.team2.length) {
+      break;
+    }
+
+    let attacker2 = this.team2[index2];
+    let defender2 = this.team1[index2];
+
+    if (attacker2.health > 0) {
+      console.log(`${attacker2.name} attacks ${defender2.name}`);
+
+      let bestMove2 = attacker2.chooseBestMove(defender2);
+      let numAttacks2 = attacker2.speed / defender2.speed >= 3 ? 3 : attacker2.speed / defender2.speed >= 2 ? 2 : 1;
+
+      for (let j = 0; j < numAttacks2; j++) {
+        let damage2 = attacker2.calculateMoveDamage(bestMove2, defender2);
+        defender2.takeDamage(damage2);
+        console.log(`${attacker2.name} uses ${bestMove2.name}, dealing ${damage2} damage to ${defender2.name}`);
+        console.log(`${defender2.name} has ${defender2.health} health remaining`);
+
+        // Check if defender2's health is 0 or less and remove from the team if true
+        if (defender2.health <= 0) {
+          console.log(`${defender2.name} has fainted and is removed from Team 1`);
+          this.team1.splice(index2, 1);
+          //index2++;
+          // No need to break here; we want the same attacker to attack again
+        }
+      }
+    }
+
+  }
+}
+
 
   // method to check if the battle is over
   isBattleOver() {

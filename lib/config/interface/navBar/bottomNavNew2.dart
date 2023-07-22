@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:spirit_summoner/pages/battle/view/battleHub.dart';
-import 'package:spirit_summoner/pages/chat/view/chatHub.dart';
-import 'package:spirit_summoner/pages/home/view/homeHub.dart';
-import 'package:spirit_summoner/pages/quest/view/questHub.dart';
-import 'package:spirit_summoner/pages/shop/view/shopHub.dart';
 
 class BottomNavBubbles2 extends StatefulWidget {
   const BottomNavBubbles2({Key? key}) : super(key: key);
