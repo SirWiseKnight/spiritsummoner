@@ -23,7 +23,7 @@ class Move {
 
 // define the Pokemon class
 class Pokemon {
-  constructor(name, health, attack, defense, magicAttack, magicDefense, speed, ability, heldItem, moves) {
+  constructor(name, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, moves) {
     this.name = name;
     this.health = health;
     this.attack = attack;
@@ -31,18 +31,106 @@ class Pokemon {
     this.magicAttack = magicAttack;
     this.magicDefense = magicDefense;
     this.speed = speed;
+    this.intelligence = intelligence;
     this.ability = ability;
     this.heldItem = heldItem;
+    this.coreType = coreType;
     this.moves = moves;
   }
+
+  // method to calculate damage multiplier based on type effectiveness
+getTypeMultiplier(moveElementType, opponentCoreType) {
+  // Define type effectiveness multipliers based on type matchups
+  const typeEffectiveness = {
+    "Electric": {
+      "Water": 2,
+      "Wind": 2,
+      "Electric": 0.5,
+      "Earth": 0.5,
+      "Earth": 0.5,
+      // Add other type matchups here...
+    },
+    "Fire": {
+      "Grass": 2,
+      "Wind": 2,
+      "Fire": 0.5,
+      "Water": 0.5,
+      "Light": 0.5,
+      // Add other type matchups here...
+    },
+    "Water": {
+      "Fire": 2,
+      "Poison": 2,
+      "Water": 0.5,
+      "Grass": 0.5,
+      "Electric": 0.5,
+      // Add other type matchups here...
+    },
+    "Grass": {
+      "Water": 2,
+      "Earth": 2,
+      "Grass": 0.5,
+      "Fire": 0.5,
+      "Electric": 0.5,
+      // Add other type matchups here...
+    },
+    "Neutral": {
+    },
+    "Wind": {
+      "Fire": 2,
+      "Earth": 2,
+      "Wind": 0.5,
+      "Light": 0.5,
+      "Poison": 0.5,
+      // Add other type matchups here...
+    },
+    "Poison": {
+      "Grass": 2,
+      "Electric": 2,
+      "Poison": 0.5,
+      "Dark": 0.5,
+      "Wind": 0.5,
+      // Add other type matchups here...
+    },
+    "Dark": {
+      "Light": 2,
+      "Poison": 0.5,
+      "Earth": 0.5,
+      "Neutral": 0.5,
+      // Add other type matchups here...
+    },
+    "Light": {
+      "Dark": 2,
+      "Wind": 0.5,
+      "Fire": 0.5,
+      "Neutral": 0.5,
+      // Add other type matchups here...
+    },
+    "Earth": {
+      "Poison": 2,
+      "Electric": 2,
+      "Earth": 0.5,
+      "Dark": 0.5,
+      "Wind": 0.5,
+      // Add other type matchups here...
+    },
+  };
+
+  // Check if move's elementType has type effectiveness defined against opponent's coreType
+  if (typeEffectiveness[moveElementType] && typeEffectiveness[moveElementType][opponentCoreType]) {
+    return typeEffectiveness[moveElementType][opponentCoreType];
+  }
+  // If no type effectiveness defined, return default multiplier of 1
+  return 1;
+}
 
   // method to calculate damage dealt by a move
   calculateMoveDamage(move, opponent) {
     // Apply ability effects
     let abilityDamageMultiplier = 1;
-    if (this.ability === "Strong Jaw" && move.moveType === "Physical") {
-      abilityDamageMultiplier = 1.5;
-    } else if (this.ability === "Tough Claws" && move.moveType === "Physical") {
+    if (this.ability === "Huge Power" && move.moveType === "Physical") {
+      abilityDamageMultiplier = 2.0;
+    } else if (this.ability === "Static" && move.moveType === "Physical") {
       abilityDamageMultiplier = 1.3;
     } else if (this.ability === "Mega Launcher" && move.moveType === "Magical") {
       abilityDamageMultiplier = 1.5;
@@ -52,21 +140,45 @@ class Pokemon {
 
     // Apply held item effects
     let itemDamageMultiplier = 1;
-    if (this.heldItem === "Choice Band" && move.moveType === "Physical") {
-      itemDamageMultiplier = 1.5;
-    } else if (this.heldItem === "Choice Specs" && move.moveType === "Magical") {
-      itemDamageMultiplier = 1.5;
+    if (this.heldItem === "Light Ball" && move.elementType === "Electric") {
+      itemDamageMultiplier = 1.2;
+    } else if (this.heldItem === "Charcoal" && move.elementType === "Fire") {
+      itemDamageMultiplier = 1.2;
     } else if (this.heldItem === "Life Orb") {
-      itemDamageMultiplier = 1.3;
+      itemDamageMultiplier = 2.0;
       this.takeDamage(this.health * 0.1);
+    }
+
+    // Apply same type advantage bonus
+    let typeDamageMultiplier = 1;
+    if (this.coreType === "Electric" && move.elementType === "Electric") {
+      itemDamageMultiplier = 1.2;
+    } else if (this.coreType === "Water" && move.elementType === "Water") {
+      itemDamageMultiplier = 1.2;
+    } else if (this.coreType === "Earth" && move.elementType === "Earth") {
+      itemDamageMultiplier = 1.2;
+    } else if (this.coreType === "Neutral" && move.elementType === "Neutral") {
+      itemDamageMultiplier = 1.2;
+    } else if (this.coreType === "Poison" && move.elementType === "Poison") {
+      itemDamageMultiplier = 1.2;
+    } else if (this.coreType === "Light" && move.elementType === "Light") {
+      itemDamageMultiplier = 1.2;
+    } else if (this.coreType === "Dark" && move.elementType === "Dark") {
+      itemDamageMultiplier = 1.2;
+    } else if (this.coreType === "Wind" && move.elementType === "Wind") {
+      itemDamageMultiplier = 1.2;
+    } else if (this.coreType === "Fire" && move.elementType === "Fire") {
+      itemDamageMultiplier = 1.2;
+    } else if (this.coreType === "Grass" && move.elementType === "Grass") {
+      itemDamageMultiplier = 1.2;
     }
 
     // Calculate the damage with adjusted attack power
     let damage;
     if (move.moveType === "Physical") {
-      damage = (move.power + Math.max(0, this.attack - opponent.defense)) * abilityDamageMultiplier * itemDamageMultiplier * 0.2;
+      damage = (move.power + Math.max(0, this.attack - opponent.defense)) * abilityDamageMultiplier * itemDamageMultiplier * typeDamageMultiplier * this.getTypeMultiplier(move.elementType, opponent.coreType) * 0.1;
     } else if (move.moveType === "Magical") {
-      damage = (move.power + Math.max(0, this.magicAttack - opponent.magicDefense)) * abilityDamageMultiplier * itemDamageMultiplier * 0.2;
+      damage = (move.power + Math.max(0, this.magicAttack - opponent.magicDefense)) * abilityDamageMultiplier * itemDamageMultiplier * typeDamageMultiplier * this.getTypeMultiplier(move.elementType, opponent.coreType) * 0.1;
     }
 
     // Ensure that damage is at least 1
@@ -197,17 +309,17 @@ battleRound() {
 
 // create some moves
 let thunderbolt = new Move("Thunderbolt", "Electric", "Magical", 90);
-let quickAttack = new Move("Quick Attack", "Normal", "Physical", 40);
-let ironTail = new Move("Iron Tail", "Steel", "Physical", 100);
+let quickAttack = new Move("Quick Attack", "Neutral", "Physical", 40);
+let ironTail = new Move("Iron Tail", "Earth", "Physical", 100);
 let voltTackle = new Move("Volt Tackle", "Electric", "Physical", 120);
 
 let ember = new Move("Ember", "Fire", "Magical", 40);
-let scratch = new Move("Scratch", "Normal", "Physical", 40);
-let dragonRage = new Move("Dragon Rage", "Dragon", "Magical", 40);
+let scratch = new Move("Scratch", "Neutral", "Physical", 40);
+let dragonRage = new Move("Dragon Rage", "Fire", "Magical", 40);
 let fireFang = new Move("Fire Fang", "Fire", "Physical", 65);
 
 let waterGun = new Move("Water Gun", "Water", "Magical", 40);
-let tackle = new Move("Tackle", "Normal", "Physical", 40);
+let tackle = new Move("Tackle", "Neutral", "Physical", 40);
 let bubble = new Move("Bubble", "Water", "Magical", 40);
 let bite = new Move("Bite", "Dark", "Physical", 60);
 
@@ -216,28 +328,28 @@ let razorLeaf= new Move("Razor Leaf","Grass","Physical" ,55 );
 let seedBomb= new Move("Seed Bomb","Grass","Physical" ,80 );
 let solarBeam= new Move("Solar Beam","Grass","Magical" ,120 );
 
-let pound= new Move("Pound","Normal","Physical" ,40 );
-let bodySlam= new Move("Body Slam","Normal","Physical" ,85 );
-let doubleSlap= new Move("Double Slap","Normal","Physical" ,15 );
-let hyperVoice= new Move("Hyper Voice","Normal","Magical" ,90 );
+let pound= new Move("Pound","Neutral","Physical" ,40 );
+let bodySlam= new Move("Body Slam","Neutral","Physical" ,85 );
+let doubleSlap= new Move("Double Slap","Neutral","Physical" ,15 );
+let hyperVoice= new Move("Hyper Voice","Neutral","Magical" ,90 );
 
-let scratchM= new Move("Scratch","Normal","Physical" ,40 );
-let furySwipes= new Move("Fury Swipes","Normal","Physical" ,18 );
-let slashM= new Move("Slash","Normal","Physical" ,70 );
+let scratchM= new Move("Scratch","Neutral","Physical" ,40 );
+let furySwipes= new Move("Fury Swipes","Neutral","Physical" ,18 );
+let slashM= new Move("Slash","Neutral","Physical" ,70 );
 let nightSlash= new Move("Night Slash","Dark","Physical" ,70 );
 
 // create some Pokemon
-let pikachu= new Pokemon("Pikachu",100 ,50 ,30 ,40 ,20 ,20 ,"Static","Light Ball",[thunderbolt,quickAttack,ironTail,voltTackle]);
-let charmander= new Pokemon("Charmander",80 ,60 ,20 ,50 ,30 ,80 ,"Blaze","Charcoal",[ember,scratch,dragonRage,fireFang]);
-let squirtle= new Pokemon("Squirtle",90 ,40 ,40 ,30 ,50 ,70 ,"Torrent","Mystic Water",[waterGun,tackle,bubble,bite]);
+let pikachu= new Pokemon("Pikachu",100 ,50 ,30 ,40 ,20 ,20 ,15 ,"Static","Light Ball","Electric",[thunderbolt,quickAttack,ironTail,voltTackle]);
+let charmander= new Pokemon("Charmander",80 ,60 ,20 ,50 ,30 ,80 ,10 ,"Blaze","Charcoal","Fire",[ember,scratch,dragonRage,fireFang]);
+let jigglypuff= new Pokemon("Jigglypuff",95 ,25 ,25 ,35 ,45 ,40 ,10 ,"Huge Power","Moon Stone","Neutral",[pound,bodySlam,doubleSlap,hyperVoice]);
 
-let bulbasaur= new Pokemon("Bulbasaur",81 ,55 ,35 ,45 ,25 ,75 ,"Overgrow","Miracle Seed",[vineWhip,razorLeaf,seedBomb,solarBeam]);
-let jigglypuff= new Pokemon("Jigglypuff",95 ,45 ,25 ,35 ,45 ,40 ,"Cute Charm","Moon Stone",[pound,bodySlam,doubleSlap,hyperVoice]);
-let meowth= new Pokemon("Meowth",70 ,65 ,15 ,55 ,35 ,30 ,"Pickup","Amulet Coin",[scratchM,furySwipes,slashM,nightSlash]);
+let bulbasaur= new Pokemon("Bulbasaur",81 ,55 ,35 ,45 ,25 ,75 ,20 ,"Overgrow","Life Orb","Grass",[vineWhip,razorLeaf,seedBomb,solarBeam]);
+let squirtle= new Pokemon("Squirtle",90 ,40 ,40 ,30 ,50 ,70 ,10 ,"Torrent","Mystic Water","Water",[waterGun,tackle,bubble,bite]);
+let meowth= new Pokemon("Meowth",70 ,65 ,15 ,55 ,35 ,30 ,30 ,"Pickup","Amulet Coin","Neutral",[scratchM,furySwipes,slashM,nightSlash]);
 
 // create the teams
-let team1 = [pikachu,charmander,squirtle];
-let team2 =[bulbasaur,jigglypuff,meowth];
+let team1 = [pikachu,charmander,jigglypuff];
+let team2 =[bulbasaur,squirtle,meowth];
 
 // create the battle
 let battle= new Battle(team1,team2);
