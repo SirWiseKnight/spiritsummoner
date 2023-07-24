@@ -105,92 +105,71 @@ class Battle {
   constructor(team1, team2) {
     this.team1 = team1;
     this.team2 = team2;
-    this.turnNumber = 0; // Initialize the turn number to 0
   }
-
-// method to simulate a round of battle
-  battleRound() {
-
-    this.turnNumber = 0;
-    let index1 = 0;
-    let index2 = 0;
-
-    // Continue the battle until all Pokémon on one team have fainted
-    while (index1 < this.team1.length && index2 < this.team2.length) {
-      let attacker1 = this.team1[index1];
-      let defender1 = this.team2[index1]; 
-
-      if (attacker1.health > 0) {
-        //console.log(`${attacker1.name} attacks ${defender1.name}`);
-
-        let bestMove1 = attacker1.chooseBestMove(defender1);
-        let numAttacks1 = attacker1.speed / defender1.speed >= 3 ? 3 : attacker1.speed / defender1.speed >= 2 ? 2 : 1; // 
-
-        for (let j = 0; j < numAttacks1; j++) {
-          // Check if the attacker is still alive before proceeding with the attack
-          if (attacker1.health > 0) {
-            this.turnNumber = this.turnNumber + 1; // Increment the turn number at the start of each round
-            console.log(``); 
-            console.log(`--- Turn ${this.turnNumber} ---`); // Print the current turn number
-            let damage1 = attacker1.calculateMoveDamage(bestMove1, defender1);
-            defender1.takeDamage(damage1);
-            console.log(`${attacker1.name} uses ${bestMove1.name}, dealing ${damage1} damage to ${defender1.name}`);
-            console.log(`-> ${defender1.name} (${defender1.health} HP)`);
   
-            // Check if defender1's health is 0 or less and remove from the team if true
-            if (defender1.health <= 0) {
-              this.turnNumber = this.turnNumber + 1; // Increment the turn number at the start of each round
-              console.log(``); 
-              console.log(`--- Turn ${this.turnNumber} ---`); // Print the current turn number
-              console.log(`-> ${defender1.name} has fainted.`);
-              this.team2.splice(index1, 1);
-              break; // Exit the loop if the defender faints during the turn
+// method to simulate a round of battle
+battleRound() {
+  this.turnNumber = 0;
+
+  while (!this.isBattleOver()) {
+    for (let i = 0; i < this.team1.length && i < this.team2.length; i++) {
+      let attacker1 = this.team1[i];
+      let defender1 = this.team2[i];
+
+      while (attacker1.health > 0 && defender1.health > 0) {
+
+        // Determine the order of turns based on speed
+        let turnOrder = [];
+        if (attacker1.speed >= defender1.speed) {
+          turnOrder = [attacker1, defender1];
+        } else {
+          turnOrder = [defender1, attacker1];
+        }
+
+        for (let pokemon of turnOrder) {
+          let target = pokemon === attacker1 ? defender1 : attacker1;
+          let bestMove = pokemon.chooseBestMove(target);
+          let numAttacks = pokemon.speed / target.speed >= 3 ? 3 : pokemon.speed / target.speed >= 2 ? 2 : 1;
+
+          this.turnNumber++;
+          console.log(``);
+          console.log(`--- Turn ${this.turnNumber} ---`);
+          for (let j = 0; j < numAttacks; j++) {
+            // Check if the attacker is still alive before proceeding with the attack
+            if (pokemon.health > 0) {
+              let damage = pokemon.calculateMoveDamage(bestMove, target);
+              target.takeDamage(damage);
+              console.log(`${pokemon.name} uses ${bestMove.name}, dealing ${damage} damage to ${target.name}`);
+              console.log(`-> ${target.name} (${target.health} HP)`);
+
+              // Check if the target's health is 0 or less and remove from the team if true
+              if (target.health <= 0) {
+                // Determine the team to which the target belongs and remove from that team
+                const targetTeam = target === this.team1[i] ? this.team1 : this.team2;
+                targetTeam.splice(i, 1);
+
+                // Exit the loop if the target faints during the turn
+                break;
+              }
             }
           }
         }
 
-      // Check if both teams still have Pokemon available to battle
-      if (index2 >= this.team2.length) {
-        break;
-      }
+        // Check if attacker1's health is 0 or less and switch to the next Pokemon in the team
+        if (attacker1.health <= 0 && this.team1.length > 0) {
+          console.log(`${attacker1.name} has fainted. ${this.team1[0].name} is sent out.`);
+          attacker1 = this.team1[0];
+        }
 
-      this.turnNumber = this.turnNumber + 1; // Increment the turn number at the start of each round
-      console.log(``); 
-      console.log(`--- Turn ${this.turnNumber} ---`); // Print the current turn number
-
-      let attacker2 = this.team2[index2];
-      let defender2 = this.team1[index2];
-
-      if (attacker2.health > 0) {
-        //console.log(`${attacker2.name} attacks ${defender2.name}`);
-
-        let bestMove2 = attacker2.chooseBestMove(defender2);
-        let numAttacks2 = attacker2.speed / defender2.speed >= 3 ? 3 : attacker2.speed / defender2.speed >= 2 ? 2 : 1; // 
-
-        for (let j = 0; j < numAttacks2; j++) {
-          // Check if the attacker is still alive before proceeding with the attack
-          if (attacker2.health > 0) {
-            let damage2 = attacker2.calculateMoveDamage(bestMove2, defender2);
-            defender2.takeDamage(damage2);
-            console.log(`${attacker2.name} uses ${bestMove2.name}, dealing ${damage2} damage to ${defender2.name}`);
-            console.log(`-> ${defender2.name} (${defender2.health} HP)`);
-  
-            // Check if defender2's health is 0 or less and remove from the team if true
-            if (defender2.health <= 0) {
-              this.turnNumber = this.turnNumber + 1; // Increment the turn number at the start of each round
-              console.log(``); 
-              console.log(`--- Turn ${this.turnNumber} ---`); // Print the current turn number
-              console.log(`-> ${defender2.name} has fainted.`);
-              this.team1.splice(index2, 1);
-              break; // Exit the loop if the defender faints during the turn
-            }
-          }
+        // Check if defender1's health is 0 or less and switch to the next Pokemon in the team
+        if (defender1.health <= 0 && this.team2.length > 0) {
+          console.log(`${defender1.name} has fainted. ${this.team2[0].name} is sent out.`);
+          defender1 = this.team2[0];
         }
       }
     }
   }
 }
-
 
   // method to check if the battle is over
   isBattleOver() {
@@ -248,13 +227,13 @@ let slashM= new Move("Slash","Normal","Physical" ,70 );
 let nightSlash= new Move("Night Slash","Dark","Physical" ,70 );
 
 // create some Pokemon
-let pikachu= new Pokemon("Pikachu",100 ,50 ,30 ,40 ,20 ,30 ,"Static","Light Ball",[thunderbolt,quickAttack,ironTail,voltTackle]);
-let charmander= new Pokemon("Charmander",80 ,60 ,20 ,50 ,30 ,60 ,"Blaze","Charcoal",[ember,scratch,dragonRage,fireFang]);
+let pikachu= new Pokemon("Pikachu",100 ,50 ,30 ,40 ,20 ,20 ,"Static","Light Ball",[thunderbolt,quickAttack,ironTail,voltTackle]);
+let charmander= new Pokemon("Charmander",80 ,60 ,20 ,50 ,30 ,80 ,"Blaze","Charcoal",[ember,scratch,dragonRage,fireFang]);
 let squirtle= new Pokemon("Squirtle",90 ,40 ,40 ,30 ,50 ,70 ,"Torrent","Mystic Water",[waterGun,tackle,bubble,bite]);
 
 let bulbasaur= new Pokemon("Bulbasaur",81 ,55 ,35 ,45 ,25 ,75 ,"Overgrow","Miracle Seed",[vineWhip,razorLeaf,seedBomb,solarBeam]);
-let jigglypuff= new Pokemon("Jigglypuff",95 ,45 ,25 ,35 ,45 ,65 ,"Cute Charm","Moon Stone",[pound,bodySlam,doubleSlap,hyperVoice]);
-let meowth= new Pokemon("Meowth",70 ,65 ,15 ,55 ,35 ,80 ,"Pickup","Amulet Coin",[scratchM,furySwipes,slashM,nightSlash]);
+let jigglypuff= new Pokemon("Jigglypuff",95 ,45 ,25 ,35 ,45 ,40 ,"Cute Charm","Moon Stone",[pound,bodySlam,doubleSlap,hyperVoice]);
+let meowth= new Pokemon("Meowth",70 ,65 ,15 ,55 ,35 ,30 ,"Pickup","Amulet Coin",[scratchM,furySwipes,slashM,nightSlash]);
 
 // create the teams
 let team1 = [pikachu,charmander,squirtle];
