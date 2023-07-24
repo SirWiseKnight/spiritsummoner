@@ -110,11 +110,8 @@ class Battle {
 
 // method to simulate a round of battle
   battleRound() {
-    this.turnNumber++; // Increment the turn number at the start of each round
-    console.log(``); 
-    console.log(`--- Turn ${this.turnNumber} ---`); // Print the current turn number
 
-    this.turnNumber = 1;
+    this.turnNumber = 0;
     let index1 = 0;
     let index2 = 0;
 
@@ -132,17 +129,20 @@ class Battle {
         for (let j = 0; j < numAttacks1; j++) {
           // Check if the attacker is still alive before proceeding with the attack
           if (attacker1.health > 0) {
+            this.turnNumber = this.turnNumber + 1; // Increment the turn number at the start of each round
+            console.log(``); 
+            console.log(`--- Turn ${this.turnNumber} ---`); // Print the current turn number
             let damage1 = attacker1.calculateMoveDamage(bestMove1, defender1);
             defender1.takeDamage(damage1);
             console.log(`${attacker1.name} uses ${bestMove1.name}, dealing ${damage1} damage to ${defender1.name}`);
-            console.log(`${defender1.name} has ${defender1.health} health remaining`);
+            console.log(`-> ${defender1.name} (${defender1.health} HP)`);
   
             // Check if defender1's health is 0 or less and remove from the team if true
             if (defender1.health <= 0) {
               this.turnNumber = this.turnNumber + 1; // Increment the turn number at the start of each round
               console.log(``); 
               console.log(`--- Turn ${this.turnNumber} ---`); // Print the current turn number
-              console.log(`${defender1.name} has fainted and is removed from Team 2`);
+              console.log(`-> ${defender1.name} has fainted.`);
               this.team2.splice(index1, 1);
               break; // Exit the loop if the defender faints during the turn
             }
@@ -173,21 +173,17 @@ class Battle {
             let damage2 = attacker2.calculateMoveDamage(bestMove2, defender2);
             defender2.takeDamage(damage2);
             console.log(`${attacker2.name} uses ${bestMove2.name}, dealing ${damage2} damage to ${defender2.name}`);
-            console.log(`${defender2.name} has ${defender2.health} health remaining`);
+            console.log(`-> ${defender2.name} (${defender2.health} HP)`);
   
             // Check if defender2's health is 0 or less and remove from the team if true
             if (defender2.health <= 0) {
               this.turnNumber = this.turnNumber + 1; // Increment the turn number at the start of each round
               console.log(``); 
               console.log(`--- Turn ${this.turnNumber} ---`); // Print the current turn number
-              console.log(`${defender2.name} has fainted and is removed from Team 1`);
+              console.log(`-> ${defender2.name} has fainted.`);
               this.team1.splice(index2, 1);
               break; // Exit the loop if the defender faints during the turn
             }
-
-    this.turnNumber = this.turnNumber + 1; // Increment the turn number at the start of each round
-    console.log(``); 
-    console.log(`--- Turn ${this.turnNumber} ---`); // Print the current turn number
           }
         }
       }
