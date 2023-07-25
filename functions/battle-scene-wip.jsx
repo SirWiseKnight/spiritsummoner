@@ -264,47 +264,83 @@ battleRound() {
           let target = pokemon === attacker1 ? defender1 : attacker1;
           let bestMove = pokemon.chooseBestMove(target);
           let numAttacks = pokemon.speed / target.speed >= 3 ? 3 : pokemon.speed / target.speed >= 2 ? 2 : 1;
-
-          this.turnNumber++;
-          console.log(``);
-          console.log(`--- Turn ${this.turnNumber} ---`);
+      
           for (let j = 0; j < numAttacks; j++) {
             // Check if the attacker is still alive before proceeding with the attack
-            if (pokemon.health > 0) {
+            if (pokemon.health > 0 && target.health > 0) {
+              this.turnNumber++;
+              console.log(``);
+              console.log(`--- Turn ${this.turnNumber} ---`);
               let damage = pokemon.calculateMoveDamage(bestMove, target);
               target.takeDamage(damage);
+              if (target.ability === "Spike") {
+                  if (pokemon.health === 1) {pokemon.takeDamage(2);}
+                  else {pokemon.takeDamage(pokemon.health * 0.1);};
+              };
               console.log(`${pokemon.name} uses ${bestMove.name}, dealing ${damage} damage to ${target.name}`);
               console.log(`-> ${target.name} (${target.health} HP)`);
+              if (target.ability === "Spike") {
+              console.log(`${pokemon.name} takes damage from ${target.name}'s spikes!`);
               console.log(`-> ${pokemon.name} (${pokemon.health} HP)`);
+              };
 
-              // Check if the target's health is 0 or less and remove from the team if true
-              if (target.health <= 0) {
+                // Determine if the target held on using Endurance
+              if (target.ability === "Endurance" && target.health === 1) {
+                console.log(`-> ${target.name} held on using Endurance!`);
+                };
+
+              if (target.health <= 0 && pokemon.health <= 0) {
                 // Determine the team to which the target belongs and remove from that team
                 const targetTeam = target === this.team1[i] ? this.team1 : this.team2;
                 targetTeam.splice(i, 1);
-
-                // Exit the loop if the target faints during the turn
+                // Determine the team to which the pokemon belongs and remove from that team
+                const pokemonTeam = pokemon === this.team1[i] ? this.team1 : this.team2;
+                pokemonTeam.splice(i, 1);
                 break;
               }
-            }
+
+              // Check if the target's health is 0 or less and remove from the team if true
+              else if (target.health <= 0) {
+                // Determine the team to which the target belongs and remove from that team
+                const targetTeam = target === this.team1[i] ? this.team1 : this.team2;
+                targetTeam.splice(i, 1);
+                break;
+              }
+
+                // Check if the target's health is 0 or less and remove from the team if true
+              else if (pokemon.health <= 0) {
+                // Determine the team to which the pokemon belongs and remove from that team
+                const pokemonTeam = pokemon === this.team1[i] ? this.team1 : this.team2;
+                pokemonTeam.splice(i, 1);
+                break;
           }
         }
-
+      }
+    }
+    
+  
         // Check if attacker1's health is 0 or less and switch to the next Pokemon in the team
         if (attacker1.health <= 0 && this.team1.length > 0) {
+          this.turnNumber++;
+          console.log(``);
+          console.log(`--- Turn ${this.turnNumber} ---`);
           console.log(`${attacker1.name} has fainted. ${this.team1[0].name} is sent out.`);
           attacker1 = this.team1[0];
         }
 
         // Check if defender1's health is 0 or less and switch to the next Pokemon in the team
         if (defender1.health <= 0 && this.team2.length > 0) {
+          this.turnNumber++;
+          console.log(``);
+          console.log(`--- Turn ${this.turnNumber} ---`);
           console.log(`${defender1.name} has fainted. ${this.team2[0].name} is sent out.`);
           defender1 = this.team2[0];
+          }
         }
       }
     }
   }
-}
+
 
   // method to check if the battle is over
   isBattleOver() {
@@ -331,7 +367,7 @@ battleRound() {
 }
 
 // create some moves
-let blessing = new Move("Blessing", "Light", "Magical", 100);
+let darkBlessing = new Move("Dark Blessing", "Dark", "Magical", 100);
 let hornAttack = new Move("Horn Attack", "Neutral", "Physical", 100);
 let polarLight = new Move("Polar Light", "Light", "Magical", 140);
 let chomp = new Move("Chomp", "Neutral", "Physical", 120);
@@ -356,7 +392,7 @@ let dragonQuake = new Move("Dragon Quake", "Earth", "Physical", 150);
 let doublePunch = new Move("Double Punch", "Neutral", "Physical", 150);
 
 // create some Pokemon
-let spirit1= new Pokemon("Reindeer",70 , 671 ,42 ,48 ,368 ,68 ,565 ,86 ,"Endurance","Flashlight","Neutral",[blessing,hornAttack,polarLight,chomp]);
+let spirit1= new Pokemon("Reindeer",70 , 671 ,42 ,48 ,368 ,68 ,565 ,86 ,"Endurance","Flashlight","Neutral",[darkBlessing,hornAttack,polarLight,chomp]);
 let spirit2= new Pokemon("Traruza",70 , 832 ,340 ,129 ,54 ,127 ,510 ,73 ,"Ground","Sledgehammer","Earth",[dragonTail,dragonQuake,earthquake,doublePunch]);
 let spirit3= new Pokemon("Warhulk",70 , 930 ,382 ,416 ,5 ,296 ,35 ,41 ,"Spike","Cloak","Dark",[smash,staticSmash,superSmash,blackHole]);
 
