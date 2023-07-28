@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		nSIbkxP9c2SqJzWsjKMeDRWvDnE=
+		9WLo2CWQxAOOUZ63jrwonYGUihE=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		lxIZyJgo8q8JioMZoeeJ8tukbZ8=
+		n/KU3N5PrTRwI2F9UBZeqKoXNWE=
 		</data>
 		<key>flutter_assets/assets/Backgrounds/Challenge.png</key>
 		<data>
@@ -212,6 +212,14 @@
 		<data>
 		YL8TDlV5KYblOou9R5xCCbK8SZE=
 		</data>
+		<key>flutter_assets/assets/Spirits/005_Reindeer.png</key>
+		<data>
+		JawPRhGLR90YlYgb/g87S1vdvlE=
+		</data>
+		<key>flutter_assets/assets/Spirits/006_Skiina.png</key>
+		<data>
+		wwOH01uA1PTvGITCtcJ0APxqahY=
+		</data>
 		<key>flutter_assets/assets/Spirits/099_Malusk.png</key>
 		<data>
 		EbUZnfUBEHsdzj9jagJxMpSPeZg=
@@ -286,7 +294,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		LcTZnxU7tvNZeBx3vl5zdF2zH5M=
+		ObJ9w3D54pXDJ6Dj/MyfuQdnXdo=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -319,7 +327,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1lJz852FCyjHraJSIbOd+0X6/5/zr4emsvCM68Zb3Ko=
+			/HqIOEyKc2PrKt8equVQnDBlT6zii1srLj9p+9iKOGo=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -333,7 +341,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			nhZr1iktZRMwKI41BMPpIMYCN3e2Q4qgzSxiMz5nJgw=
+			ciBus3Be2EAw0YUZhdubU983PeN3ur28L4ApawyfSBU=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/Backgrounds/Challenge.png</key>
@@ -672,6 +680,20 @@
 			bFTRh2Xey6ZPQf3lM8Wz0EJYFhQHVIq5TNzYhAjvqMA=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/Spirits/005_Reindeer.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			bJGR1WupHrEhraqr/Nyhf1H/BfaJAJ/ZG1pVhiGioZ0=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/Spirits/006_Skiina.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			jgV0rq4t0iqUr7iaYLhnLeEfjXn4xViC4R7DzDZCvPo=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/Spirits/099_Malusk.png</key>
 		<dict>
 			<key>hash2</key>
@@ -802,7 +824,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jRpMLuF7NkyAm50jIAfRMHdFyqZDjrhfn0RsjSA+dyU=
+			6hLQRsj9rxr4CJ/9Yt4gWqRMYk2h3Yb2IMfuHHquQWM=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

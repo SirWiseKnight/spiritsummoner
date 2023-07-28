@@ -11,7 +11,7 @@ var appRoutes = {
   '/welcome': (context) => const WelcomeScreen(),
   '/home': (context) => const HomeScreen(),
   '/quest': (context) => const QuestScreen(),
-  '/battle': (context) => const BattleScreen(),
+  '/battle': (context) => BattleScreen(),
   '/shop': (context) => const ShopScreen(),
   '/chat': (context) => const ChatScreen(),
 };

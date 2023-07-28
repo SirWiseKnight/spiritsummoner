@@ -107,8 +107,7 @@ class BottomNavBubbles extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const BattleScreen()),
+                    MaterialPageRoute(builder: (context) => BattleScreen()),
                   );
                 },
                 icon: Icon(

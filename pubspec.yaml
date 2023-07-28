@@ -44,7 +44,7 @@ dependencies:
   json_annotation:
   percent_indicator:
   gradient_borders:
-  games_services: any
+  flame:
 
 dev_dependencies:
   flutter_test:
