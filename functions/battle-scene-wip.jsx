@@ -365,7 +365,6 @@ battleRound() {
                 pokemonTeam.splice(i, 1);
                 break;
           }
-          this.logMessage(logObject);
       }
       }
     }
