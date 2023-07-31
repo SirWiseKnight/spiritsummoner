@@ -314,7 +314,9 @@ battleRound() {
               defender: target.name,
               defenderHealth: Number(target.health.toFixed(0)),
             };
+            this.logMessage(logObject);
               if (target.ability === "Spike") {
+                this.turnNumber++;
                 // Log battle messages as objects
                 const logObject = {
                 turn: this.turnNumber,
@@ -322,10 +324,12 @@ battleRound() {
                 targetName: pokemon.name,
                 targetHealth: Number(pokemon.health.toFixed(0)),
               };
+              this.logMessage(logObject);
               };
 
                 // Determine if the target held on using Endurance
               if (target.ability === "Endurance" && target.health === 1) {
+                this.turnNumber++;
                 // Log battle messages as objects
                 const logObject = {
                 turn: this.turnNumber,
@@ -333,6 +337,7 @@ battleRound() {
                 targetName: target.name,
                 targetHealth: Number(target.health.toFixed(0)),
               };
+              this.logMessage(logObject);
                 };
 
               if (target.health <= 0 && pokemon.health <= 0) {

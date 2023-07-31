@@ -44,7 +44,6 @@ dependencies:
   json_annotation:
   percent_indicator:
   gradient_borders:
-  flame:
 
 dev_dependencies:
   flutter_test:

@@ -13,5 +13,5 @@ var appRoutes = {
   '/quest': (context) => const QuestScreen(),
   '/battle': (context) => BattleScreen(),
   '/shop': (context) => const ShopScreen(),
-  '/chat': (context) => const ChatScreen(),
+  '/chat': (context) => ChatScreen(),
 };

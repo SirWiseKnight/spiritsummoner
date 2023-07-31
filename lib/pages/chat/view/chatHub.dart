@@ -1,252 +1,453 @@
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/gradient_borders.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:spirit_summoner/config/barrel.dart';
-import 'package:spirit_summoner/pages/chat/shared/chatBarrel.dart';
-import 'package:spirit_summoner/pages/chat/widgets/chatScreen2.dart';
-import 'package:spirit_summoner/pages/chat/widgets/chatScreen3.dart';
+import 'dart:convert';
 
-List<bool> isSelected = [true, false, false, false, false];
+class BattleLogEntry {
+  final int turn;
+  final String attacker;
+  final String moveName;
+  final String moveType;
+  final int damage;
+  final String defender;
+  final int defenderHealth;
+  final String fainted;
+  final String next;
+  final String ability;
+  final String targetName;
+  final int targetHealth;
 
-class BottomNavBubbles2 extends StatefulWidget {
-  const BottomNavBubbles2({Key? key}) : super(key: key);
-
-  @override
-  State<BottomNavBubbles2> createState() => new _BottomNavBubbles2State();
-}
-
-class _BottomNavBubbles2State extends State<BottomNavBubbles2> {
-  int _pageIndex = 0;
-  int get pageIndex => _pageIndex;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Center(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.width * 0.175,
-              width: MediaQuery.of(context).size.width * 0.175,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                border: GradientBoxBorder(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Colors.white.withOpacity(0.4),
-                      Colors.white.withOpacity(0.01),
-                      Colors.white.withOpacity(0.1),
-                    ],
-                  ),
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    _pageIndex = 0;
-                    print(_pageIndex);
-                  });
-                },
-                icon: Icon(
-                  FontAwesomeIcons.house,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.width * 0.175,
-              width: MediaQuery.of(context).size.width * 0.175,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                border: GradientBoxBorder(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Colors.white.withOpacity(0.4),
-                      Colors.white.withOpacity(0.01),
-                      Colors.white.withOpacity(0.1),
-                    ],
-                  ),
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    _pageIndex = 1;
-                    print(_pageIndex);
-                  });
-                },
-                icon: Icon(
-                  FontAwesomeIcons.dungeon,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.width * 0.175,
-              width: MediaQuery.of(context).size.width * 0.175,
-              decoration: BoxDecoration(
-                color: Colors.green,
-                border: GradientBoxBorder(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Colors.white.withOpacity(0.4),
-                      Colors.white.withOpacity(0.01),
-                      Colors.white.withOpacity(0.1),
-                    ],
-                  ),
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    _pageIndex = 2;
-                    print(_pageIndex);
-                  });
-                },
-                icon: Icon(
-                  FontAwesomeIcons.shield,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.width * 0.175,
-              width: MediaQuery.of(context).size.width * 0.175,
-              decoration: BoxDecoration(
-                color: Colors.amber,
-                border: GradientBoxBorder(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Colors.white.withOpacity(0.4),
-                      Colors.white.withOpacity(0.01),
-                      Colors.white.withOpacity(0.1),
-                    ],
-                  ),
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    _pageIndex = 3;
-                    print(_pageIndex);
-                  });
-                },
-                icon: Icon(
-                  FontAwesomeIcons.piggyBank,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.width * 0.175,
-              width: MediaQuery.of(context).size.width * 0.175,
-              decoration: BoxDecoration(
-                color: Colors.purple,
-                border: GradientBoxBorder(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Colors.white.withOpacity(0.4),
-                      Colors.white.withOpacity(0.01),
-                      Colors.white.withOpacity(0.1),
-                    ],
-                  ),
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    _pageIndex = 4;
-                    print(_pageIndex);
-                  });
-                },
-                icon: Icon(
-                  FontAwesomeIcons.envelopeOpenText,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  BattleLogEntry({
+    required this.turn,
+    required this.attacker,
+    required this.moveName,
+    required this.moveType,
+    required this.damage,
+    required this.defender,
+    required this.defenderHealth,
+    required this.fainted,
+    required this.next,
+    required this.ability,
+    required this.targetName,
+    required this.targetHealth,
+  });
 }
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
-
   @override
-  State<ChatScreen> createState() => _ChatScreenState();
+  _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
-  int _pageIndex = 0;
-  int get pageIndex => _pageIndex;
+List<Map> jsonData = [
+  {
+    "turn": 1,
+    "attacker": "Reindeer",
+    "moveName": "Dark Blessing",
+    "moveType": "Dark",
+    "damage": 264,
+    "defender": "Skiina",
+    "defenderHealth": 454
+  },
+  {
+    "turn": 1,
+    "attacker": "Reindeer",
+    "moveName": "Dark Blessing",
+    "moveType": "Dark",
+    "damage": 264,
+    "defender": "Skiina",
+    "defenderHealth": 454
+  },
+  {
+    "turn": 2,
+    "attacker": "Skiina",
+    "moveName": "Sonic Combustion",
+    "moveType": "Wind",
+    "damage": 433,
+    "defender": "Reindeer",
+    "defenderHealth": 238
+  },
+  {
+    "turn": 2,
+    "attacker": "Skiina",
+    "moveName": "Sonic Combustion",
+    "moveType": "Wind",
+    "damage": 433,
+    "defender": "Reindeer",
+    "defenderHealth": 238
+  },
+  {
+    "turn": 3,
+    "attacker": "Reindeer",
+    "moveName": "Dark Blessing",
+    "moveType": "Dark",
+    "damage": 264,
+    "defender": "Skiina",
+    "defenderHealth": 190
+  },
+  {
+    "turn": 3,
+    "attacker": "Reindeer",
+    "moveName": "Dark Blessing",
+    "moveType": "Dark",
+    "damage": 264,
+    "defender": "Skiina",
+    "defenderHealth": 190
+  },
+  {
+    "turn": 4,
+    "attacker": "Skiina",
+    "moveName": "Sonic Combustion",
+    "moveType": "Wind",
+    "damage": 433,
+    "defender": "Reindeer",
+    "defenderHealth": 1
+  },
+  {
+    "turn": 5,
+    "ability": "Endurance",
+    "targetName": "Reindeer",
+    "targetHealth": 1
+  },
+  {
+    "turn": 4,
+    "attacker": "Skiina",
+    "moveName": "Sonic Combustion",
+    "moveType": "Wind",
+    "damage": 433,
+    "defender": "Reindeer",
+    "defenderHealth": 1
+  },
+  {
+    "turn": 6,
+    "attacker": "Reindeer",
+    "moveName": "Dark Blessing",
+    "moveType": "Dark",
+    "damage": 264,
+    "defender": "Skiina",
+    "defenderHealth": 1
+  },
+  {
+    "turn": 7,
+    "ability": "Endurance",
+    "targetName": "Skiina",
+    "targetHealth": 1
+  },
+  {
+    "turn": 6,
+    "attacker": "Reindeer",
+    "moveName": "Dark Blessing",
+    "moveType": "Dark",
+    "damage": 264,
+    "defender": "Skiina",
+    "defenderHealth": 1
+  },
+  {
+    "turn": 8,
+    "attacker": "Skiina",
+    "moveName": "Sonic Combustion",
+    "moveType": "Wind",
+    "damage": 433,
+    "defender": "Reindeer",
+    "defenderHealth": -432
+  },
+  {"turn": 9, "fainted": "Reindeer", "next": "Traruza"},
+  {
+    "turn": 10,
+    "attacker": "Skiina",
+    "moveName": "Sonic Combustion",
+    "moveType": "Wind",
+    "damage": 466,
+    "defender": "Traruza",
+    "defenderHealth": 366
+  },
+  {
+    "turn": 10,
+    "attacker": "Skiina",
+    "moveName": "Sonic Combustion",
+    "moveType": "Wind",
+    "damage": 466,
+    "defender": "Traruza",
+    "defenderHealth": 366
+  },
+  {
+    "turn": 11,
+    "attacker": "Traruza",
+    "moveName": "Double Punch",
+    "moveType": "Neutral",
+    "damage": 380,
+    "defender": "Skiina",
+    "defenderHealth": -379
+  },
+  {"turn": 12, "fainted": "Skiina", "next": "Frogi"},
+  {
+    "turn": 13,
+    "attacker": "Frogi",
+    "moveName": "Waterfall",
+    "moveType": "Water",
+    "damage": 227,
+    "defender": "Traruza",
+    "defenderHealth": 139
+  },
+  {
+    "turn": 13,
+    "attacker": "Frogi",
+    "moveName": "Waterfall",
+    "moveType": "Water",
+    "damage": 227,
+    "defender": "Traruza",
+    "defenderHealth": 139
+  },
+  {
+    "turn": 14,
+    "attacker": "Traruza",
+    "moveName": "Dragon Quake",
+    "moveType": "Earth",
+    "damage": 452,
+    "defender": "Frogi",
+    "defenderHealth": 219
+  },
+  {
+    "turn": 14,
+    "attacker": "Traruza",
+    "moveName": "Dragon Quake",
+    "moveType": "Earth",
+    "damage": 452,
+    "defender": "Frogi",
+    "defenderHealth": 219
+  },
+  {
+    "turn": 15,
+    "attacker": "Frogi",
+    "moveName": "Waterfall",
+    "moveType": "Water",
+    "damage": 227,
+    "defender": "Traruza",
+    "defenderHealth": -88
+  },
+  {"turn": 16, "fainted": "Traruza", "next": "Warhulk"},
+  {
+    "turn": 17,
+    "attacker": "Frogi",
+    "moveName": "Waterfall",
+    "moveType": "Water",
+    "damage": 99,
+    "defender": "Warhulk",
+    "defenderHealth": 831
+  },
+  {"turn": 18, "ability": "Spike", "targetName": "Frogi", "targetHealth": 197},
+  {
+    "turn": 17,
+    "attacker": "Frogi",
+    "moveName": "Waterfall",
+    "moveType": "Water",
+    "damage": 99,
+    "defender": "Warhulk",
+    "defenderHealth": 831
+  },
+  {
+    "turn": 19,
+    "attacker": "Frogi",
+    "moveName": "Waterfall",
+    "moveType": "Water",
+    "damage": 99,
+    "defender": "Warhulk",
+    "defenderHealth": 731
+  },
+  {"turn": 20, "ability": "Spike", "targetName": "Frogi", "targetHealth": 178},
+  {
+    "turn": 19,
+    "attacker": "Frogi",
+    "moveName": "Waterfall",
+    "moveType": "Water",
+    "damage": 99,
+    "defender": "Warhulk",
+    "defenderHealth": 731
+  },
+  {
+    "turn": 21,
+    "attacker": "Frogi",
+    "moveName": "Waterfall",
+    "moveType": "Water",
+    "damage": 99,
+    "defender": "Warhulk",
+    "defenderHealth": 632
+  },
+  {"turn": 22, "ability": "Spike", "targetName": "Frogi", "targetHealth": 160},
+  {
+    "turn": 21,
+    "attacker": "Frogi",
+    "moveName": "Waterfall",
+    "moveType": "Water",
+    "damage": 99,
+    "defender": "Warhulk",
+    "defenderHealth": 632
+  },
+  {
+    "turn": 23,
+    "attacker": "Warhulk",
+    "moveName": "Black Hole",
+    "moveType": "Dark",
+    "damage": 423,
+    "defender": "Frogi",
+    "defenderHealth": -263
+  },
+  {"turn": 24, "fainted": "Frogi", "next": "Skiina"},
+  {
+    "turn": 25,
+    "attacker": "Skiina",
+    "moveName": "Polar Light",
+    "moveType": "Light",
+    "damage": 188,
+    "defender": "Warhulk",
+    "defenderHealth": 444
+  },
+  {"turn": 26, "ability": "Spike", "targetName": "Skiina", "targetHealth": 646},
+  {
+    "turn": 25,
+    "attacker": "Skiina",
+    "moveName": "Polar Light",
+    "moveType": "Light",
+    "damage": 188,
+    "defender": "Warhulk",
+    "defenderHealth": 444
+  },
+  {
+    "turn": 27,
+    "attacker": "Skiina",
+    "moveName": "Polar Light",
+    "moveType": "Light",
+    "damage": 188,
+    "defender": "Warhulk",
+    "defenderHealth": 256
+  },
+  {"turn": 28, "ability": "Spike", "targetName": "Skiina", "targetHealth": 582},
+  {
+    "turn": 27,
+    "attacker": "Skiina",
+    "moveName": "Polar Light",
+    "moveType": "Light",
+    "damage": 188,
+    "defender": "Warhulk",
+    "defenderHealth": 256
+  },
+  {
+    "turn": 29,
+    "attacker": "Skiina",
+    "moveName": "Polar Light",
+    "moveType": "Light",
+    "damage": 188,
+    "defender": "Warhulk",
+    "defenderHealth": 68
+  },
+  {"turn": 30, "ability": "Spike", "targetName": "Skiina", "targetHealth": 523},
+  {
+    "turn": 29,
+    "attacker": "Skiina",
+    "moveName": "Polar Light",
+    "moveType": "Light",
+    "damage": 188,
+    "defender": "Warhulk",
+    "defenderHealth": 68
+  },
+  {
+    "turn": 31,
+    "attacker": "Warhulk",
+    "moveName": "Black Hole",
+    "moveType": "Dark",
+    "damage": 641,
+    "defender": "Skiina",
+    "defenderHealth": 1
+  },
+  {
+    "turn": 32,
+    "ability": "Endurance",
+    "targetName": "Skiina",
+    "targetHealth": 1
+  },
+  {
+    "turn": 31,
+    "attacker": "Warhulk",
+    "moveName": "Black Hole",
+    "moveType": "Dark",
+    "damage": 641,
+    "defender": "Skiina",
+    "defenderHealth": 1
+  },
+  {
+    "turn": 33,
+    "attacker": "Skiina",
+    "moveName": "Polar Light",
+    "moveType": "Light",
+    "damage": 188,
+    "defender": "Warhulk",
+    "defenderHealth": -120
+  },
+  {"turn": 34, "ability": "Spike", "targetName": "Skiina", "targetHealth": -1}
+]; // Replace with your actual battle log data
+
+List<BattleLogEntry> _battleLog = List<BattleLogEntry>.from(
+  jsonData.map((entry) => BattleLogEntry(
+        turn: entry['turn'],
+        attacker: entry['attacker'] ?? '',
+        moveName: entry['moveName'] ?? '',
+        moveType: entry['moveType'] ?? '',
+        damage: entry['damage'] ?? 0,
+        defender: entry['defender'] ?? '',
+        defenderHealth: entry['defenderHealth'] ?? 0,
+        fainted: entry['fainted'] ?? '',
+        next: entry['next'] ?? '',
+        ability: entry['ability'] ?? '',
+        targetName: entry['targetName'] ?? '',
+        targetHealth: entry['targetHealth'] ?? 0,
+      )),
+);
+
+class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    // Sort the _battleLog list based on the turn value in ascending order
+    _battleLog.sort((a, b) => a.turn.compareTo(b.turn));
+
+// Create a new list to store unique turns
+    List<int> uniqueTurns = [];
+
+    for (var logEntry in _battleLog) {
+      // Add the turn to the uniqueTurns list if it doesn't exist already
+      if (!uniqueTurns.contains(logEntry.turn)) {
+        uniqueTurns.add(logEntry.turn);
+      }
+    }
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 219, 208, 189),
-              Color.fromARGB(255, 219, 208, 189),
-              Color.fromARGB(255, 73, 62, 43),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Column(
-          children: [
-            AppBarPane(),
-            SafeArea(
-              top: false,
-              child: Column(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.615,
-                    child: Center(
-                      child: IndexedStack(
-                        index: pageIndex,
-                        children: [
-                          ChatScreen1(),
-                          ChatScreen2(),
-                          ChatScreen3(),
-                          ChatScreen2(),
-                          ChatScreen1(),
-                        ],
-                      ),
-                    ),
-                  ),
-                  BottomNavBubbles2(),
-                ],
-              ),
-            ),
-          ],
-        ),
+      appBar: AppBar(
+        title: Text('Battle Results'),
+      ),
+      body: ListView.builder(
+        itemCount: uniqueTurns.length,
+        itemBuilder: (context, index) {
+          final turn = uniqueTurns[index];
+
+          // Get the log entry for the current turn
+          final logEntry = _battleLog.firstWhere((entry) => entry.turn == turn);
+
+          return ListTile(
+            title: Text('Turn: ${logEntry.turn}'),
+            subtitle: Container(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Attacker: ${logEntry.attacker}'),
+                Text('Move Name: ${logEntry.moveName}'),
+                Text('Move Type: ${logEntry.moveType}'),
+                Text('Damage: ${logEntry.damage}'),
+                Text('Defender: ${logEntry.defender}'),
+                Text('Defender Health: ${logEntry.defenderHealth}'),
+                Text('Fainted: ${logEntry.fainted}'),
+                Text('Next: ${logEntry.next}'),
+                Text('Ability: ${logEntry.ability}'),
+                Text('Target Name: ${logEntry.targetName}'),
+                Text('Target Health: ${logEntry.targetHealth}'),
+              ],
+            )),
+          );
+        },
       ),
     );
   }
