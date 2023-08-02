@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'dart:async';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -13,8 +14,15 @@ class _ChatScreenState extends State<ChatScreen> {
   List _team1 = [];
   List _team2 = [];
   int indexer = 0;
+  Timer? _timer;
 
-// Fetch content from the json file
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  // Fetch content from the json file
   Future<void> readJson() async {
     final dynamic response =
         await rootBundle.loadString('functions/battle_log.json');
@@ -24,6 +32,15 @@ class _ChatScreenState extends State<ChatScreen> {
       _results = data["winner"];
       _team1 = data["teams"]["team1"];
       _team2 = data["teams"]["team2"];
+    });
+  }
+
+  // Function to increment the indexer every 10 seconds
+  void incrementIndexer() {
+    setState(() {
+      if (indexer < _items.length - 1) {
+        indexer = indexer + 1;
+      }
     });
   }
 
@@ -183,8 +200,10 @@ class _ChatScreenState extends State<ChatScreen> {
               child: const Text('Next Turn'),
               onPressed: () {
                 if (indexer < _items.length - 1) {
-                  indexer = indexer + 1;
-                  readJson();
+                  _timer?.cancel();
+                  _timer = Timer.periodic(Duration(seconds: 3), (timer) {
+                    incrementIndexer();
+                  });
                 } else {
                   null;
                 }

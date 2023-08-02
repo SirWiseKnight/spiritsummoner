@@ -2,7 +2,9 @@
   "teams": {
     "team1": [
       {
+        "id": 5,
         "name": "Reindeer",
+        "nickname": "Reindeer",
         "level": 70,
         "maxHealth": 671,
         "health": -432.05529411764707,
@@ -44,7 +46,9 @@
         "usedEndurance": true
       },
       {
+        "id": 7,
         "name": "Traruza",
+        "nickname": "Traruza",
         "level": 70,
         "maxHealth": 832,
         "health": -88.45722204724404,
@@ -86,7 +90,9 @@
         "usedEndurance": false
       },
       {
+        "id": 9,
         "name": "Warhulk",
+        "nickname": "Warhulk",
         "level": 70,
         "maxHealth": 930,
         "health": -119.86015135135116,
@@ -130,7 +136,9 @@
     ],
     "team2": [
       {
+        "id": 6,
         "name": "Skiina",
+        "nickname": "Skiina",
         "level": 70,
         "maxHealth": 718,
         "health": -379.25,
@@ -172,7 +180,9 @@
         "usedEndurance": true
       },
       {
+        "id": 8,
         "name": "Frogi",
+        "nickname": "Frogi",
         "level": 70,
         "maxHealth": 671,
         "health": -262.6061821714285,
@@ -214,7 +224,9 @@
         "usedEndurance": false
       },
       {
+        "id": 6,
         "name": "Skiina",
+        "nickname": "Skiina",
         "level": 70,
         "maxHealth": 718,
         "health": -1,

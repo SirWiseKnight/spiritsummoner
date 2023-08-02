@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spirit_summoner/pages/home/shared/homePages.dart';
 
 class Move {
   final String name;
@@ -361,15 +362,38 @@ class _BattleScreenState extends State<BattleScreen>
   }
 
   void _showBattleResult(String message) {
-    // Reset the battle state after showing the result
-    setState(() {
-      _isAnimating = false;
-      _isBattleOver = false;
-      _activeTeam1PokemonIndex = 0;
-      _activeTeam2PokemonIndex = 0;
-      _attacker = _team1[_activeTeam1PokemonIndex];
-      _defender = _team2[_activeTeam2PokemonIndex];
-    });
+    // Show the battle result message using a dialog
+    showDialog(
+      context: context,
+      barrierDismissible:
+          false, // Prevent dismissing the dialog by tapping outside
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Battle Result'),
+          content: Text(message),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                // Reset the battle state after showing the result
+                setState(() {
+                  _isAnimating = false;
+                  _activeTeam1PokemonIndex = 0;
+                  _activeTeam2PokemonIndex = 0;
+                  _attacker = _team1[_activeTeam1PokemonIndex];
+                  _defender = _team2[_activeTeam2PokemonIndex];
+                });
+                // Close the dialog and navigate back to the previous page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                );
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _calculateDamage() {

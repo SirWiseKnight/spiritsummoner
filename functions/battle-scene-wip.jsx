@@ -25,9 +25,11 @@ class Move {
 
 // define the Pokemon class
 class Pokemon {
-  constructor(name, level, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, moves, usedEndurance) {
+  constructor(id, name, nickname, level, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, moves, usedEndurance) {
     // Add a custom serialization method for the Pokemon class
+    this.id = id,
     this.name = name,
+    this.nickname = nickname,
     this.level = level,
     this.maxHealth = maxHealth,
     this.health = health,
@@ -238,7 +240,9 @@ getTypeMultiplier(moveElementType, opponentCoreType) {
 
   serialize() {
     return {
+      id: this.id,
       name: this.name,
+      nickname: this.nickname,
       level: this.level,
       maxHealth: this.maxHealth,
       health: this.health,
@@ -451,13 +455,13 @@ let dragonQuake = new Move("Dragon Quake", "Earth", "Physical", 150);
 let doublePunch = new Move("Double Punch", "Neutral", "Physical", 150);
 
 // create some Pokemon
-let spirit1= new Pokemon("Reindeer",70 , 671 ,671 ,42 ,48 ,368 ,68 ,565 ,86 ,"Endurance","Flashlight","Neutral",[darkBlessing,hornAttack,polarLight,chomp]);
-let spirit2= new Pokemon("Traruza",70 , 832 ,832 ,340 ,129 ,54 ,127 ,510 ,73 ,"Ground","Sledgehammer","Earth",[dragonTail,dragonQuake,earthquake,doublePunch]);
-let spirit3= new Pokemon("Warhulk",70 , 930 , 930, 382 ,416 ,5 ,296 ,35 ,41 ,"Spike","Cloak","Dark",[smash,staticSmash,superSmash,blackHole]);
+let spirit1= new Pokemon(5, "Reindeer", "Reindeer", 70 , 671 ,671 ,42 ,48 ,368 ,68 ,565 ,86 ,"Endurance","Flashlight","Neutral",[darkBlessing,hornAttack,polarLight,chomp]);
+let spirit2= new Pokemon(7, "Traruza", "Traruza",70 , 832 ,832 ,340 ,129 ,54 ,127 ,510 ,73 ,"Ground","Sledgehammer","Earth",[dragonTail,dragonQuake,earthquake,doublePunch]);
+let spirit3= new Pokemon(9, "Warhulk", "Warhulk",70 , 930 , 930, 382 ,416 ,5 ,296 ,35 ,41 ,"Spike","Cloak","Dark",[smash,staticSmash,superSmash,blackHole]);
 
-let spirit4= new Pokemon("Skiina",70 , 718 ,718 ,5 ,48 ,457 ,50 ,555 ,114 ,"Endurance","Flashlight","Wind",[queenBreath,whirlwindZone,sonicCombustion,polarLight]);
-let spirit5= new Pokemon("Frogi",70 , 671 ,671 ,5 ,70 ,308 ,55 ,555 ,150 ,"Torrent","Mystic Water","Water",[bubble,consume,touch,waterfall]);
-let spirit6= new Pokemon("Skiina",70 , 718 ,718 ,5 ,46 ,453 ,58 ,555 ,115 ,"Endurance","Flashlight","Wind",[queenBreath,whirlwindZone,sonicCombustion,polarLight]);
+let spirit4= new Pokemon(6, "Skiina", "Skiina",70 , 718 ,718 ,5 ,48 ,457 ,50 ,555 ,114 ,"Endurance","Flashlight","Wind",[queenBreath,whirlwindZone,sonicCombustion,polarLight]);
+let spirit5= new Pokemon(8, "Frogi", "Frogi",70 , 671 ,671 ,5 ,70 ,308 ,55 ,555 ,150 ,"Torrent","Mystic Water","Water",[bubble,consume,touch,waterfall]);
+let spirit6= new Pokemon(6, "Skiina", "Skiina",70 , 718 ,718 ,5 ,46 ,453 ,58 ,555 ,115 ,"Endurance","Flashlight","Wind",[queenBreath,whirlwindZone,sonicCombustion,polarLight]);
 
 // create the teams
 let team1 = [spirit1,spirit2,spirit3];
