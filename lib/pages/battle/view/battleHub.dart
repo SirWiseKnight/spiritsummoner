@@ -88,6 +88,8 @@ class _BattleScreenState extends State<BattleScreen>
   int _activeTeam2PokemonIndex = 0;
 
   bool _isBattleOver = false;
+  bool _isPokemonVisible = true;
+  AnimationController? _fadeController;
 
   // Declare variables for animation
   late Offset _attackerInitialPosition;
@@ -120,6 +122,7 @@ class _BattleScreenState extends State<BattleScreen>
     );
 
     _attackerReverseAnimationController = null;
+    _fadeController = null;
 
     _initTeams();
     _startBattleRound();
@@ -149,6 +152,7 @@ class _BattleScreenState extends State<BattleScreen>
     _pokemonAnimationController.dispose();
     _healthBarAnimationController.dispose();
     _attackerReverseAnimationController!.dispose();
+    _fadeController?.dispose();
     super.dispose();
   }
 
@@ -291,7 +295,6 @@ class _BattleScreenState extends State<BattleScreen>
     // Only proceed if no animation is currently in progress
     if (!_isAnimating) {
       // Check if the battle is over
-      // Check if the battle is over
       if (_isBattleOver == true) {
         _showBattleResult('Team BLANK wins!');
         return;
@@ -318,8 +321,7 @@ class _BattleScreenState extends State<BattleScreen>
   void _animatePokemonAttack() {
     _isAnimating = true;
     _pokemonAnimationController.forward(from: 0.0).whenComplete(() {
-      _attackerInitialPosition = _attackerFinalPosition;
-      _attackerFinalPosition = Offset.zero;
+      _attackerReverseAnimationController;
       _pokemonAnimationController.reset();
       _calculateDamage();
     });
@@ -332,8 +334,8 @@ class _BattleScreenState extends State<BattleScreen>
         _showBattleResult("Team 1 Wins!");
       } else {
         // Send in the next Pokemon from Team 2
-        _nextDefender();
         _animatePokemonSwitch(_defender);
+        _nextDefender();
       }
     }
   }
@@ -355,10 +357,29 @@ class _BattleScreenState extends State<BattleScreen>
   }
 
   void _animatePokemonSwitch(Pokemon pokemon) {
-    // Implement Pokemon switching animation here (if desired)
-    // For example, you can use an animation controller to move the current Pokemon out and the new Pokemon in.
-    // Once the animation is complete, call _startBattleRound to begin the next round of battle.
-    _startBattleRound();
+    _fadeController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 500),
+    );
+
+    // Start the fade-out animation
+    _fadeController!.forward().whenComplete(() {
+      setState(() {
+        _defender = _team2[_activeTeam2PokemonIndex];
+        _isPokemonVisible = true; // Reset visibility
+      });
+
+      // Dispose of the animation controller
+      _fadeController!.dispose();
+      _fadeController = null; // Set to null after disposing
+
+      _startBattleRound();
+    });
+
+    setState(() {
+      _isAnimating = true;
+      _isPokemonVisible = false;
+    });
   }
 
   void _showBattleResult(String message) {
@@ -412,7 +433,7 @@ class _BattleScreenState extends State<BattleScreen>
     // Start the attacker's reverse animation
     _attackerReverseAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 700),
     )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           //_attackerReverseAnimationController!.removeStatusListener(_calculateDamage);
@@ -445,10 +466,28 @@ class _BattleScreenState extends State<BattleScreen>
   }
 
   void _animateFainting() {
-    // Implement fainting animation here
-    // You can use an animation controller for fading out the sprite or other effects
-    // After the animation is complete, start the next round of battle
-    _startBattleRound();
+    _fadeController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1000),
+    );
+
+    // Start the fade-out animation
+    _fadeController!.forward().whenComplete(() {
+      setState(() {
+        _isPokemonVisible = true; // Reset visibility
+      });
+
+      // Dispose of the animation controller
+      _fadeController!.dispose();
+      _fadeController = null; // Set to null after disposing
+
+      _startBattleRound();
+    });
+
+    setState(() {
+      _isAnimating = true;
+      _isPokemonVisible = false;
+    });
   }
 
   @override
@@ -577,11 +616,17 @@ class _BattleScreenState extends State<BattleScreen>
                                 ),
                                 SizedBox(height: 8),
                                 Container(
-                                  alignment: Alignment.topRight,
-                                  child: Image.asset(
-                                    'assets/Spirits/${_defender.imagePath}_${_defender.name}.png',
-                                    height: 225,
-                                    width: 250,
+                                  height: 225,
+                                  width: 250,
+                                  alignment: Alignment.centerRight,
+                                  child: AnimatedOpacity(
+                                    opacity: _isPokemonVisible ? 1.0 : 0.0,
+                                    duration: Duration(milliseconds: 500),
+                                    child: Image.asset(
+                                      'assets/Spirits/${_defender.imagePath}_${_defender.name}.png',
+                                      height: 225,
+                                      width: 250,
+                                    ),
                                   ),
                                 ),
                               ],
