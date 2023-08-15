@@ -2,6 +2,7 @@
   "teams": {
     "team1": [
       {
+        "team": 1,
         "id": 5,
         "name": "Reindeer",
         "nickname": "Reindeer",
@@ -46,6 +47,7 @@
         "usedEndurance": true
       },
       {
+        "team": 1,
         "id": 7,
         "name": "Traruza",
         "nickname": "Traruza",
@@ -90,6 +92,7 @@
         "usedEndurance": false
       },
       {
+        "team": 1,
         "id": 9,
         "name": "Warhulk",
         "nickname": "Warhulk",
@@ -136,6 +139,7 @@
     ],
     "team2": [
       {
+        "team": 2,
         "id": 6,
         "name": "Skiina",
         "nickname": "Skiina",
@@ -180,6 +184,7 @@
         "usedEndurance": true
       },
       {
+        "team": 2,
         "id": 8,
         "name": "Frogi",
         "nickname": "Frogi",
@@ -224,6 +229,7 @@
         "usedEndurance": false
       },
       {
+        "team": 2,
         "id": 6,
         "name": "Skiina",
         "nickname": "Skiina",
@@ -273,262 +279,242 @@
     {
       "turn": 1,
       "attacker": "Reindeer",
+      "attackerTeam": 1,
+      "attackerHealth": 671,
       "moveName": "Dark Blessing",
       "moveType": "Dark",
       "damage": 264,
       "defender": "Skiina",
+      "defenderTeam": 1,
       "defenderHealth": 454
     },
     {
       "turn": 2,
       "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 454,
       "moveName": "Sonic Combustion",
       "moveType": "Wind",
       "damage": 433,
       "defender": "Reindeer",
+      "defenderTeam": 2,
       "defenderHealth": 238
     },
     {
       "turn": 3,
       "attacker": "Reindeer",
+      "attackerTeam": 1,
+      "attackerHealth": 238,
       "moveName": "Dark Blessing",
       "moveType": "Dark",
       "damage": 264,
       "defender": "Skiina",
+      "defenderTeam": 1,
       "defenderHealth": 190
     },
     {
       "turn": 4,
       "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 190,
       "moveName": "Sonic Combustion",
       "moveType": "Wind",
       "damage": 433,
       "defender": "Reindeer",
+      "defenderTeam": 2,
       "defenderHealth": 1
     },
     {
       "turn": 5,
-      "ability": "Endurance",
-      "targetName": "Reindeer",
-      "targetHealth": 1
-    },
-    {
-      "turn": 6,
       "attacker": "Reindeer",
+      "attackerTeam": 1,
+      "attackerHealth": 1,
       "moveName": "Dark Blessing",
       "moveType": "Dark",
       "damage": 264,
       "defender": "Skiina",
+      "defenderTeam": 1,
       "defenderHealth": 1
     },
     {
-      "turn": 7,
-      "ability": "Endurance",
-      "targetName": "Skiina",
-      "targetHealth": 1
-    },
-    {
-      "turn": 8,
+      "turn": 6,
       "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 1,
       "moveName": "Sonic Combustion",
       "moveType": "Wind",
       "damage": 433,
       "defender": "Reindeer",
+      "defenderTeam": 2,
       "defenderHealth": -432
     },
     {
-      "turn": 9,
-      "fainted": "Reindeer",
-      "next": "Traruza"
-    },
-    {
-      "turn": 10,
+      "turn": 7,
       "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 1,
       "moveName": "Sonic Combustion",
       "moveType": "Wind",
       "damage": 466,
       "defender": "Traruza",
+      "defenderTeam": 2,
       "defenderHealth": 366
     },
     {
-      "turn": 11,
+      "turn": 8,
       "attacker": "Traruza",
+      "attackerTeam": 1,
+      "attackerHealth": 366,
       "moveName": "Double Punch",
       "moveType": "Neutral",
       "damage": 380,
       "defender": "Skiina",
+      "defenderTeam": 1,
       "defenderHealth": -379
     },
     {
-      "turn": 12,
-      "fainted": "Skiina",
-      "next": "Frogi"
-    },
-    {
-      "turn": 13,
+      "turn": 9,
       "attacker": "Frogi",
+      "attackerTeam": 2,
+      "attackerHealth": 671,
       "moveName": "Waterfall",
       "moveType": "Water",
       "damage": 227,
       "defender": "Traruza",
+      "defenderTeam": 2,
       "defenderHealth": 139
     },
     {
-      "turn": 14,
+      "turn": 10,
       "attacker": "Traruza",
+      "attackerTeam": 1,
+      "attackerHealth": 139,
       "moveName": "Dragon Quake",
       "moveType": "Earth",
       "damage": 452,
       "defender": "Frogi",
+      "defenderTeam": 1,
       "defenderHealth": 219
     },
     {
-      "turn": 15,
+      "turn": 11,
       "attacker": "Frogi",
+      "attackerTeam": 2,
+      "attackerHealth": 219,
       "moveName": "Waterfall",
       "moveType": "Water",
       "damage": 227,
       "defender": "Traruza",
+      "defenderTeam": 2,
       "defenderHealth": -88
     },
     {
-      "turn": 16,
-      "fainted": "Traruza",
-      "next": "Warhulk"
-    },
-    {
-      "turn": 17,
+      "turn": 12,
       "attacker": "Frogi",
+      "attackerTeam": 2,
+      "attackerHealth": 197,
       "moveName": "Waterfall",
       "moveType": "Water",
       "damage": 99,
       "defender": "Warhulk",
+      "defenderTeam": 2,
       "defenderHealth": 831
     },
     {
-      "turn": 18,
-      "ability": "Spike",
-      "targetName": "Frogi",
-      "targetHealth": 197
-    },
-    {
-      "turn": 19,
+      "turn": 13,
       "attacker": "Frogi",
+      "attackerTeam": 2,
+      "attackerHealth": 178,
       "moveName": "Waterfall",
       "moveType": "Water",
       "damage": 99,
       "defender": "Warhulk",
+      "defenderTeam": 2,
       "defenderHealth": 731
     },
     {
-      "turn": 20,
-      "ability": "Spike",
-      "targetName": "Frogi",
-      "targetHealth": 178
-    },
-    {
-      "turn": 21,
+      "turn": 14,
       "attacker": "Frogi",
+      "attackerTeam": 2,
+      "attackerHealth": 160,
       "moveName": "Waterfall",
       "moveType": "Water",
       "damage": 99,
       "defender": "Warhulk",
+      "defenderTeam": 2,
       "defenderHealth": 632
     },
     {
-      "turn": 22,
-      "ability": "Spike",
-      "targetName": "Frogi",
-      "targetHealth": 160
-    },
-    {
-      "turn": 23,
+      "turn": 15,
       "attacker": "Warhulk",
+      "attackerTeam": 1,
+      "attackerHealth": 632,
       "moveName": "Black Hole",
       "moveType": "Dark",
       "damage": 423,
       "defender": "Frogi",
+      "defenderTeam": 1,
       "defenderHealth": -263
     },
     {
-      "turn": 24,
-      "fainted": "Frogi",
-      "next": "Skiina"
-    },
-    {
-      "turn": 25,
+      "turn": 16,
       "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 646,
       "moveName": "Polar Light",
       "moveType": "Light",
       "damage": 188,
       "defender": "Warhulk",
+      "defenderTeam": 2,
       "defenderHealth": 444
     },
     {
-      "turn": 26,
-      "ability": "Spike",
-      "targetName": "Skiina",
-      "targetHealth": 646
-    },
-    {
-      "turn": 27,
+      "turn": 17,
       "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 582,
       "moveName": "Polar Light",
       "moveType": "Light",
       "damage": 188,
       "defender": "Warhulk",
+      "defenderTeam": 2,
       "defenderHealth": 256
     },
     {
-      "turn": 28,
-      "ability": "Spike",
-      "targetName": "Skiina",
-      "targetHealth": 582
-    },
-    {
-      "turn": 29,
+      "turn": 18,
       "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 523,
       "moveName": "Polar Light",
       "moveType": "Light",
       "damage": 188,
       "defender": "Warhulk",
+      "defenderTeam": 2,
       "defenderHealth": 68
     },
     {
-      "turn": 30,
-      "ability": "Spike",
-      "targetName": "Skiina",
-      "targetHealth": 523
-    },
-    {
-      "turn": 31,
+      "turn": 19,
       "attacker": "Warhulk",
+      "attackerTeam": 1,
+      "attackerHealth": 68,
       "moveName": "Black Hole",
       "moveType": "Dark",
       "damage": 641,
       "defender": "Skiina",
+      "defenderTeam": 1,
       "defenderHealth": 1
     },
     {
-      "turn": 32,
-      "ability": "Endurance",
-      "targetName": "Skiina",
-      "targetHealth": 1
-    },
-    {
-      "turn": 33,
+      "turn": 20,
       "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": -1,
       "moveName": "Polar Light",
       "moveType": "Light",
       "damage": 188,
       "defender": "Warhulk",
+      "defenderTeam": 2,
       "defenderHealth": -120
-    },
-    {
-      "turn": 34,
-      "ability": "Spike",
-      "targetName": "Skiina",
-      "targetHealth": -1
     }
   ],
   "winner": "Team2"

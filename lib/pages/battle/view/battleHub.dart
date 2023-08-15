@@ -1,72 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'dart:convert';
+import 'dart:async';
 import 'package:spirit_summoner/pages/home/shared/homePages.dart';
-
-class Move {
-  final String name;
-  final String elementType;
-  final String moveType;
-  final int power;
-
-  Move(this.name, this.elementType, this.moveType, this.power);
-}
-
-class Pokemon {
-  final String name;
-  final int level;
-  int health;
-  final int maxHealth;
-  final int attack;
-  final int defense;
-  final int magicAttack;
-  final int magicDefense;
-  final int speed;
-  final int intelligence;
-  final String ability;
-  final String heldItem;
-  final String coreType;
-  final String move1;
-  final String move2;
-  final String move3;
-  final String move4;
-  final String imagePath;
-
-  Pokemon({
-    required this.name,
-    required this.level,
-    required this.health,
-    required this.maxHealth,
-    required this.attack,
-    required this.defense,
-    required this.magicAttack,
-    required this.magicDefense,
-    required this.speed,
-    required this.intelligence,
-    required this.ability,
-    required this.heldItem,
-    required this.coreType,
-    required this.move1,
-    required this.move2,
-    required this.move3,
-    required this.move4,
-    required this.imagePath,
-  });
-
-  // Method to take damage and handle ability effects
-  void takeDamage(int damage) {
-    health -= damage;
-
-    // Apply damage ability effects
-    if (ability == "Endurance" && health <= 0) {
-      health = 1;
-    }
-  }
-
-  // Method to heal the Pokemon (if needed)
-  void heal(int amount) {
-    health += amount;
-    // You can add any additional checks or adjustments here, if required.
-  }
-}
 
 class BattleScreen extends StatefulWidget {
   @override
@@ -78,11 +14,21 @@ class _BattleScreenState extends State<BattleScreen>
   late AnimationController _pokemonAnimationController;
   late AnimationController _healthBarAnimationController;
 
-  late List<Pokemon> _team1;
-  late List<Pokemon> _team2;
-  late Pokemon _attacker;
-  late Pokemon _defender;
-  late Move _selectedMove;
+  bool _jsonFileLoaded = false;
+
+  List _items = [];
+  String _results = "";
+  List _team1 = [];
+  List _team2 = [];
+  int indexer = 0;
+  int _damage = 0;
+
+  late Map<String, dynamic> _attacker;
+  late int _attackerHP;
+  late int _attackerLeadHP;
+  late Map<String, dynamic> _defender;
+  late int _defenderHP;
+  late int _defenderLeadHP;
 
   int _activeTeam1PokemonIndex = 0;
   int _activeTeam2PokemonIndex = 0;
@@ -96,17 +42,22 @@ class _BattleScreenState extends State<BattleScreen>
   late Offset _attackerFinalPosition;
   AnimationController? _attackerReverseAnimationController;
 
-  // Create some Move objects for spirit1
-  Move darkBlessing = Move("Dark Blessing", "Dark", "Magical", 100);
-  Move hornAttack = Move("Horn Attack", "Neutral", "Physical", 100);
-  Move polarLight = Move("Polar Light", "Light", "Magical", 140);
-  Move chomp = Move("Chomp", "Neutral", "Physical", 120);
-  Move whirlwindZone = Move("Whirlwind Zone", "Wind", "Magical", 140);
-  Move sonicCombustion = Move("Sonic Combustion", "Wind", "Magical", 150);
-  Move queenBreath = Move("Queen Breath", "Light", "Magical", 100);
+  // Fetch content from the json file
+  Future<void> readJson() async {
+    final dynamic response =
+        await rootBundle.loadString('functions/battle_log.json');
+    final data = await json.decode(response);
+    setState(() {
+      _items = data["log"];
+      _results = data["winner"];
+      _team1 = data["teams"]["team1"];
+      _team2 = data["teams"]["team2"];
+    });
+    _defenderLeadHP = _team2[_activeTeam2PokemonIndex]["maxHealth"];
+    _attackerLeadHP = _team1[_activeTeam1PokemonIndex]["maxHealth"];
+    _jsonFileLoaded = true; // Set the flag to indicate JSON file is loaded
+  }
 
-  List<Map<String, dynamic>> _battleRounds = [];
-  int _currentRoundIndex = 0;
   bool _isAnimating = false;
 
   @override
@@ -120,243 +71,165 @@ class _BattleScreenState extends State<BattleScreen>
       vsync: this,
       duration: Duration(milliseconds: 100),
     );
-
     _attackerReverseAnimationController = null;
     _fadeController = null;
-
-    _initTeams();
     _startBattleRound();
-    _battleRounds = _createBattleRounds();
-  }
-
-  List<Map<String, dynamic>> _createBattleRounds() {
-    List<Map<String, dynamic>> rounds = [];
-
-    // Create the battle rounds based on the teams and moves
-    for (int i = 0; i < _team1.length; i++) {
-      for (int j = 0; j < _team2.length; j++) {
-        rounds.add({
-          'attacker': _team1[i],
-          'defender': _team2[j],
-          'move': polarLight,
-        });
-        // Add more rounds for other moves if needed
-      }
-    }
-
-    return rounds;
   }
 
   @override
   void dispose() {
     _pokemonAnimationController.dispose();
     _healthBarAnimationController.dispose();
-    _attackerReverseAnimationController!.dispose();
-    _fadeController?.dispose();
+    if (_attackerReverseAnimationController != null) {
+      _attackerReverseAnimationController!.dispose();
+    }
+    if (_fadeController != null) {
+      _fadeController!.dispose();
+    }
     super.dispose();
   }
 
-  void _initTeams() {
-    // Create team 1
-    _team1 = [
-      Pokemon(
-        name: "Reindeer",
-        level: 70,
-        health: 671,
-        maxHealth: 671,
-        attack: 42,
-        defense: 48,
-        magicAttack: 368,
-        magicDefense: 68,
-        speed: 565,
-        intelligence: 86,
-        ability: "Endurance",
-        heldItem: "Flashlight",
-        coreType: "Neutral",
-        move1: "darkBlessing",
-        move2: "hornAttack",
-        move3: "polarLight",
-        move4: "chomp",
-        imagePath: "005",
-      ),
-      Pokemon(
-        name: "Skiina",
-        level: 70,
-        health: 718,
-        maxHealth: 718,
-        attack: 5,
-        defense: 48,
-        magicAttack: 457,
-        magicDefense: 50,
-        speed: 555,
-        intelligence: 114,
-        ability: "Endurance",
-        heldItem: "Flashlight",
-        coreType: "Wind",
-        move1: "queenBreath",
-        move2: "whirlwindZone",
-        move3: "polarLight",
-        move4: "sonicCombustion",
-        imagePath: "006",
-      ),
-      Pokemon(
-        name: "Reindeer",
-        level: 70,
-        health: 671,
-        maxHealth: 671,
-        attack: 42,
-        defense: 48,
-        magicAttack: 368,
-        magicDefense: 68,
-        speed: 565,
-        intelligence: 86,
-        ability: "Endurance",
-        heldItem: "Flashlight",
-        coreType: "Neutral",
-        move1: "darkBlessing",
-        move2: "hornAttack",
-        move3: "polarLight",
-        move4: "chomp",
-        imagePath: "005",
-      ),
-      // Add more Pokemon to team 1 as needed
-    ];
-
-    // Create team 2
-    _team2 = [
-      Pokemon(
-        name: "Skiina",
-        level: 70,
-        health: 718,
-        maxHealth: 718,
-        attack: 5,
-        defense: 48,
-        magicAttack: 457,
-        magicDefense: 50,
-        speed: 555,
-        intelligence: 114,
-        ability: "Endurance",
-        heldItem: "Flashlight",
-        coreType: "Wind",
-        move1: "queenBreath",
-        move2: "whirlwindZone",
-        move3: "polarLight",
-        move4: "sonicCombustion",
-        imagePath: "006",
-      ),
-      Pokemon(
-        name: "Reindeer",
-        level: 70,
-        health: 671,
-        maxHealth: 671,
-        attack: 42,
-        defense: 48,
-        magicAttack: 368,
-        magicDefense: 68,
-        speed: 565,
-        intelligence: 86,
-        ability: "Endurance",
-        heldItem: "Flashlight",
-        coreType: "Neutral",
-        move1: "darkBlessing",
-        move2: "hornAttack",
-        move3: "polarLight",
-        move4: "chomp",
-        imagePath: "005",
-      ),
-      Pokemon(
-        name: "Skiina",
-        level: 70,
-        health: 718,
-        maxHealth: 718,
-        attack: 5,
-        defense: 48,
-        magicAttack: 457,
-        magicDefense: 50,
-        speed: 555,
-        intelligence: 114,
-        ability: "Endurance",
-        heldItem: "Flashlight",
-        coreType: "Wind",
-        move1: "queenBreath",
-        move2: "whirlwindZone",
-        move3: "polarLight",
-        move4: "sonicCombustion",
-        imagePath: "006",
-      ),
-      // Add more Pokemon to team 2 as needed
-    ];
-    // Set the initial active Pokemon for each team
-    _attacker = _team1[_activeTeam1PokemonIndex];
-    _defender = _team2[_activeTeam2PokemonIndex];
-  }
-
-  void _startBattleRound() {
-    // Only proceed if no animation is currently in progress
-    if (!_isAnimating) {
-      // Check if the battle is over
-      if (_isBattleOver == true) {
-        _showBattleResult('Team BLANK wins!');
+  void _startBattleRound() async {
+    await readJson();
+    if (!_isAnimating && _jsonFileLoaded) {
+      if (_isBattleOver) {
+        _showBattleResult(_results);
         return;
       }
 
-      // Set the attacker, defender, and move for this round
+      if (_items[indexer]["turn"] >= _items.length) {
+        // Ensure that the next turn is within valid range
+        if (_items[indexer]["attackerTeam"] == 1) {
+          _defenderHP = _items[indexer]["defenderHealth"];
+          _attackerHP = _items[indexer]["attackerHealth"];
+          setState(() {
+            _defenderLeadHP = _defenderHP;
+          });
+        }
+
+        //need to add in damage to attacker HP when logic is updated
+        if (_items[indexer]["attackerTeam"] == 2) {
+          _attackerHP = _items[indexer]["defenderHealth"];
+          _defenderHP = _items[indexer]["attackerHealth"];
+          setState(() {
+            _attackerLeadHP = _attackerHP;
+          });
+        }
+        _isBattleOver = true;
+        _animatePokemonAttack();
+        // _startBattleRound();
+        return;
+      }
+
       _attacker = _team1[_activeTeam1PokemonIndex];
       _defender = _team2[_activeTeam2PokemonIndex];
-      _selectedMove = polarLight;
 
-      // Set initial and final positions for attacker's image animation
+      _damage = _items[indexer]["damage"];
+
+      //need to add in logic to determine which team is attacking/defending
+      if (_items[indexer]["attackerTeam"] == 1) {
+        _defenderHP = _items[indexer]["defenderHealth"];
+        _attackerHP = _items[indexer]["attackerHealth"];
+        setState(() {
+          _defenderLeadHP = _defenderHP;
+        });
+      }
+
+      //need to add in damage to attacker HP when logic is updated
+      if (_items[indexer]["attackerTeam"] == 2) {
+        _attackerHP = _items[indexer]["defenderHealth"];
+        _defenderHP = _items[indexer]["attackerHealth"];
+        setState(() {
+          _attackerLeadHP = _attackerHP;
+        });
+      }
+
       _attackerInitialPosition = Offset.zero;
       _attackerFinalPosition = Offset(150, -275);
 
-      // Start the attack animation
       _animatePokemonAttack();
     }
-  }
 
-  bool _hasConsciousPokemon(List<Pokemon> team) {
-    return team.any((pokemon) => pokemon.health > 0);
-  }
+    print(_items[indexer]["turn"]);
+    print(_items[indexer]["damage"]);
+    print(_defenderHP);
+    print(_items.length);
 
-  void _animatePokemonAttack() {
-    _isAnimating = true;
-    _pokemonAnimationController.forward(from: 0.0).whenComplete(() {
-      _attackerReverseAnimationController;
-      _pokemonAnimationController.reset();
-      _calculateDamage();
+    setState(() {
+      if (_activeTeam1PokemonIndex > _team1.length) {
+        // All Pokemon from Team 1 have fainted, end the battle
+        _isBattleOver ==
+            true; // Change this to assignment (_isBattleOver = true;)
+        _showBattleResult(_results);
+      }
+      if (_activeTeam2PokemonIndex > _team2.length) {
+        // All Pokemon from Team 1 have fainted, end the battle
+        _isBattleOver ==
+            true; // Change this to assignment (_isBattleOver = true;)
+        _showBattleResult(_results);
+      }
     });
+    if (_defenderHP <= 0 && _items[indexer]["turn"] <= _items.length) {
+      _animateFainting();
+      _nextDefender(); // Move to the next defender if the current one faints
+    }
 
-    // After the animation is complete, check if the defender's health is 0 or less
-    if (_defender.health <= 0) {
-      _defender.health = 0;
-      if (!_hasConsciousPokemon(_team2)) {
-        // If all Pokemon on Team 2 have fainted, the battle is over
-        _showBattleResult("Team 1 Wins!");
-      } else {
-        // Send in the next Pokemon from Team 2
-        _animatePokemonSwitch(_defender);
-        _nextDefender();
-      }
+    if (_attackerHP <= 0 && _items[indexer]["turn"] <= _items.length) {
+      _animateFainting();
+      _nextAttacker(); // Move to the next defender if the current one faints
+    }
+
+    incrementIndexer();
+  }
+
+  void _animatePokemonAttack() async {
+    _isAnimating = true;
+
+    await _pokemonAnimationController.forward(from: 0.0).whenComplete(() {
+      _animateHealthBar(); // Move this line here to trigger the switch animation
+
+      _isAnimating = false;
+    });
+  }
+
+  void _nextDefender() async {
+    await readJson();
+    // Send in the next Pokemon from Team 2 if available
+    if (_items[indexer]["turn"] <= _items.length) {
+      _activeTeam2PokemonIndex++;
+      setState(() {
+        _defenderLeadHP = _team2[_activeTeam2PokemonIndex]["maxHealth"];
+        _defenderHP = _defenderLeadHP;
+      });
+      _animatePokemonSwitch(_defender);
+    } else {
+      // All Pokemon from Team 2 have fainted, end the battle
+      _isBattleOver ==
+          true; // Change this to assignment (_isBattleOver = true;)
+      _showBattleResult(_results);
     }
   }
 
-  void _nextDefender() {
-    // Check if the current defender has fainted
-    if (_defender.health <= 0) {
-      // Send in the next Pokemon from Team 2 if available
-      if (_activeTeam2PokemonIndex < _team2.length - 1) {
-        _activeTeam2PokemonIndex++;
-        _defender = _team2[_activeTeam2PokemonIndex];
-        _animatePokemonSwitch(_defender);
-      } else {
-        // All Pokemon from Team 2 have fainted, end the battle
-        _isBattleOver == true;
-        _showBattleResult('Team BLANK wins!');
-      }
+  void _nextAttacker() async {
+    await readJson();
+    // Send in the next Pokemon from Team 2 if available
+    if (_items[indexer]["turn"] <= _items.length) {
+      _activeTeam1PokemonIndex++;
+      setState(() {
+        _attackerLeadHP = _team1[_activeTeam2PokemonIndex]["maxHealth"];
+        _attackerHP = _attackerLeadHP;
+      });
+      _animatePokemonSwitch(_attacker);
+    } else {
+      // All Pokemon from Team 1 have fainted, end the battle
+      _isBattleOver ==
+          true; // Change this to assignment (_isBattleOver = true;)
+      _showBattleResult(_results);
     }
   }
 
-  void _animatePokemonSwitch(Pokemon pokemon) {
+  void _animatePokemonSwitch(pokemon) async {
+    await readJson();
     _fadeController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 500),
@@ -365,24 +238,40 @@ class _BattleScreenState extends State<BattleScreen>
     // Start the fade-out animation
     _fadeController!.forward().whenComplete(() {
       setState(() {
-        _defender = _team2[_activeTeam2PokemonIndex];
-        _isPokemonVisible = true; // Reset visibility
+        if (_activeTeam1PokemonIndex > _team1.length) {
+          // All Pokemon from Team 1 have fainted, end the battle
+          _isBattleOver ==
+              true; // Change this to assignment (_isBattleOver = true;)
+          _showBattleResult(_results);
+        }
+        if (_activeTeam2PokemonIndex > _team2.length) {
+          // All Pokemon from Team 1 have fainted, end the battle
+          _isBattleOver ==
+              true; // Change this to assignment (_isBattleOver = true;)
+          _showBattleResult(_results);
+        }
+        if (_defenderHP <= 0) {
+          _defender = _team2[_activeTeam2PokemonIndex];
+          _isPokemonVisible = true; // Reset visibility
+        }
+        if (_attackerHP <= 0) {
+          _attacker = _team1[_activeTeam1PokemonIndex];
+          _isPokemonVisible = true; // Reset visibility
+        }
       });
 
       // Dispose of the animation controller
       _fadeController!.dispose();
       _fadeController = null; // Set to null after disposing
-
-      _startBattleRound();
-    });
-
-    setState(() {
       _isAnimating = true;
       _isPokemonVisible = false;
+      //_jsonFileLoaded = false; // Reset the flag
+      _startBattleRound(); // Start the next battle round
     });
   }
 
-  void _showBattleResult(String message) {
+  void _showBattleResult(String _results) async {
+    await readJson();
     // Show the battle result message using a dialog
     showDialog(
       context: context,
@@ -391,17 +280,18 @@ class _BattleScreenState extends State<BattleScreen>
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Battle Result'),
-          content: Text(message),
+          content: Text(_results == 'Team1' ? 'Team 1 Wins!' : 'Team 2 Wins!'),
           actions: [
             ElevatedButton(
               onPressed: () {
                 // Reset the battle state after showing the result
                 setState(() {
-                  _isAnimating = false;
+                  _isAnimating =
+                      false; // Add this line to reset animation state
                   _activeTeam1PokemonIndex = 0;
                   _activeTeam2PokemonIndex = 0;
-                  _attacker = _team1[_activeTeam1PokemonIndex];
-                  _defender = _team2[_activeTeam2PokemonIndex];
+                  _attacker = _team1[0];
+                  _defender = _team2[0];
                 });
                 // Close the dialog and navigate back to the previous page
                 Navigator.push(
@@ -417,18 +307,20 @@ class _BattleScreenState extends State<BattleScreen>
     );
   }
 
-  void _calculateDamage() {
-    // Replace this with your battle logic to calculate damage
-    // For simplicity, we'll just assume a fixed damage for the example
-    int damage = 140;
+  void _calculateDamage() async {
+    await readJson();
 
-    _defender.health -= damage;
-
-    if (_defender.health < 0) {
-      _defender.health = 0;
+    if (_defenderHP > 0) {
+      setState(() {
+        _defenderHP -= _damage;
+      });
     }
-
-    _animateHealthBar();
+    if (_defenderHP <= 0) {
+      setState(() {
+        _defenderHP == 0;
+      });
+    }
+    ;
 
     // Start the attacker's reverse animation
     _attackerReverseAnimationController = AnimationController(
@@ -437,11 +329,11 @@ class _BattleScreenState extends State<BattleScreen>
     )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           //_attackerReverseAnimationController!.removeStatusListener(_calculateDamage);
-          _attackerReverseAnimationController!.dispose();
+          //_attackerReverseAnimationController!.dispose();
           _attackerReverseAnimationController = null;
 
           // Check if the defender's health is 0 or less
-          if (_defender.health <= 0) {
+          if (_defenderHP <= 0) {
             // If the defender has fainted, switch to the next Pokemon from Team 2
             _nextDefender();
           }
@@ -455,17 +347,26 @@ class _BattleScreenState extends State<BattleScreen>
   }
 
   void _animateHealthBar() {
-    _healthBarAnimationController.forward(from: 0.0).whenComplete(() {
-      // Health bar animation is complete
-      if (_defender.health <= 0) {
-        _animateFainting();
-      } else {
-        _startBattleRound();
-      }
+    _healthBarAnimationController.reset(); // Reset the animation controller
+
+    _healthBarAnimationController.forward().whenComplete(() {
+      setState(() {
+        if (_items[indexer]["turn"] >= _items.length) {
+          _startBattleRound();
+          return;
+        }
+        if (_defenderHP <= 0) {
+          _animateFainting();
+          _nextDefender(); // Move to the next defender if the current one faints
+        } else if (!_isAnimating) {
+          _startBattleRound(); // Start the next battle round
+        }
+      });
     });
   }
 
-  void _animateFainting() {
+  void _animateFainting() async {
+    await readJson();
     _fadeController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 1000),
@@ -478,7 +379,7 @@ class _BattleScreenState extends State<BattleScreen>
       });
 
       // Dispose of the animation controller
-      _fadeController!.dispose();
+      //_fadeController!.dispose();
       _fadeController = null; // Set to null after disposing
 
       _startBattleRound();
@@ -487,6 +388,16 @@ class _BattleScreenState extends State<BattleScreen>
     setState(() {
       _isAnimating = true;
       _isPokemonVisible = false;
+    });
+  }
+
+  // Function to increment the indexer every 10 seconds
+  void incrementIndexer() async {
+    await readJson();
+    setState(() {
+      if (indexer <= _items.length) {
+        indexer = indexer + 1;
+      }
     });
   }
 
@@ -518,21 +429,21 @@ class _BattleScreenState extends State<BattleScreen>
                       width: 70,
                       color: Colors.blue,
                       child: Image.asset(
-                          'assets/Spirits/${_defender.imagePath}_${_defender.name}.png'),
+                          'assets/Spirits/${_team2[0]['id']}_${_team2[0]['name']}.png'),
                     ),
                     Container(
                       height: 70,
                       width: 70,
                       color: Colors.red,
                       child: Image.asset(
-                          'assets/Spirits/${_attacker.imagePath}_${_attacker.name}.png'),
+                          'assets/Spirits/${_team2[1]['id']}_${_team2[1]['name']}.png'),
                     ),
                     Container(
                       height: 70,
                       width: 70,
                       color: Colors.green,
                       child: Image.asset(
-                          'assets/Spirits/${_defender.imagePath}_${_defender.name}.png'),
+                          'assets/Spirits/${_team2[2]['id']}_${_team2[2]['name']}.png'),
                     ),
                   ],
                 ),
@@ -554,7 +465,7 @@ class _BattleScreenState extends State<BattleScreen>
                                 Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "${_defender.name}",
+                                    "${_team2[_activeTeam2PokemonIndex]["name"]}",
                                     style: TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold),
@@ -563,7 +474,7 @@ class _BattleScreenState extends State<BattleScreen>
                                 Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "Level ${_defender.level}",
+                                    "Level ${_team2[_activeTeam2PokemonIndex]["level"]}",
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
@@ -574,7 +485,7 @@ class _BattleScreenState extends State<BattleScreen>
                                   width: 50,
                                   alignment: Alignment.centerRight,
                                   child: Image.asset(
-                                      "assets/Types/type${_defender.coreType}.png"),
+                                      "assets/Types/type${_team2[_activeTeam2PokemonIndex]["coreType"]}.png"),
                                 ),
                               ],
                             ),
@@ -594,8 +505,9 @@ class _BattleScreenState extends State<BattleScreen>
                                         child: LinearProgressIndicator(
                                           color: Colors.green,
                                           backgroundColor: Colors.grey,
-                                          value: _defender.health /
-                                              _defender.maxHealth,
+                                          value: (_defenderHP /
+                                                  _defender["maxHealth"])
+                                              .clamp(0.0, 1.0),
                                           minHeight: 15,
                                         ),
                                       );
@@ -606,9 +518,10 @@ class _BattleScreenState extends State<BattleScreen>
                                 Container(
                                   alignment: Alignment.centerRight,
                                   child: Text(
-                                    _defender.health > 0
-                                        ? "-${_selectedMove.power}"
-                                        : "${_defender.name} fainted!",
+                                    _defenderHP > 0 &&
+                                            _items[indexer]["damage"] != null
+                                        ? "-${_items[indexer]["damage"]}"
+                                        : "",
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
@@ -623,7 +536,7 @@ class _BattleScreenState extends State<BattleScreen>
                                     opacity: _isPokemonVisible ? 1.0 : 0.0,
                                     duration: Duration(milliseconds: 500),
                                     child: Image.asset(
-                                      'assets/Spirits/${_defender.imagePath}_${_defender.name}.png',
+                                      'assets/Spirits/${_team2[_activeTeam2PokemonIndex]["id"]}_${_team2[_activeTeam2PokemonIndex]["name"]}.png',
                                       height: 225,
                                       width: 250,
                                     ),
@@ -645,7 +558,7 @@ class _BattleScreenState extends State<BattleScreen>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(child: Container()),
-                                _defender.health > 0 &&
+                                _defenderHP > 0 &&
                                         _attackerReverseAnimationController !=
                                             null
                                     ? AnimatedBuilder(
@@ -662,7 +575,7 @@ class _BattleScreenState extends State<BattleScreen>
                                             child: Container(
                                               alignment: Alignment.bottomLeft,
                                               child: Image.asset(
-                                                'assets/Spirits/${_attacker.imagePath}_${_attacker.name}.png',
+                                                'assets/Spirits/${_team1[_activeTeam1PokemonIndex]["id"]}_${_team1[_activeTeam1PokemonIndex]["name"]}.png',
                                                 height: 225,
                                                 width: 250,
                                               ),
@@ -673,7 +586,7 @@ class _BattleScreenState extends State<BattleScreen>
                                     : Container(
                                         alignment: Alignment.bottomLeft,
                                         child: Image.asset(
-                                          'assets/Spirits/${_attacker.imagePath}_${_attacker.name}.png',
+                                          'assets/Spirits/${_team1[_activeTeam1PokemonIndex]["id"]}_${_team1[_activeTeam1PokemonIndex]["name"]}.png',
                                           height: 225,
                                           width: 250,
                                         ),
@@ -688,19 +601,18 @@ class _BattleScreenState extends State<BattleScreen>
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Container(
-                                        child: _defender.health > 0
+                                        child: _defenderHP > 0 &&
+                                                _items[indexer]["moveType"] !=
+                                                    null
                                             ? Image.asset(
-                                                "assets/Types/type${_selectedMove.elementType}.png")
-                                            : Image.asset(
-                                                "assets/Types/type${_selectedMove.elementType}.png",
-                                                opacity:
-                                                    const AlwaysStoppedAnimation(
-                                                        0.0),
-                                              ),
+                                                "assets/Types/type${_items[indexer]["moveType"]}.png")
+                                            : Text(""),
                                       ),
                                       Text(
-                                        _defender.health > 0
-                                            ? " ${_selectedMove.name}"
+                                        _defenderHP > 0 &&
+                                                _items[indexer]["moveName"] !=
+                                                    null
+                                            ? " ${_items[indexer]["moveName"]}"
                                             : "",
                                         style: TextStyle(
                                             fontSize: 18,
@@ -720,8 +632,9 @@ class _BattleScreenState extends State<BattleScreen>
                                         child: LinearProgressIndicator(
                                           color: Colors.green,
                                           backgroundColor: Colors.grey,
-                                          value: _attacker.health /
-                                              _attacker.maxHealth,
+                                          value: _attackerHP /
+                                              _team1[_activeTeam1PokemonIndex]
+                                                  ["maxHealth"],
                                           minHeight: 15,
                                         ),
                                       );
@@ -743,7 +656,7 @@ class _BattleScreenState extends State<BattleScreen>
                                 Container(
                                   alignment: Alignment.centerRight,
                                   child: Text(
-                                    "${_attacker.name}",
+                                    "${_team1[_activeTeam1PokemonIndex]["name"]}",
                                     style: TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold),
@@ -752,7 +665,7 @@ class _BattleScreenState extends State<BattleScreen>
                                 Container(
                                   alignment: Alignment.centerRight,
                                   child: Text(
-                                    "Level ${_attacker.level}",
+                                    "Level ${_team1[_activeTeam1PokemonIndex]["level"]}",
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
@@ -763,7 +676,7 @@ class _BattleScreenState extends State<BattleScreen>
                                   width: 50,
                                   alignment: Alignment.centerRight,
                                   child: Image.asset(
-                                      "assets/Types/type${_attacker.coreType}.png"),
+                                      "assets/Types/type${_team1[_activeTeam1PokemonIndex]["coreType"]}.png"),
                                 ),
                               ],
                             ),
@@ -785,21 +698,21 @@ class _BattleScreenState extends State<BattleScreen>
                       width: 70,
                       color: Colors.green,
                       child: Image.asset(
-                          'assets/Spirits/${_attacker.imagePath}_${_attacker.name}.png'),
+                          'assets/Spirits/${_team1[0]['id']}_${_team1[0]['name']}.png'),
                     ),
                     Container(
                       height: 70,
                       width: 70,
                       color: Colors.red,
                       child: Image.asset(
-                          'assets/Spirits/${_defender.imagePath}_${_defender.name}.png'),
+                          'assets/Spirits/${_team1[1]['id']}_${_team1[1]['name']}.png'),
                     ),
                     Container(
                       height: 70,
                       width: 70,
                       color: Colors.blue,
                       child: Image.asset(
-                          'assets/Spirits/${_attacker.imagePath}_${_attacker.name}.png'),
+                          'assets/Spirits/${_team1[2]['id']}_${_team1[2]['name']}.png'),
                     ),
                   ],
                 ),

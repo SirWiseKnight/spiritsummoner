@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		cipvqrLOILM0aDwuAsmseo10eGE=
+		TLCazkXYa2r7YtEZk2RWpnJGnLc=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,11 +54,11 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		qxqxWdL9kK3NDacCYHDJvQReBLQ=
+		+tTg2ZLmWaVItRLL2I7Gw7hVBXE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		2wOK3PQjvka0+VCYbrx3wUmSE34=
+		jivujxxfNmGzZmPLJO0FJhVJ+Hs=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -288,9 +288,29 @@
 		<data>
 		YL8TDlV5KYblOou9R5xCCbK8SZE=
 		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/5_Reindeer.png</key>
+		<data>
+		XbmAZiv/IMFCkw6/Xes/E2Akzdo=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/6_Skiina.png</key>
+		<data>
+		9ffJ7qGKuFgmdGOXPMYv62DEO94=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/7_Traruza.png</key>
+		<data>
+		NFPTc2PhdesQCyGzwemz8AoV+8w=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/8_Frogi.png</key>
+		<data>
+		o/vIlVj9mkq5aHAwuufCd0syJVo=
+		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/99_malusk.png</key>
 		<data>
 		EbUZnfUBEHsdzj9jagJxMpSPeZg=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/9_Warhulk.png</key>
+		<data>
+		ek2gLcsgEpEbgLQMcXywm/gB+P4=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/Tottoc.png</key>
 		<data>
@@ -299,6 +319,10 @@
 		<key>Frameworks/App.framework/flutter_assets/assets/Types/typeDark.png</key>
 		<data>
 		GilBkaP4sB1PWIYBn+Exe/MtsL0=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Types/typeEarth.png</key>
+		<data>
+		hjffobuguzFoTL5HIbw6U5Oi5BI=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/Types/typeFire.png</key>
 		<data>
@@ -338,7 +362,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/functions/battle_log.json</key>
 		<data>
-		Ob/NIURha6MbcWoJvhyH2hG8XRw=
+		LGv0ayAabaqsFwEsM0oX1F0E2ys=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/isolate_snapshot_data</key>
 		<data>
@@ -346,7 +370,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		Qe6oI8rrC8tmZRP3ovc4YygWxcU=
+		q9uHdgQJOkBnqLZ8jEFQItsAgjg=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -1179,7 +1203,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			dgwMdaJC6vmGMjtGKqcsrcfV61ujabNtjk3KVqy8XqI=
+			6geXoq6xHrHxZWZiV/ShMPesYLQg5rwap2sRQHAVABw=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1193,14 +1217,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			w+4EsLzEdyf9WZ24OaFOOxpTk83zVHGW+oly6ifI1kQ=
+			DS1ZXOPvkffgGRdEoaRNYNX+UglmMPyaDobCjoN2XG4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			yxMVswgIBXkCsF0gxDJaWZ09cnMskcfYqW2lvcGPh7s=
+			p3ID4Ypwz73DJSGMBwOOQIl6Kb5xPVeaNJ2eMect7Q4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -1602,11 +1626,46 @@
 			bFTRh2Xey6ZPQf3lM8Wz0EJYFhQHVIq5TNzYhAjvqMA=
 			</data>
 		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/5_Reindeer.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BOeSGqVY1tSA+GxTcbHw2zZ0mQPILC5mvUB4ZNx+s50=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/6_Skiina.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			CC558CBMh/99WIqd3zsFrdQB9bNyPNxSRZe6gDtah+A=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/7_Traruza.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			pMHtX6pVAo4QXcR6VRJ0acGa2XXX6YeySg5SvO8hmhI=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/8_Frogi.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QpwNwRzFcfJHi3KG6azm4y8whkxKfhOBJ54TKCs9h4o=
+			</data>
+		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/99_malusk.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			CDOwf9Z19bYpfp63bRntS0+Krm/qOBaPEhl65mr/Xio=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/9_Warhulk.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			vL0tXl4xpRN3mEYmcvADznbMNUUQs6TEKbd8adXz6io=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/Tottoc.png</key>
@@ -1621,6 +1680,13 @@
 			<key>hash2</key>
 			<data>
 			XzcpiRuHQ8cTK23AggdLsJ+VCLI4ZT5fIe00PWN5clg=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Types/typeEarth.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			GrWoBed1vari7UeScMtgynN+DCCETUdFr5ISja24FPY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/Types/typeFire.png</key>
@@ -1690,7 +1756,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pv1F7utpqivxaD3lDmDAJZRnW/ZnmtmMH9qrzACj/tI=
+			Do6AFEGOde2QjpXs35skYTEoUq+HOlv0LpKogbaojCE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/isolate_snapshot_data</key>
@@ -1704,7 +1770,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LFh9wLY+1MYkCLKzVjbhh6y03+WJ89PXvz3xXCqKzFg=
+			tSQpUimCNyO07FcbLJ0hVmhLuNIlbQCkgX8uMtlCXDQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
