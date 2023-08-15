@@ -21,7 +21,7 @@ class _BattleScreenState extends State<BattleScreen>
   List _team1 = [];
   List _team2 = [];
   int indexer = 0;
-  int _damage = 0;
+  late int _damage;
 
   late Map<String, dynamic> _attacker;
   late int _attackerHP;
@@ -41,6 +41,8 @@ class _BattleScreenState extends State<BattleScreen>
   late Offset _attackerInitialPosition;
   late Offset _attackerFinalPosition;
   AnimationController? _attackerReverseAnimationController;
+  late Offset _defenderInitialPosition;
+  late Offset _defenderFinalPosition;
 
   // Fetch content from the json file
   Future<void> readJson() async {
@@ -102,8 +104,10 @@ class _BattleScreenState extends State<BattleScreen>
         if (_items[indexer]["attackerTeam"] == 1) {
           _defenderHP = _items[indexer]["defenderHealth"];
           _attackerHP = _items[indexer]["attackerHealth"];
-          setState(() {
-            _defenderLeadHP = _defenderHP;
+          Future.delayed(const Duration(milliseconds: 500), () {
+            setState(() {
+              _defenderLeadHP = _defenderHP;
+            });
           });
         }
 
@@ -111,13 +115,14 @@ class _BattleScreenState extends State<BattleScreen>
         if (_items[indexer]["attackerTeam"] == 2) {
           _attackerHP = _items[indexer]["defenderHealth"];
           _defenderHP = _items[indexer]["attackerHealth"];
-          setState(() {
-            _attackerLeadHP = _attackerHP;
+          Future.delayed(const Duration(milliseconds: 500), () {
+            setState(() {
+              _attackerLeadHP = _attackerHP;
+            });
           });
         }
         _isBattleOver = true;
         _animatePokemonAttack();
-        // _startBattleRound();
         return;
       }
 
@@ -130,8 +135,10 @@ class _BattleScreenState extends State<BattleScreen>
       if (_items[indexer]["attackerTeam"] == 1) {
         _defenderHP = _items[indexer]["defenderHealth"];
         _attackerHP = _items[indexer]["attackerHealth"];
-        setState(() {
-          _defenderLeadHP = _defenderHP;
+        Future.delayed(const Duration(milliseconds: 500), () {
+          setState(() {
+            _defenderLeadHP = _defenderHP;
+          });
         });
       }
 
@@ -139,13 +146,17 @@ class _BattleScreenState extends State<BattleScreen>
       if (_items[indexer]["attackerTeam"] == 2) {
         _attackerHP = _items[indexer]["defenderHealth"];
         _defenderHP = _items[indexer]["attackerHealth"];
-        setState(() {
-          _attackerLeadHP = _attackerHP;
+        Future.delayed(const Duration(milliseconds: 500), () {
+          setState(() {
+            _attackerLeadHP = _attackerHP;
+          });
         });
       }
 
       _attackerInitialPosition = Offset.zero;
       _attackerFinalPosition = Offset(150, -275);
+      _defenderInitialPosition = Offset.zero;
+      _defenderFinalPosition = Offset(-150, 275);
 
       _animatePokemonAttack();
     }
@@ -153,7 +164,6 @@ class _BattleScreenState extends State<BattleScreen>
     print(_items[indexer]["turn"]);
     print(_items[indexer]["damage"]);
     print(_defenderHP);
-    print(_items.length);
 
     setState(() {
       if (_activeTeam1PokemonIndex > _team1.length) {
@@ -176,7 +186,7 @@ class _BattleScreenState extends State<BattleScreen>
 
     if (_attackerHP <= 0 && _items[indexer]["turn"] <= _items.length) {
       _animateFainting();
-      _nextAttacker(); // Move to the next defender if the current one faints
+      _nextAttacker(); // Move to the next attacker if the current one faints
     }
 
     incrementIndexer();
@@ -188,6 +198,16 @@ class _BattleScreenState extends State<BattleScreen>
     await _pokemonAnimationController.forward(from: 0.0).whenComplete(() {
       _animateHealthBar(); // Move this line here to trigger the switch animation
 
+      // Start the attacker's reverse animation
+      _attackerReverseAnimationController = AnimationController(
+        vsync: this,
+        duration: Duration(milliseconds: 700),
+      )..addStatusListener((status) {
+          if (status == AnimationStatus.completed) {
+            _attackerReverseAnimationController = null;
+          }
+        });
+      _attackerReverseAnimationController!.forward(from: 0.0);
       _isAnimating = false;
     });
   }
@@ -197,9 +217,11 @@ class _BattleScreenState extends State<BattleScreen>
     // Send in the next Pokemon from Team 2 if available
     if (_items[indexer]["turn"] <= _items.length) {
       _activeTeam2PokemonIndex++;
-      setState(() {
-        _defenderLeadHP = _team2[_activeTeam2PokemonIndex]["maxHealth"];
-        _defenderHP = _defenderLeadHP;
+      Future.delayed(const Duration(milliseconds: 500), () {
+        setState(() {
+          _defenderLeadHP = _team2[_activeTeam2PokemonIndex]["maxHealth"];
+          _defenderHP = _defenderLeadHP;
+        });
       });
       _animatePokemonSwitch(_defender);
     } else {
@@ -215,9 +237,11 @@ class _BattleScreenState extends State<BattleScreen>
     // Send in the next Pokemon from Team 2 if available
     if (_items[indexer]["turn"] <= _items.length) {
       _activeTeam1PokemonIndex++;
-      setState(() {
-        _attackerLeadHP = _team1[_activeTeam2PokemonIndex]["maxHealth"];
-        _attackerHP = _attackerLeadHP;
+      Future.delayed(const Duration(milliseconds: 500), () {
+        setState(() {
+          _attackerLeadHP = _team1[_activeTeam2PokemonIndex]["maxHealth"];
+          _attackerHP = _attackerLeadHP;
+        });
       });
       _animatePokemonSwitch(_attacker);
     } else {
@@ -237,32 +261,31 @@ class _BattleScreenState extends State<BattleScreen>
 
     // Start the fade-out animation
     _fadeController!.forward().whenComplete(() {
-      setState(() {
-        if (_activeTeam1PokemonIndex > _team1.length) {
-          // All Pokemon from Team 1 have fainted, end the battle
-          _isBattleOver ==
-              true; // Change this to assignment (_isBattleOver = true;)
-          _showBattleResult(_results);
-        }
-        if (_activeTeam2PokemonIndex > _team2.length) {
-          // All Pokemon from Team 1 have fainted, end the battle
-          _isBattleOver ==
-              true; // Change this to assignment (_isBattleOver = true;)
-          _showBattleResult(_results);
-        }
-        if (_defenderHP <= 0) {
-          _defender = _team2[_activeTeam2PokemonIndex];
-          _isPokemonVisible = true; // Reset visibility
-        }
-        if (_attackerHP <= 0) {
-          _attacker = _team1[_activeTeam1PokemonIndex];
-          _isPokemonVisible = true; // Reset visibility
-        }
+      Future.delayed(const Duration(milliseconds: 500), () {
+        setState(() {
+          if (_activeTeam1PokemonIndex > _team1.length) {
+            // All Pokemon from Team 1 have fainted, end the battle
+            _isBattleOver ==
+                true; // Change this to assignment (_isBattleOver = true;)
+            _showBattleResult(_results);
+          }
+          if (_activeTeam2PokemonIndex > _team2.length) {
+            // All Pokemon from Team 1 have fainted, end the battle
+            _isBattleOver ==
+                true; // Change this to assignment (_isBattleOver = true;)
+            _showBattleResult(_results);
+          }
+          if (_defenderHP <= 0) {
+            _defender = _team2[_activeTeam2PokemonIndex];
+            _isPokemonVisible = true; // Reset visibility
+          }
+          if (_attackerHP <= 0) {
+            _attacker = _team1[_activeTeam1PokemonIndex];
+            _isPokemonVisible = true; // Reset visibility
+          }
+        });
       });
 
-      // Dispose of the animation controller
-      _fadeController!.dispose();
-      _fadeController = null; // Set to null after disposing
       _isAnimating = true;
       _isPokemonVisible = false;
       //_jsonFileLoaded = false; // Reset the flag
@@ -292,6 +315,7 @@ class _BattleScreenState extends State<BattleScreen>
                   _activeTeam2PokemonIndex = 0;
                   _attacker = _team1[0];
                   _defender = _team2[0];
+                  super.dispose();
                 });
                 // Close the dialog and navigate back to the previous page
                 Navigator.push(
@@ -350,17 +374,23 @@ class _BattleScreenState extends State<BattleScreen>
     _healthBarAnimationController.reset(); // Reset the animation controller
 
     _healthBarAnimationController.forward().whenComplete(() {
-      setState(() {
-        if (_items[indexer]["turn"] >= _items.length) {
-          _startBattleRound();
-          return;
-        }
-        if (_defenderHP <= 0) {
-          _animateFainting();
-          _nextDefender(); // Move to the next defender if the current one faints
-        } else if (!_isAnimating) {
-          _startBattleRound(); // Start the next battle round
-        }
+      Future.delayed(const Duration(milliseconds: 500), () {
+        setState(() {
+          if (_items[indexer]["turn"] >= _items.length) {
+            _startBattleRound();
+            return;
+          }
+          if (_attackerHP <= 0) {
+            _animateFainting();
+            _nextAttacker(); // Move to the next defender if the current one faints
+          }
+          if (_defenderHP <= 0) {
+            _animateFainting();
+            _nextDefender(); // Move to the next defender if the current one faints
+          } else if (!_isAnimating) {
+            _startBattleRound(); // Start the next battle round
+          }
+        });
       });
     });
   }
@@ -374,30 +404,32 @@ class _BattleScreenState extends State<BattleScreen>
 
     // Start the fade-out animation
     _fadeController!.forward().whenComplete(() {
-      setState(() {
-        _isPokemonVisible = true; // Reset visibility
+      Future.delayed(const Duration(milliseconds: 500), () {
+        setState(() {
+          _isPokemonVisible = true; // Reset visibility
+        });
       });
-
-      // Dispose of the animation controller
-      //_fadeController!.dispose();
-      _fadeController = null; // Set to null after disposing
 
       _startBattleRound();
     });
 
-    setState(() {
-      _isAnimating = true;
-      _isPokemonVisible = false;
+    Future.delayed(const Duration(milliseconds: 500), () {
+      setState(() {
+        _isAnimating = true;
+        _isPokemonVisible = false;
+      });
     });
   }
 
   // Function to increment the indexer every 10 seconds
   void incrementIndexer() async {
     await readJson();
-    setState(() {
-      if (indexer <= _items.length) {
-        indexer = indexer + 1;
-      }
+    Future.delayed(const Duration(milliseconds: 500), () {
+      setState(() {
+        if (indexer <= _items.length) {
+          indexer = indexer + 1;
+        }
+      });
     });
   }
 
@@ -516,32 +548,79 @@ class _BattleScreenState extends State<BattleScreen>
                                 ),
                                 SizedBox(height: 8),
                                 Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    _defenderHP > 0 &&
-                                            _items[indexer]["damage"] != null
-                                        ? "-${_items[indexer]["damage"]}"
-                                        : "",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
+                                  height: 30,
+                                  width: 250,
+                                  alignment: Alignment.center,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        child: _defenderHP > 0 &&
+                                                _items[indexer]
+                                                        ["attackerTeam"] ==
+                                                    2
+                                            ? Image.asset(
+                                                "assets/Types/type${_items[indexer]["moveType"]}.png")
+                                            : Text(""),
+                                      ),
+                                      Text(
+                                        _defenderHP > 0 &&
+                                                _items[indexer]
+                                                        ["attackerTeam"] ==
+                                                    2
+                                            ? " ${_items[indexer]["moveName"]}"
+                                            : "-${_items[indexer]["damage"]}",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 SizedBox(height: 8),
-                                Container(
-                                  height: 225,
-                                  width: 250,
-                                  alignment: Alignment.centerRight,
-                                  child: AnimatedOpacity(
-                                    opacity: _isPokemonVisible ? 1.0 : 0.0,
-                                    duration: Duration(milliseconds: 500),
-                                    child: Image.asset(
-                                      'assets/Spirits/${_team2[_activeTeam2PokemonIndex]["id"]}_${_team2[_activeTeam2PokemonIndex]["name"]}.png',
-                                      height: 225,
-                                      width: 250,
-                                    ),
-                                  ),
-                                ),
+                                _attackerHP > 0 &&
+                                        _attackerReverseAnimationController !=
+                                            null &&
+                                        _items[indexer]["attackerTeam"] == 2
+                                    ? AnimatedBuilder(
+                                        animation:
+                                            _attackerReverseAnimationController!,
+                                        builder: (context, child) {
+                                          return Transform.translate(
+                                            offset: Offset.lerp(
+                                              _defenderFinalPosition,
+                                              _defenderInitialPosition,
+                                              _attackerReverseAnimationController!
+                                                  .value,
+                                            )!,
+                                            child: Container(
+                                              alignment: Alignment.topRight,
+                                              child: AnimatedOpacity(
+                                                opacity: _isPokemonVisible
+                                                    ? 1.0
+                                                    : 0.0,
+                                                duration:
+                                                    Duration(milliseconds: 500),
+                                                child: Image.asset(
+                                                  'assets/Spirits/${_team2[_activeTeam1PokemonIndex]["id"]}_${_team2[_activeTeam1PokemonIndex]["name"]}.png',
+                                                  height: 225,
+                                                  width: 250,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    : Container(
+                                        alignment: Alignment.topRight,
+                                        child: Image.asset(
+                                          'assets/Spirits/${_team2[_activeTeam1PokemonIndex]["id"]}_${_team2[_activeTeam1PokemonIndex]["name"]}.png',
+                                          height: 225,
+                                          width: 250,
+                                        ),
+                                      ),
                               ],
                             ),
                           ),
@@ -560,7 +639,8 @@ class _BattleScreenState extends State<BattleScreen>
                                 Expanded(child: Container()),
                                 _defenderHP > 0 &&
                                         _attackerReverseAnimationController !=
-                                            null
+                                            null &&
+                                        _items[indexer]["attackerTeam"] == 1
                                     ? AnimatedBuilder(
                                         animation:
                                             _attackerReverseAnimationController!,
@@ -574,10 +654,17 @@ class _BattleScreenState extends State<BattleScreen>
                                             )!,
                                             child: Container(
                                               alignment: Alignment.bottomLeft,
-                                              child: Image.asset(
-                                                'assets/Spirits/${_team1[_activeTeam1PokemonIndex]["id"]}_${_team1[_activeTeam1PokemonIndex]["name"]}.png',
-                                                height: 225,
-                                                width: 250,
+                                              child: AnimatedOpacity(
+                                                opacity: _isPokemonVisible
+                                                    ? 1.0
+                                                    : 0.0,
+                                                duration:
+                                                    Duration(milliseconds: 500),
+                                                child: Image.asset(
+                                                  'assets/Spirits/${_team1[_activeTeam1PokemonIndex]["id"]}_${_team1[_activeTeam1PokemonIndex]["name"]}.png',
+                                                  height: 225,
+                                                  width: 250,
+                                                ),
                                               ),
                                             ),
                                           );
@@ -602,18 +689,20 @@ class _BattleScreenState extends State<BattleScreen>
                                     children: [
                                       Container(
                                         child: _defenderHP > 0 &&
-                                                _items[indexer]["moveType"] !=
-                                                    null
+                                                _items[indexer]
+                                                        ["attackerTeam"] ==
+                                                    1
                                             ? Image.asset(
                                                 "assets/Types/type${_items[indexer]["moveType"]}.png")
                                             : Text(""),
                                       ),
                                       Text(
                                         _defenderHP > 0 &&
-                                                _items[indexer]["moveName"] !=
-                                                    null
+                                                _items[indexer]
+                                                        ["attackerTeam"] ==
+                                                    1
                                             ? " ${_items[indexer]["moveName"]}"
-                                            : "",
+                                            : "-${_items[indexer]["damage"]}",
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold),
