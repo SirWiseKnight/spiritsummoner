@@ -49,42 +49,85 @@ class PlayerInfo extends StatelessWidget {
                     Text(
                       playerName,
                       style: GoogleFonts.poppins(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        shadows: <Shadow>[
+                        shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.7),
-                            blurRadius: 1.0,
-                            offset: Offset(
-                              1,
-                              1,
-                            ),
-                          )
+                              // bottomLeft
+                              offset: Offset(-1, -1),
+                              color: Color.fromARGB(255, 80, 132, 5)),
+                          Shadow(
+                              // bottomRight
+                              offset: Offset(1, -1),
+                              color: Color.fromARGB(255, 80, 132, 5)),
+                          Shadow(
+                              // topRight
+                              offset: Offset(1, 1),
+                              color: Color.fromARGB(255, 80, 132, 5)),
+                          Shadow(
+                              // topLeft
+                              offset: Offset(-1, 1),
+                              color: Color.fromARGB(255, 80, 132, 5)),
+                          Shadow(
+                              // topCenter
+                              offset: Offset(0, -1),
+                              color: Color.fromARGB(255, 80, 132, 5)),
+                          Shadow(
+                              // right
+                              offset: Offset(1, 0),
+                              color: Color.fromARGB(255, 80, 132, 5)),
+                          Shadow(
+                              // left
+                              offset: Offset(-1, 0),
+                              color: Color.fromARGB(255, 80, 132, 5)),
+                          Shadow(
+                              // bottom
+                              offset: Offset(0, 1),
+                              color: Color.fromARGB(255, 80, 132, 5)),
                         ],
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 251, 251, 249),
                       ),
                     ),
                     Text(
-                      "Level " +
-                          playerLevel +
-                          '   |   ' +
-                          playerTitle +
-                          '   |   ' +
-                          playerReputation,
+                      playerTitle,
                       style: GoogleFonts.poppins(
                         fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        shadows: <Shadow>[
+                        fontWeight: FontWeight.bold,
+                        shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.7),
-                            blurRadius: 1.0,
-                            offset: Offset(
-                              1,
-                              1,
-                            ),
-                          )
+                              // bottomLeft
+                              offset: Offset(-1, -1),
+                              color: Color.fromARGB(255, 251, 251, 249)),
+                          Shadow(
+                              // bottomRight
+                              offset: Offset(1, -1),
+                              color: Color.fromARGB(255, 251, 251, 249)),
+                          Shadow(
+                              // topRight
+                              offset: Offset(1, 1),
+                              color: Color.fromARGB(255, 251, 251, 249)),
+                          Shadow(
+                              // topLeft
+                              offset: Offset(-1, 1),
+                              color: Color.fromARGB(255, 251, 251, 249)),
+                          Shadow(
+                              // topCenter
+                              offset: Offset(0, -1),
+                              color: Color.fromARGB(255, 251, 251, 249)),
+                          Shadow(
+                              // right
+                              offset: Offset(1, 0),
+                              color: Color.fromARGB(255, 251, 251, 249)),
+                          Shadow(
+                              // left
+                              offset: Offset(-1, 0),
+                              color: Color.fromARGB(255, 251, 251, 249)),
+                          Shadow(
+                              // bottom
+                              offset: Offset(0, 1),
+                              color: Color.fromARGB(255, 251, 251, 249)),
                         ],
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 80, 132, 5),
                       ),
                     ),
                   ],

@@ -67,7 +67,7 @@ class _BattleScreenState extends State<BattleScreen>
     super.initState();
     _pokemonAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1000),
+      duration: Duration(milliseconds: 2000),
     );
     _healthBarAnimationController = AnimationController(
       vsync: this,
@@ -93,6 +93,9 @@ class _BattleScreenState extends State<BattleScreen>
 
   void _startBattleRound() async {
     await readJson();
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      setState(() {});
+    });
     if (!_isAnimating && _jsonFileLoaded) {
       if (_isBattleOver) {
         _showBattleResult(_results);
@@ -127,12 +130,18 @@ class _BattleScreenState extends State<BattleScreen>
       }
 
       _attacker = _team1[_activeTeam1PokemonIndex];
+      _attackerInitialPosition = Offset.zero;
+      _attackerFinalPosition = Offset(150, -275);
+
       _defender = _team2[_activeTeam2PokemonIndex];
+      _defenderInitialPosition = Offset.zero;
+      _defenderFinalPosition = Offset(-150, 275);
 
       _damage = _items[indexer]["damage"];
 
       //need to add in logic to determine which team is attacking/defending
       if (_items[indexer]["attackerTeam"] == 1) {
+        _animatePokemonAttack();
         _defenderHP = _items[indexer]["defenderHealth"];
         _attackerHP = _items[indexer]["attackerHealth"];
         Future.delayed(const Duration(milliseconds: 500), () {
@@ -144,6 +153,7 @@ class _BattleScreenState extends State<BattleScreen>
 
       //need to add in damage to attacker HP when logic is updated
       if (_items[indexer]["attackerTeam"] == 2) {
+        _animatePokemonAttack();
         _attackerHP = _items[indexer]["defenderHealth"];
         _defenderHP = _items[indexer]["attackerHealth"];
         Future.delayed(const Duration(milliseconds: 500), () {
@@ -152,13 +162,6 @@ class _BattleScreenState extends State<BattleScreen>
           });
         });
       }
-
-      _attackerInitialPosition = Offset.zero;
-      _attackerFinalPosition = Offset(150, -275);
-      _defenderInitialPosition = Offset.zero;
-      _defenderFinalPosition = Offset(-150, 275);
-
-      _animatePokemonAttack();
     }
 
     print(_items[indexer]["turn"]);
@@ -173,7 +176,7 @@ class _BattleScreenState extends State<BattleScreen>
         _showBattleResult(_results);
       }
       if (_activeTeam2PokemonIndex > _team2.length) {
-        // All Pokemon from Team 1 have fainted, end the battle
+        // All Pokemon from Team 2 have fainted, end the battle
         _isBattleOver ==
             true; // Change this to assignment (_isBattleOver = true;)
         _showBattleResult(_results);
@@ -201,7 +204,7 @@ class _BattleScreenState extends State<BattleScreen>
       // Start the attacker's reverse animation
       _attackerReverseAnimationController = AnimationController(
         vsync: this,
-        duration: Duration(milliseconds: 700),
+        duration: Duration(milliseconds: 500),
       )..addStatusListener((status) {
           if (status == AnimationStatus.completed) {
             _attackerReverseAnimationController = null;
@@ -331,66 +334,25 @@ class _BattleScreenState extends State<BattleScreen>
     );
   }
 
-  void _calculateDamage() async {
-    await readJson();
-
-    if (_defenderHP > 0) {
-      setState(() {
-        _defenderHP -= _damage;
-      });
-    }
-    if (_defenderHP <= 0) {
-      setState(() {
-        _defenderHP == 0;
-      });
-    }
-    ;
-
-    // Start the attacker's reverse animation
-    _attackerReverseAnimationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 700),
-    )..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          //_attackerReverseAnimationController!.removeStatusListener(_calculateDamage);
-          //_attackerReverseAnimationController!.dispose();
-          _attackerReverseAnimationController = null;
-
-          // Check if the defender's health is 0 or less
-          if (_defenderHP <= 0) {
-            // If the defender has fainted, switch to the next Pokemon from Team 2
-            _nextDefender();
-          }
-
-          // Battle round is complete, switch to the next round
-          _isAnimating = false;
-          _startBattleRound();
-        }
-      });
-    _attackerReverseAnimationController!.forward(from: 0.0);
-  }
-
   void _animateHealthBar() {
     _healthBarAnimationController.reset(); // Reset the animation controller
 
     _healthBarAnimationController.forward().whenComplete(() {
-      Future.delayed(const Duration(milliseconds: 500), () {
-        setState(() {
-          if (_items[indexer]["turn"] >= _items.length) {
-            _startBattleRound();
-            return;
-          }
-          if (_attackerHP <= 0) {
-            _animateFainting();
-            _nextAttacker(); // Move to the next defender if the current one faints
-          }
-          if (_defenderHP <= 0) {
-            _animateFainting();
-            _nextDefender(); // Move to the next defender if the current one faints
-          } else if (!_isAnimating) {
-            _startBattleRound(); // Start the next battle round
-          }
-        });
+      setState(() {
+        if (_items[indexer]["turn"] >= _items.length) {
+          _startBattleRound();
+          return;
+        }
+        if (_attackerHP <= 0) {
+          _animateFainting();
+          _nextAttacker(); // Move to the next defender if the current one faints
+        }
+        if (_defenderHP <= 0) {
+          _animateFainting();
+          _nextDefender(); // Move to the next defender if the current one faints
+        } else if (!_isAnimating) {
+          _startBattleRound(); // Start the next battle round
+        }
       });
     });
   }
@@ -439,374 +401,390 @@ class _BattleScreenState extends State<BattleScreen>
       appBar: AppBar(
         title: Text("Battle Scene"),
       ),
-      body: SafeArea(
-        top: false,
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 16.0,
-            right: 16.0,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 141, 224, 240),
+              Color.fromARGB(255, 149, 226, 240),
+              Color.fromARGB(255, 168, 231, 243),
+              Color.fromARGB(255, 133, 221, 238),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                      height: 70,
-                      width: 70,
-                      color: Colors.blue,
-                      child: Image.asset(
-                          'assets/Spirits/${_team2[0]['id']}_${_team2[0]['name']}.png'),
-                    ),
-                    Container(
-                      height: 70,
-                      width: 70,
-                      color: Colors.red,
-                      child: Image.asset(
-                          'assets/Spirits/${_team2[1]['id']}_${_team2[1]['name']}.png'),
-                    ),
-                    Container(
-                      height: 70,
-                      width: 70,
-                      color: Colors.green,
-                      child: Image.asset(
-                          'assets/Spirits/${_team2[2]['id']}_${_team2[2]['name']}.png'),
-                    ),
-                  ],
-                ),
-              ),
-              AnimatedBuilder(
-                animation: _pokemonAnimationController,
-                builder: (context, child) {
-                  return Column(
+        ),
+        child: SafeArea(
+          top: false,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 16.0,
+              right: 16.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 300,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "${_team2[_activeTeam2PokemonIndex]["name"]}",
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "Level ${_team2[_activeTeam2PokemonIndex]["level"]}",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  alignment: Alignment.centerRight,
-                                  child: Image.asset(
-                                      "assets/Types/type${_team2[_activeTeam2PokemonIndex]["coreType"]}.png"),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Expanded(child: Container()),
-                          Container(
-                            height: 300,
-                            child: Column(
-                              children: [
-                                Container(
-                                  alignment: Alignment.topRight,
-                                  child: AnimatedBuilder(
-                                    animation: _healthBarAnimationController,
-                                    builder: (context, child) {
-                                      return Container(
-                                        width: 250,
-                                        child: LinearProgressIndicator(
-                                          color: Colors.green,
-                                          backgroundColor: Colors.grey,
-                                          value: (_defenderHP /
-                                                  _defender["maxHealth"])
-                                              .clamp(0.0, 1.0),
-                                          minHeight: 15,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                SizedBox(height: 8),
-                                Container(
-                                  height: 30,
-                                  width: 250,
-                                  alignment: Alignment.center,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        child: _defenderHP > 0 &&
-                                                _items[indexer]
-                                                        ["attackerTeam"] ==
-                                                    2
-                                            ? Image.asset(
-                                                "assets/Types/type${_items[indexer]["moveType"]}.png")
-                                            : Text(""),
-                                      ),
-                                      Text(
-                                        _defenderHP > 0 &&
-                                                _items[indexer]
-                                                        ["attackerTeam"] ==
-                                                    2
-                                            ? " ${_items[indexer]["moveName"]}"
-                                            : "-${_items[indexer]["damage"]}",
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: 8),
-                                _attackerHP > 0 &&
-                                        _attackerReverseAnimationController !=
-                                            null &&
-                                        _items[indexer]["attackerTeam"] == 2
-                                    ? AnimatedBuilder(
-                                        animation:
-                                            _attackerReverseAnimationController!,
-                                        builder: (context, child) {
-                                          return Transform.translate(
-                                            offset: Offset.lerp(
-                                              _defenderFinalPosition,
-                                              _defenderInitialPosition,
-                                              _attackerReverseAnimationController!
-                                                  .value,
-                                            )!,
-                                            child: Container(
-                                              alignment: Alignment.topRight,
-                                              child: AnimatedOpacity(
-                                                opacity: _isPokemonVisible
-                                                    ? 1.0
-                                                    : 0.0,
-                                                duration:
-                                                    Duration(milliseconds: 500),
-                                                child: Image.asset(
-                                                  'assets/Spirits/${_team2[_activeTeam1PokemonIndex]["id"]}_${_team2[_activeTeam1PokemonIndex]["name"]}.png',
-                                                  height: 225,
-                                                  width: 250,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      )
-                                    : Container(
-                                        alignment: Alignment.topRight,
-                                        child: Image.asset(
-                                          'assets/Spirits/${_team2[_activeTeam1PokemonIndex]["id"]}_${_team2[_activeTeam1PokemonIndex]["name"]}.png',
-                                          height: 225,
-                                          width: 250,
-                                        ),
-                                      ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      Container(
+                        height: 70,
+                        width: 70,
+                        color: Colors.blue,
+                        child: Image.asset(
+                            'assets/Spirits/${_team2[0]['id']}_${_team2[0]['name']}.png'),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 300,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(child: Container()),
-                                _defenderHP > 0 &&
-                                        _attackerReverseAnimationController !=
-                                            null &&
-                                        _items[indexer]["attackerTeam"] == 1
-                                    ? AnimatedBuilder(
-                                        animation:
-                                            _attackerReverseAnimationController!,
-                                        builder: (context, child) {
-                                          return Transform.translate(
-                                            offset: Offset.lerp(
-                                              _attackerFinalPosition,
-                                              _attackerInitialPosition,
-                                              _attackerReverseAnimationController!
-                                                  .value,
-                                            )!,
-                                            child: Container(
-                                              alignment: Alignment.bottomLeft,
-                                              child: AnimatedOpacity(
-                                                opacity: _isPokemonVisible
-                                                    ? 1.0
-                                                    : 0.0,
-                                                duration:
-                                                    Duration(milliseconds: 500),
-                                                child: Image.asset(
-                                                  'assets/Spirits/${_team1[_activeTeam1PokemonIndex]["id"]}_${_team1[_activeTeam1PokemonIndex]["name"]}.png',
-                                                  height: 225,
-                                                  width: 250,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      )
-                                    : Container(
-                                        alignment: Alignment.bottomLeft,
-                                        child: Image.asset(
-                                          'assets/Spirits/${_team1[_activeTeam1PokemonIndex]["id"]}_${_team1[_activeTeam1PokemonIndex]["name"]}.png',
-                                          height: 225,
-                                          width: 250,
-                                        ),
-                                      ),
-                                Container(
-                                  height: 30,
-                                  width: 250,
-                                  alignment: Alignment.center,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        child: _defenderHP > 0 &&
-                                                _items[indexer]
-                                                        ["attackerTeam"] ==
-                                                    1
-                                            ? Image.asset(
-                                                "assets/Types/type${_items[indexer]["moveType"]}.png")
-                                            : Text(""),
-                                      ),
-                                      Text(
-                                        _defenderHP > 0 &&
-                                                _items[indexer]
-                                                        ["attackerTeam"] ==
-                                                    1
-                                            ? " ${_items[indexer]["moveName"]}"
-                                            : "-${_items[indexer]["damage"]}",
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: 8),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: AnimatedBuilder(
-                                    animation: _healthBarAnimationController,
-                                    builder: (context, child) {
-                                      return Container(
-                                        width: 250,
-                                        child: LinearProgressIndicator(
-                                          color: Colors.green,
-                                          backgroundColor: Colors.grey,
-                                          value: _attackerHP /
-                                              _team1[_activeTeam1PokemonIndex]
-                                                  ["maxHealth"],
-                                          minHeight: 15,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Expanded(child: Container()),
-                          Container(
-                            height: 300,
-                            alignment: Alignment.bottomRight,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Expanded(child: Container()),
-                                Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "${_team1[_activeTeam1PokemonIndex]["name"]}",
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "Level ${_team1[_activeTeam1PokemonIndex]["level"]}",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  alignment: Alignment.centerRight,
-                                  child: Image.asset(
-                                      "assets/Types/type${_team1[_activeTeam1PokemonIndex]["coreType"]}.png"),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      Container(
+                        height: 70,
+                        width: 70,
+                        color: Colors.red,
+                        child: Image.asset(
+                            'assets/Spirits/${_team2[1]['id']}_${_team2[1]['name']}.png'),
+                      ),
+                      Container(
+                        height: 70,
+                        width: 70,
+                        color: Colors.green,
+                        child: Image.asset(
+                            'assets/Spirits/${_team2[2]['id']}_${_team2[2]['name']}.png'),
                       ),
                     ],
-                  );
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 70,
-                      width: 70,
-                      color: Colors.green,
-                      child: Image.asset(
-                          'assets/Spirits/${_team1[0]['id']}_${_team1[0]['name']}.png'),
-                    ),
-                    Container(
-                      height: 70,
-                      width: 70,
-                      color: Colors.red,
-                      child: Image.asset(
-                          'assets/Spirits/${_team1[1]['id']}_${_team1[1]['name']}.png'),
-                    ),
-                    Container(
-                      height: 70,
-                      width: 70,
-                      color: Colors.blue,
-                      child: Image.asset(
-                          'assets/Spirits/${_team1[2]['id']}_${_team1[2]['name']}.png'),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+                AnimatedBuilder(
+                  animation: _pokemonAnimationController,
+                  builder: (context, child) {
+                    return Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 300,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "${_team2[_activeTeam2PokemonIndex]["name"]}",
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "Level ${_team2[_activeTeam2PokemonIndex]["level"]}",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    alignment: Alignment.centerRight,
+                                    child: Image.asset(
+                                        "assets/Types/type${_team2[_activeTeam2PokemonIndex]["coreType"]}.png"),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(child: Container()),
+                            Container(
+                              height: 300,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    alignment: Alignment.topRight,
+                                    child: AnimatedBuilder(
+                                      animation: _healthBarAnimationController,
+                                      builder: (context, child) {
+                                        return Container(
+                                          width: 250,
+                                          child: LinearProgressIndicator(
+                                            color: Colors.green,
+                                            backgroundColor: Colors.grey,
+                                            value: (_defenderHP /
+                                                    _defender["maxHealth"])
+                                                .clamp(0.0, 1.0),
+                                            minHeight: 15,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(height: 8),
+                                  Container(
+                                    height: 30,
+                                    width: 250,
+                                    alignment: Alignment.center,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          child: _defenderHP > 0 &&
+                                                  _items[indexer]
+                                                          ["attackerTeam"] ==
+                                                      2
+                                              ? Image.asset(
+                                                  "assets/Types/type${_items[indexer]["moveType"]}.png")
+                                              : Text(""),
+                                        ),
+                                        Text(
+                                          _defenderHP > 0 &&
+                                                  _items[indexer]
+                                                          ["attackerTeam"] ==
+                                                      2
+                                              ? " ${_items[indexer]["moveName"]}"
+                                              : "-${_items[indexer]["damage"]}",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 8),
+                                  _attackerHP > 0 &&
+                                          _attackerReverseAnimationController !=
+                                              null &&
+                                          _items[indexer]["attackerTeam"] == 2
+                                      ? AnimatedBuilder(
+                                          animation:
+                                              _attackerReverseAnimationController!,
+                                          builder: (context, child) {
+                                            return Transform.translate(
+                                              offset: Offset.lerp(
+                                                _defenderFinalPosition,
+                                                _defenderInitialPosition,
+                                                _attackerReverseAnimationController!
+                                                    .value,
+                                              )!,
+                                              child: Container(
+                                                alignment: Alignment.topRight,
+                                                child: AnimatedOpacity(
+                                                  opacity: _isPokemonVisible
+                                                      ? 1.0
+                                                      : 0.0,
+                                                  duration: Duration(
+                                                      milliseconds: 500),
+                                                  child: Image.asset(
+                                                    'assets/Spirits/${_team2[_activeTeam2PokemonIndex]["id"]}_${_team2[_activeTeam2PokemonIndex]["name"]}.png',
+                                                    height: 225,
+                                                    width: 250,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        )
+                                      : Container(
+                                          alignment: Alignment.topRight,
+                                          child: Image.asset(
+                                            'assets/Spirits/${_team2[_activeTeam2PokemonIndex]["id"]}_${_team2[_activeTeam2PokemonIndex]["name"]}.png',
+                                            height: 225,
+                                            width: 250,
+                                          ),
+                                        ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 300,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(child: Container()),
+                                  _defenderHP > 0 &&
+                                          _attackerReverseAnimationController !=
+                                              null &&
+                                          _items[indexer]["attackerTeam"] == 1
+                                      ? AnimatedBuilder(
+                                          animation:
+                                              _attackerReverseAnimationController!,
+                                          builder: (context, child) {
+                                            return Transform.translate(
+                                              offset: Offset.lerp(
+                                                _attackerFinalPosition,
+                                                _attackerInitialPosition,
+                                                _attackerReverseAnimationController!
+                                                    .value,
+                                              )!,
+                                              child: Container(
+                                                alignment: Alignment.bottomLeft,
+                                                child: AnimatedOpacity(
+                                                  opacity: _isPokemonVisible
+                                                      ? 1.0
+                                                      : 0.0,
+                                                  duration: Duration(
+                                                      milliseconds: 500),
+                                                  child: Image.asset(
+                                                    'assets/Spirits/${_team1[_activeTeam1PokemonIndex]["id"]}_${_team1[_activeTeam1PokemonIndex]["name"]}.png',
+                                                    height: 225,
+                                                    width: 250,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        )
+                                      : Container(
+                                          alignment: Alignment.bottomLeft,
+                                          child: Image.asset(
+                                            'assets/Spirits/${_team1[_activeTeam1PokemonIndex]["id"]}_${_team1[_activeTeam1PokemonIndex]["name"]}.png',
+                                            height: 225,
+                                            width: 250,
+                                          ),
+                                        ),
+                                  Container(
+                                    height: 30,
+                                    width: 250,
+                                    alignment: Alignment.center,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          child: _defenderHP > 0 &&
+                                                  _items[indexer]
+                                                          ["attackerTeam"] ==
+                                                      1
+                                              ? Image.asset(
+                                                  "assets/Types/type${_items[indexer]["moveType"]}.png")
+                                              : Text(""),
+                                        ),
+                                        Text(
+                                          _defenderHP > 0 &&
+                                                  _items[indexer]
+                                                          ["attackerTeam"] ==
+                                                      1
+                                              ? " ${_items[indexer]["moveName"]}"
+                                              : "-${_items[indexer]["damage"]}",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 8),
+                                  Container(
+                                    alignment: Alignment.center,
+                                    child: AnimatedBuilder(
+                                      animation: _healthBarAnimationController,
+                                      builder: (context, child) {
+                                        return Container(
+                                          width: 250,
+                                          child: LinearProgressIndicator(
+                                            color: Colors.green,
+                                            backgroundColor: Colors.grey,
+                                            value: _attackerHP /
+                                                _team1[_activeTeam1PokemonIndex]
+                                                    ["maxHealth"],
+                                            minHeight: 15,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(child: Container()),
+                            Container(
+                              height: 300,
+                              alignment: Alignment.bottomRight,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Expanded(child: Container()),
+                                  Container(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(
+                                      "${_team1[_activeTeam1PokemonIndex]["name"]}",
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(
+                                      "Level ${_team1[_activeTeam1PokemonIndex]["level"]}",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    alignment: Alignment.centerRight,
+                                    child: Image.asset(
+                                        "assets/Types/type${_team1[_activeTeam1PokemonIndex]["coreType"]}.png"),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 70,
+                        width: 70,
+                        color: Colors.green,
+                        child: Image.asset(
+                            'assets/Spirits/${_team1[0]['id']}_${_team1[0]['name']}.png'),
+                      ),
+                      Container(
+                        height: 70,
+                        width: 70,
+                        color: Colors.red,
+                        child: Image.asset(
+                            'assets/Spirits/${_team1[1]['id']}_${_team1[1]['name']}.png'),
+                      ),
+                      Container(
+                        height: 70,
+                        width: 70,
+                        color: Colors.blue,
+                        child: Image.asset(
+                            'assets/Spirits/${_team1[2]['id']}_${_team1[2]['name']}.png'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

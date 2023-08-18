@@ -26,13 +26,13 @@ class _BouncingImageState extends State<BouncingImage>
     // Set up the animation
     _animation = TweenSequence<Offset>([
       TweenSequenceItem<Offset>(
-          tween: Tween(begin: Offset(-2, 1), end: Offset(0, -0.75)), weight: 1),
+          tween: Tween(begin: Offset(0, -2), end: Offset(0, 4)), weight: 1),
       TweenSequenceItem<Offset>(
-          tween: Tween(begin: Offset(0, -0.75), end: Offset(2, 1)), weight: 1),
+          tween: Tween(begin: Offset(0, 4), end: Offset(0, -2)), weight: 1),
     ]).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Curves.easeInOutSine,
+        curve: Curves.easeInOutCirc,
       ),
     )..addListener(() {
         setState(() {});

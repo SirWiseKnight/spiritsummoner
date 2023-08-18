@@ -7,18 +7,19 @@ class AppBarPane extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: MediaQuery.of(context).size.height * 0.175,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.fromARGB(255, 12, 84, 70),
-            Color.fromARGB(255, 0, 51, 37),
+            Color.fromARGB(255, 171, 218, 42),
+            Color.fromARGB(255, 171, 218, 42),
+            Color.fromARGB(255, 145, 190, 22),
           ],
-          begin: Alignment.topLeft,
+          begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
-        borderRadius: BorderRadius.circular(23),
+        borderRadius: BorderRadius.circular(30),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -51,10 +52,6 @@ class AppBarPane extends StatelessWidget {
                   ),
                 ],
               ),
-              Expanded(
-                child: Container(),
-              ),
-              PlayerCurrency(),
               Expanded(
                 child: Container(),
               ),

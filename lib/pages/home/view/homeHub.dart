@@ -12,11 +12,11 @@ class HomeScreen extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 219, 208, 189),
-              Color.fromARGB(255, 219, 208, 189),
-              Color.fromARGB(255, 73, 62, 43),
+              Color.fromARGB(255, 124, 203, 89),
+              Color.fromARGB(255, 171, 222, 149),
+              Color.fromARGB(255, 104, 195, 66),
             ],
-            begin: Alignment.topLeft,
+            begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
@@ -28,20 +28,19 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.615,
+                    height: MediaQuery.of(context).size.height * 0.66,
                     child: Stack(
                       children: [
                         Column(
                           children: [
                             SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.315,
+                              height: MediaQuery.of(context).size.height * 0.33,
                             ),
                             Container(
                               height: MediaQuery.of(context).size.height * 0.2,
                               width: MediaQuery.of(context).size.width * 0.95,
                               child: Image.asset(
-                                'assets/Platforms/platformWater.webp',
+                                'assets/Platforms/platformWind.webp',
                               ),
                             ),
                           ],
@@ -51,12 +50,12 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               SizedBox(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.115,
+                                    MediaQuery.of(context).size.height * 0.12,
                               ),
                               Container(
                                 height:
                                     MediaQuery.of(context).size.height * 0.4,
-                                width: MediaQuery.of(context).size.width * 0.8,
+                                width: MediaQuery.of(context).size.width * 0.5,
                                 child: PartnerImageWIP(),
                               ),
                             ],
@@ -65,21 +64,51 @@ class HomeScreen extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.125,
+                              height: MediaQuery.of(context).size.height * 0.15,
                               width: MediaQuery.of(context).size.width * 0.1,
                             ),
                             Container(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.125,
+                              height: MediaQuery.of(context).size.height * 0.15,
                               width: MediaQuery.of(context).size.width * 0.8,
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.05,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.35,
+                                          color: Colors.blue,
+                                        ),
+                                        Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.05,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.35,
+                                          color: Colors.red,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   PartnerNameWIP(),
-                                  PartnerHPWIP(),
                                 ],
                               ),
                             ),
@@ -92,9 +121,10 @@ class HomeScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.35,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.415,
                                 ),
+                                PartnerHPWIP(),
                                 PartnerStatsWIP(),
                               ],
                             ),
@@ -104,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Container(
                                   height:
-                                      MediaQuery.of(context).size.height * 0.35,
+                                      MediaQuery.of(context).size.height * 0.41,
                                 ),
                                 PartnerActionButtons(),
                               ],

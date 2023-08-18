@@ -13,11 +13,11 @@ class ShopScreen extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 219, 208, 189),
-              Color.fromARGB(255, 219, 208, 189),
-              Color.fromARGB(255, 73, 62, 43),
+              Color.fromARGB(255, 124, 203, 89),
+              Color.fromARGB(255, 171, 222, 149),
+              Color.fromARGB(255, 104, 195, 66),
             ],
-            begin: Alignment.topLeft,
+            begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),

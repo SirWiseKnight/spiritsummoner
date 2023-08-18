@@ -51,7 +51,7 @@ class PartnerStatsWIP extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(23),
             ),
-            height: MediaQuery.of(context).size.height * 0.25,
+            height: MediaQuery.of(context).size.height * 0.2,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
@@ -62,6 +62,7 @@ class PartnerStatsWIP extends StatelessWidget {
                 String partnerMGK = data['stat-mgk'] ?? '';
                 String partnerMDF = data['stat-mdf'] ?? '';
                 String partnerSPD = data['stat-spd'] ?? '';
+                String partnerINT = data['stat-int'] ?? '';
                 return Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -317,39 +318,56 @@ class PartnerStatsWIP extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * 0.05,
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              overlayColor: MaterialStateProperty.all<Color>(
-                                  Colors.redAccent.shade100),
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(Colors.red),
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(8)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'INT',
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                Container(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.018,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.25,
+                                  child: Container(
+                                    child: ClipRRect(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                      child: LinearProgressIndicator(
+                                        value: (double.parse(partnerINT) / 100),
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          Colors.orange,
+                                        ),
+                                        backgroundColor:
+                                            Colors.white.withOpacity(0.7),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    partnerINT,
+                                    style: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            onPressed: () {
-                              print("You pressed the Edit Stats Button!");
-                            },
-                            child: Text(
-                              'Edit',
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
+                          ],
                         ),
                       ),
                     ],

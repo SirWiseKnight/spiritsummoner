@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PartnerActionButtons extends StatelessWidget {
-  const PartnerActionButtons({Key? key}) : super(key: key);
+  PartnerActionButtons({Key? key}) : super(key: key);
+
+  final iconGradientColors = List<Color>.from([
+    Color.fromARGB(255, 221, 147, 98),
+    Color.fromARGB(255, 199, 87, 12),
+  ]);
+
+  final btnGradientColors = List<Color>.from([
+    Color.fromARGB(255, 252, 236, 160),
+    Color.fromARGB(255, 255, 221, 120),
+    Color.fromARGB(255, 249, 150, 2),
+  ]);
 
   @override
   Widget build(BuildContext context) {
@@ -17,186 +29,343 @@ class PartnerActionButtons extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.07,
-              width: MediaQuery.of(context).size.width * 0.4,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.all<Color>(
-                      Colors.redAccent.shade100),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
-                    ),
+            GestureDetector(
+              onTap: () {
+                print("You pressed the Attacks Button!");
+              },
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.07,
+                width: MediaQuery.of(context).size.width * 0.4,
+                padding: const EdgeInsets.all(0.0),
+                decoration: const BoxDecoration(
+                  gradient: RadialGradient(
+                    radius: 1.5,
+                    colors: [
+                      Color.fromARGB(255, 252, 236, 160),
+                      Color.fromARGB(255, 255, 221, 120),
+                      Color.fromARGB(255, 249, 150, 2),
+                    ],
                   ),
+                  border: GradientBoxBorder(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color.fromARGB(255, 221, 147, 98),
+                        Color.fromARGB(255, 199, 87, 12),
+                      ],
+                    ),
+                    width: 3,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(16.0)),
                 ),
-                onPressed: () {
-                  print("You pressed the Attacks Button!");
-                },
                 child: Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        FontAwesomeIcons.meteor,
-                        size: MediaQuery.of(context).size.height * 0.035,
-                        color: Colors.white,
-                        shadows: <Shadow>[
-                          Shadow(
-                            color: Colors.black.withOpacity(0.7),
-                            blurRadius: 1.0,
-                            offset: Offset(
-                              1,
-                              1,
+                      Expanded(child: Container()),
+                      Container(
+                        child: ShaderMask(
+                          blendMode: BlendMode.srcIn,
+                          shaderCallback: (rect) => LinearGradient(
+                                  colors: iconGradientColors,
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight)
+                              .createShader(rect),
+                          child: Center(
+                            child: Transform(
+                              alignment: Alignment.center,
+                              transform: Matrix4.rotationZ(
+                                -1 / 4,
+                              ),
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                child: Icon(
+                                  FontAwesomeIcons.meteor,
+                                  color: Colors.white,
+                                  size: 35,
+                                ),
+                              ),
                             ),
-                          )
-                        ],
+                          ),
+                        ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.225,
+                        width: MediaQuery.of(context).size.width * 0.2,
                         alignment: Alignment.center,
                         child: Text(
                           'Attacks',
                           style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            shadows: <Shadow>[
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            shadows: [
                               Shadow(
-                                color: Colors.black.withOpacity(0.7),
-                                blurRadius: 1.0,
-                                offset: Offset(
-                                  1,
-                                  1,
-                                ),
-                              )
+                                  // bottomLeft
+                                  offset: Offset(-1.5, -1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // bottomRight
+                                  offset: Offset(1.5, -1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // topRight
+                                  offset: Offset(1.5, 1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // topLeft
+                                  offset: Offset(-1.5, 1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // topCenter
+                                  offset: Offset(0, -1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // right
+                                  offset: Offset(1.5, 0),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // left
+                                  offset: Offset(-1.5, 0),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // bottom
+                                  offset: Offset(0, 1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
                             ],
+                            color: Color.fromARGB(255, 102, 45, 1),
                           ),
                         ),
                       ),
+                      Expanded(child: Container()),
                     ],
                   ),
                 ),
               ),
             ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.07,
-              width: MediaQuery.of(context).size.width * 0.4,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.all<Color>(
-                      Colors.orangeAccent.shade100),
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.orangeAccent),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
-                    ),
+            GestureDetector(
+              onTap: () {
+                print("You pressed the Gear Button!");
+              },
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.07,
+                width: MediaQuery.of(context).size.width * 0.4,
+                padding: const EdgeInsets.all(0.0),
+                decoration: const BoxDecoration(
+                  gradient: RadialGradient(
+                    radius: 1.5,
+                    colors: [
+                      Color.fromARGB(255, 252, 236, 160),
+                      Color.fromARGB(255, 255, 221, 120),
+                      Color.fromARGB(255, 249, 150, 2),
+                    ],
                   ),
+                  border: GradientBoxBorder(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color.fromARGB(255, 221, 147, 98),
+                        Color.fromARGB(255, 199, 87, 12),
+                      ],
+                    ),
+                    width: 3,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(16.0)),
                 ),
-                onPressed: () {
-                  print("You pressed the Gear Button!");
-                },
                 child: Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        FontAwesomeIcons.crown,
-                        color: Colors.white,
-                        size: MediaQuery.of(context).size.height * 0.035,
-                        shadows: <Shadow>[
-                          Shadow(
-                            color: Colors.black.withOpacity(0.7),
-                            blurRadius: 1.0,
-                            offset: Offset(
-                              1,
-                              1,
+                      Expanded(child: Container()),
+                      Container(
+                        child: ShaderMask(
+                          blendMode: BlendMode.srcIn,
+                          shaderCallback: (rect) => LinearGradient(
+                                  colors: iconGradientColors,
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight)
+                              .createShader(rect),
+                          child: Center(
+                            child: Transform(
+                              alignment: Alignment.center,
+                              transform: Matrix4.rotationZ(
+                                -1 / 4,
+                              ),
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                child: Icon(
+                                  FontAwesomeIcons.crown,
+                                  color: Colors.white,
+                                  size: 35,
+                                ),
+                              ),
                             ),
-                          )
-                        ],
+                          ),
+                        ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.225,
+                        width: MediaQuery.of(context).size.width * 0.2,
                         alignment: Alignment.center,
                         child: Text(
                           'Gear',
                           style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            shadows: <Shadow>[
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            shadows: [
                               Shadow(
-                                color: Colors.black.withOpacity(0.7),
-                                blurRadius: 1.0,
-                                offset: Offset(
-                                  1,
-                                  1,
-                                ),
-                              )
+                                  // bottomLeft
+                                  offset: Offset(-1.5, -1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // bottomRight
+                                  offset: Offset(1.5, -1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // topRight
+                                  offset: Offset(1.5, 1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // topLeft
+                                  offset: Offset(-1.5, 1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // topCenter
+                                  offset: Offset(0, -1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // right
+                                  offset: Offset(1.5, 0),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // left
+                                  offset: Offset(-1.5, 0),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // bottom
+                                  offset: Offset(0, 1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
                             ],
+                            color: Color.fromARGB(255, 102, 45, 1),
                           ),
                         ),
                       ),
+                      Expanded(child: Container()),
                     ],
                   ),
                 ),
               ),
             ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.07,
-              width: MediaQuery.of(context).size.width * 0.4,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.all<Color>(
-                      Colors.blueAccent.shade100),
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
-                    ),
+            GestureDetector(
+              onTap: () {
+                print("You pressed the Talent Button!");
+              },
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.07,
+                width: MediaQuery.of(context).size.width * 0.4,
+                padding: const EdgeInsets.all(0.0),
+                decoration: const BoxDecoration(
+                  gradient: RadialGradient(
+                    radius: 1.5,
+                    colors: [
+                      Color.fromARGB(255, 252, 236, 160),
+                      Color.fromARGB(255, 255, 221, 120),
+                      Color.fromARGB(255, 249, 150, 2),
+                    ],
                   ),
+                  border: GradientBoxBorder(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color.fromARGB(255, 221, 147, 98),
+                        Color.fromARGB(255, 199, 87, 12),
+                      ],
+                    ),
+                    width: 3,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(16.0)),
                 ),
-                onPressed: () {
-                  print("You pressed the Talent Button!");
-                },
                 child: Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        FontAwesomeIcons.dna,
-                        color: Colors.white,
-                        size: MediaQuery.of(context).size.height * 0.035,
-                        shadows: <Shadow>[
-                          Shadow(
-                            color: Colors.black.withOpacity(0.7),
-                            blurRadius: 1.0,
-                            offset: Offset(
-                              1,
-                              1,
+                      Expanded(child: Container()),
+                      Container(
+                        child: ShaderMask(
+                          blendMode: BlendMode.srcIn,
+                          shaderCallback: (rect) => LinearGradient(
+                                  colors: iconGradientColors,
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight)
+                              .createShader(rect),
+                          child: Center(
+                            child: Transform(
+                              alignment: Alignment.center,
+                              transform: Matrix4.rotationZ(
+                                -1 / 4,
+                              ),
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                child: Icon(
+                                  FontAwesomeIcons.dna,
+                                  color: Colors.white,
+                                  size: 35,
+                                ),
+                              ),
                             ),
-                          )
-                        ],
+                          ),
+                        ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.225,
+                        width: MediaQuery.of(context).size.width * 0.2,
                         alignment: Alignment.center,
                         child: Text(
                           'Talent',
                           style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            shadows: <Shadow>[
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            shadows: [
                               Shadow(
-                                color: Colors.black.withOpacity(0.7),
-                                blurRadius: 1.0,
-                                offset: Offset(
-                                  1,
-                                  1,
-                                ),
-                              )
+                                  // bottomLeft
+                                  offset: Offset(-1.5, -1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // bottomRight
+                                  offset: Offset(1.5, -1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // topRight
+                                  offset: Offset(1.5, 1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // topLeft
+                                  offset: Offset(-1.5, 1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // topCenter
+                                  offset: Offset(0, -1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // right
+                                  offset: Offset(1.5, 0),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // left
+                                  offset: Offset(-1.5, 0),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
+                              Shadow(
+                                  // bottom
+                                  offset: Offset(0, 1.5),
+                                  color: Color.fromARGB(255, 251, 251, 249)),
                             ],
+                            color: Color.fromARGB(255, 102, 45, 1),
                           ),
                         ),
                       ),
+                      Expanded(child: Container()),
                     ],
                   ),
                 ),

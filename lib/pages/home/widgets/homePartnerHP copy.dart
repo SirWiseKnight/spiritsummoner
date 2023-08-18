@@ -39,9 +39,14 @@ class PartnerHPWIP extends StatelessWidget {
                   document.data() as Map<String, dynamic>;
               String partnerHP = data['stat-hp'] ?? '';
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(
+                  top: 8.0,
+                  right: 8.0,
+                  bottom: 8.0,
+                  left: 16.0,
+                ),
                 child: Container(
-                  width: 300,
+                  width: MediaQuery.of(context).size.width * 0.5,
                   height: 18,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
