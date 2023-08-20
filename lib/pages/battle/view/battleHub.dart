@@ -67,11 +67,11 @@ class _BattleScreenState extends State<BattleScreen>
     super.initState();
     _pokemonAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 2000),
+      duration: Duration(milliseconds: 3000),
     );
     _healthBarAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 100),
+      duration: Duration(milliseconds: 500),
     );
     _attackerReverseAnimationController = null;
     _fadeController = null;
@@ -91,19 +91,24 @@ class _BattleScreenState extends State<BattleScreen>
     super.dispose();
   }
 
+//BATTLE ROUND STARTS HERE
   void _startBattleRound() async {
-    await readJson();
+    await readJson(); // Ensure that data from the JSON file is read before starting
+
     Future.delayed(const Duration(milliseconds: 1000), () {
       setState(() {});
     });
+
     if (!_isAnimating && _jsonFileLoaded) {
-      if (_isBattleOver) {
+      // Check if the battle is over
+      if (_items[indexer]["turn"] > _items.length) {
         _showBattleResult(_results);
         return;
       }
 
+      // Check for last attack animation
       if (_items[indexer]["turn"] >= _items.length) {
-        // Ensure that the next turn is within valid range
+        // Check if Team1 is attacking
         if (_items[indexer]["attackerTeam"] == 1) {
           _defenderHP = _items[indexer]["defenderHealth"];
           _attackerHP = _items[indexer]["attackerHealth"];
@@ -114,7 +119,7 @@ class _BattleScreenState extends State<BattleScreen>
           });
         }
 
-        //need to add in damage to attacker HP when logic is updated
+        // Chcek if Team2 is attacking
         if (_items[indexer]["attackerTeam"] == 2) {
           _attackerHP = _items[indexer]["defenderHealth"];
           _defenderHP = _items[indexer]["attackerHealth"];
@@ -124,44 +129,29 @@ class _BattleScreenState extends State<BattleScreen>
             });
           });
         }
+
+        // Set the battle state to OVER and animate final attack scene
         _isBattleOver = true;
         _animatePokemonAttack();
         return;
       }
 
+      // Else - normal battle sequence
+      // Set attacker parameters
       _attacker = _team1[_activeTeam1PokemonIndex];
       _attackerInitialPosition = Offset.zero;
       _attackerFinalPosition = Offset(150, -275);
 
+      // Set defender parameters
       _defender = _team2[_activeTeam2PokemonIndex];
       _defenderInitialPosition = Offset.zero;
       _defenderFinalPosition = Offset(-150, 275);
 
+      // Set damage parameters
       _damage = _items[indexer]["damage"];
 
-      //need to add in logic to determine which team is attacking/defending
-      if (_items[indexer]["attackerTeam"] == 1) {
-        _animatePokemonAttack();
-        _defenderHP = _items[indexer]["defenderHealth"];
-        _attackerHP = _items[indexer]["attackerHealth"];
-        Future.delayed(const Duration(milliseconds: 500), () {
-          setState(() {
-            _defenderLeadHP = _defenderHP;
-          });
-        });
-      }
-
-      //need to add in damage to attacker HP when logic is updated
-      if (_items[indexer]["attackerTeam"] == 2) {
-        _animatePokemonAttack();
-        _attackerHP = _items[indexer]["defenderHealth"];
-        _defenderHP = _items[indexer]["attackerHealth"];
-        Future.delayed(const Duration(milliseconds: 500), () {
-          setState(() {
-            _attackerLeadHP = _attackerHP;
-          });
-        });
-      }
+      // Animate the attack
+      _animatePokemonAttack();
     }
 
     print(_items[indexer]["turn"]);
@@ -182,24 +172,32 @@ class _BattleScreenState extends State<BattleScreen>
         _showBattleResult(_results);
       }
     });
-    if (_defenderHP <= 0 && _items[indexer]["turn"] <= _items.length) {
-      _animateFainting();
-      _nextDefender(); // Move to the next defender if the current one faints
-    }
-
-    if (_attackerHP <= 0 && _items[indexer]["turn"] <= _items.length) {
-      _animateFainting();
-      _nextAttacker(); // Move to the next attacker if the current one faints
-    }
-
-    incrementIndexer();
   }
 
   void _animatePokemonAttack() async {
     _isAnimating = true;
 
     await _pokemonAnimationController.forward(from: 0.0).whenComplete(() {
-      _animateHealthBar(); // Move this line here to trigger the switch animation
+      if (_items[indexer]["attackerTeam"] == 1) {
+        _defenderHP = _items[indexer]["defenderHealth"];
+        _attackerHP = _items[indexer]["attackerHealth"];
+        Future.delayed(const Duration(milliseconds: 500), () {
+          setState(() {
+            _defenderLeadHP = _defenderHP;
+          });
+        });
+      }
+
+      //need to add in damage to attacker HP when logic is updated
+      else if (_items[indexer]["attackerTeam"] == 2) {
+        _attackerHP = _items[indexer]["defenderHealth"];
+        _defenderHP = _items[indexer]["attackerHealth"];
+        Future.delayed(const Duration(milliseconds: 500), () {
+          setState(() {
+            _attackerLeadHP = _attackerHP;
+          });
+        });
+      }
 
       // Start the attacker's reverse animation
       _attackerReverseAnimationController = AnimationController(
@@ -211,14 +209,33 @@ class _BattleScreenState extends State<BattleScreen>
           }
         });
       _attackerReverseAnimationController!.forward(from: 0.0);
+      _animateHealthBar(); // Move this line here to trigger the switch animation
       _isAnimating = false;
+      if (_items[indexer]["turn"] < _items.length) {
+        incrementIndexer();
+      }
+      if (_items[indexer]["turn"] == _items.length) {
+        _isBattleOver ==
+            true; // Change this to assignment (_isBattleOver = true;)
+
+        // Stop all animations running for the battle here before showing results
+        _fadeController!.stop();
+        _pokemonAnimationController.stop();
+        _attackerReverseAnimationController!.stop();
+        _healthBarAnimationController.stop();
+
+        // Show battle results
+        _showBattleResult(_results);
+      }
+      // Restart battle round
+      _startBattleRound();
     });
   }
 
   void _nextDefender() async {
     await readJson();
     // Send in the next Pokemon from Team 2 if available
-    if (_items[indexer]["turn"] <= _items.length) {
+    if (_items[indexer]["turn"] < _items.length) {
       _activeTeam2PokemonIndex++;
       Future.delayed(const Duration(milliseconds: 500), () {
         setState(() {
@@ -238,7 +255,7 @@ class _BattleScreenState extends State<BattleScreen>
   void _nextAttacker() async {
     await readJson();
     // Send in the next Pokemon from Team 2 if available
-    if (_items[indexer]["turn"] <= _items.length) {
+    if (_items[indexer]["turn"] < _items.length) {
       _activeTeam1PokemonIndex++;
       Future.delayed(const Duration(milliseconds: 500), () {
         setState(() {
@@ -263,7 +280,7 @@ class _BattleScreenState extends State<BattleScreen>
     );
 
     // Start the fade-out animation
-    _fadeController!.forward().whenComplete(() {
+    _fadeController!.forward(from: 0.0).whenComplete(() {
       Future.delayed(const Duration(milliseconds: 500), () {
         setState(() {
           if (_activeTeam1PokemonIndex > _team1.length) {
@@ -292,7 +309,6 @@ class _BattleScreenState extends State<BattleScreen>
       _isAnimating = true;
       _isPokemonVisible = false;
       //_jsonFileLoaded = false; // Reset the flag
-      _startBattleRound(); // Start the next battle round
     });
   }
 
@@ -314,11 +330,11 @@ class _BattleScreenState extends State<BattleScreen>
                 setState(() {
                   _isAnimating =
                       false; // Add this line to reset animation state
+                  dispose();
                   _activeTeam1PokemonIndex = 0;
                   _activeTeam2PokemonIndex = 0;
                   _attacker = _team1[0];
                   _defender = _team2[0];
-                  super.dispose();
                 });
                 // Close the dialog and navigate back to the previous page
                 Navigator.push(
@@ -337,12 +353,8 @@ class _BattleScreenState extends State<BattleScreen>
   void _animateHealthBar() {
     _healthBarAnimationController.reset(); // Reset the animation controller
 
-    _healthBarAnimationController.forward().whenComplete(() {
+    _healthBarAnimationController.forward(from: 0.0).whenComplete(() {
       setState(() {
-        if (_items[indexer]["turn"] >= _items.length) {
-          _startBattleRound();
-          return;
-        }
         if (_attackerHP <= 0) {
           _animateFainting();
           _nextAttacker(); // Move to the next defender if the current one faints
@@ -350,8 +362,8 @@ class _BattleScreenState extends State<BattleScreen>
         if (_defenderHP <= 0) {
           _animateFainting();
           _nextDefender(); // Move to the next defender if the current one faints
-        } else if (!_isAnimating) {
-          _startBattleRound(); // Start the next battle round
+        } else {
+          return; // Start the next battle round
         }
       });
     });
@@ -365,14 +377,12 @@ class _BattleScreenState extends State<BattleScreen>
     );
 
     // Start the fade-out animation
-    _fadeController!.forward().whenComplete(() {
+    _fadeController!.forward(from: 0.0).whenComplete(() {
       Future.delayed(const Duration(milliseconds: 500), () {
         setState(() {
           _isPokemonVisible = true; // Reset visibility
         });
       });
-
-      _startBattleRound();
     });
 
     Future.delayed(const Duration(milliseconds: 500), () {
@@ -405,13 +415,12 @@ class _BattleScreenState extends State<BattleScreen>
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 141, 224, 240),
-              Color.fromARGB(255, 149, 226, 240),
-              Color.fromARGB(255, 168, 231, 243),
-              Color.fromARGB(255, 133, 221, 238),
+              Color.fromARGB(255, 121, 162, 204),
+              Color.fromARGB(255, 148, 220, 223),
+              Color.fromARGB(255, 117, 154, 202),
             ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
           ),
         ),
         child: SafeArea(

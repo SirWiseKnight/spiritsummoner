@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		jivujxxfNmGzZmPLJO0FJhVJ+Hs=
+		z+GJJ7jsdfGpUTZDC1zAVeKfKdQ=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		EsjfziFc+ovBLbFWfjurF6V7kB4=
+		tCNKrLHOYAx3h+JtXPIfLiGt+dA=
 		</data>
 		<key>flutter_assets/assets/Backgrounds/Challenge.png</key>
 		<data>
@@ -123,6 +123,10 @@
 		<key>flutter_assets/assets/Backgrounds/bgWind.png</key>
 		<data>
 		tCXnudJUngyE5EjFhBWqU+jg2Fw=
+		</data>
+		<key>flutter_assets/assets/Icons/iconYellow.png</key>
+		<data>
+		LxSwb4g05NZXCEczcjY/+moZu+I=
 		</data>
 		<key>flutter_assets/assets/Icons/questBattle.png</key>
 		<data>
@@ -256,6 +260,10 @@
 		<data>
 		o/vIlVj9mkq5aHAwuufCd0syJVo=
 		</data>
+		<key>flutter_assets/assets/Spirits/96_Chicki.png</key>
+		<data>
+		UYayheY2UQo1P3AZ+Bu6P+JAxZw=
+		</data>
 		<key>flutter_assets/assets/Spirits/99_malusk.png</key>
 		<data>
 		EbUZnfUBEHsdzj9jagJxMpSPeZg=
@@ -322,7 +330,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		Y5s8mO1PBDxNDeJyu0WbWL0ra6I=
+		e0uBDGQkOIOw6sEXKwJfj4kYRLY=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -355,7 +363,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			p3ID4Ypwz73DJSGMBwOOQIl6Kb5xPVeaNJ2eMect7Q4=
+			pWljqWLg4qYVpGM82E+A27yClEJMskMmet4+40JGt8c=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -369,7 +377,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			dSZtKJouCbRIoygKKlnViP8i1BByHZKpNGB9Yyj2RSk=
+			TjFBirXyCniBKl1rLi99HUler0k55UMk5699fQvDfhY=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/Backgrounds/Challenge.png</key>
@@ -552,6 +560,13 @@
 			<key>hash2</key>
 			<data>
 			Uizme0Gh3ZxyOhUVuhYvT/Z+Yd6h53W2vrvsymlp9tY=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/Icons/iconYellow.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			DQDW4AoK/Qa2+SKhL4sjkegKfYLFtVfaYwi7pwcrMWY=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/Icons/questBattle.png</key>
@@ -785,6 +800,13 @@
 			QpwNwRzFcfJHi3KG6azm4y8whkxKfhOBJ54TKCs9h4o=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/Spirits/96_Chicki.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			uvm3bVkvehc76DP9nTYdwyyq3xwxSmt/lkmqbzZOz9A=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/Spirits/99_malusk.png</key>
 		<dict>
 			<key>hash2</key>
@@ -901,7 +923,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			iu7hcOibMr4GH54CClCB0iLxay83wbn7BgaDVIBJmrg=
+			/NYUHsX+dvBce/SWJSp/5wC/w/7l/CodPJYFjExOY7E=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
