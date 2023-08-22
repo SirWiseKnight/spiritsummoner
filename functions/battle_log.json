@@ -285,7 +285,7 @@
       "moveType": "Dark",
       "damage": 264,
       "defender": "Skiina",
-      "defenderTeam": 1,
+      "defenderTeam": 2,
       "defenderHealth": 454
     },
     {
@@ -297,7 +297,7 @@
       "moveType": "Wind",
       "damage": 433,
       "defender": "Reindeer",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": 238
     },
     {
@@ -309,7 +309,7 @@
       "moveType": "Dark",
       "damage": 264,
       "defender": "Skiina",
-      "defenderTeam": 1,
+      "defenderTeam": 2,
       "defenderHealth": 190
     },
     {
@@ -321,7 +321,7 @@
       "moveType": "Wind",
       "damage": 433,
       "defender": "Reindeer",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": 1
     },
     {
@@ -333,7 +333,7 @@
       "moveType": "Dark",
       "damage": 264,
       "defender": "Skiina",
-      "defenderTeam": 1,
+      "defenderTeam": 2,
       "defenderHealth": 1
     },
     {
@@ -345,7 +345,7 @@
       "moveType": "Wind",
       "damage": 433,
       "defender": "Reindeer",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": -432
     },
     {
@@ -357,7 +357,7 @@
       "moveType": "Wind",
       "damage": 466,
       "defender": "Traruza",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": 366
     },
     {
@@ -369,7 +369,7 @@
       "moveType": "Neutral",
       "damage": 380,
       "defender": "Skiina",
-      "defenderTeam": 1,
+      "defenderTeam": 2,
       "defenderHealth": -379
     },
     {
@@ -381,7 +381,7 @@
       "moveType": "Water",
       "damage": 227,
       "defender": "Traruza",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": 139
     },
     {
@@ -393,7 +393,7 @@
       "moveType": "Earth",
       "damage": 452,
       "defender": "Frogi",
-      "defenderTeam": 1,
+      "defenderTeam": 2,
       "defenderHealth": 219
     },
     {
@@ -405,7 +405,7 @@
       "moveType": "Water",
       "damage": 227,
       "defender": "Traruza",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": -88
     },
     {
@@ -417,7 +417,7 @@
       "moveType": "Water",
       "damage": 99,
       "defender": "Warhulk",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": 831
     },
     {
@@ -429,7 +429,7 @@
       "moveType": "Water",
       "damage": 99,
       "defender": "Warhulk",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": 731
     },
     {
@@ -441,7 +441,7 @@
       "moveType": "Water",
       "damage": 99,
       "defender": "Warhulk",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": 632
     },
     {
@@ -453,7 +453,7 @@
       "moveType": "Dark",
       "damage": 423,
       "defender": "Frogi",
-      "defenderTeam": 1,
+      "defenderTeam": 2,
       "defenderHealth": -263
     },
     {
@@ -465,7 +465,7 @@
       "moveType": "Light",
       "damage": 188,
       "defender": "Warhulk",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": 444
     },
     {
@@ -477,7 +477,7 @@
       "moveType": "Light",
       "damage": 188,
       "defender": "Warhulk",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": 256
     },
     {
@@ -489,7 +489,7 @@
       "moveType": "Light",
       "damage": 188,
       "defender": "Warhulk",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": 68
     },
     {
@@ -501,7 +501,7 @@
       "moveType": "Dark",
       "damage": 641,
       "defender": "Skiina",
-      "defenderTeam": 1,
+      "defenderTeam": 2,
       "defenderHealth": 1
     },
     {
@@ -513,7 +513,7 @@
       "moveType": "Light",
       "damage": 188,
       "defender": "Warhulk",
-      "defenderTeam": 2,
+      "defenderTeam": 1,
       "defenderHealth": -120
     }
   ],

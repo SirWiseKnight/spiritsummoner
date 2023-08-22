@@ -320,7 +320,7 @@ battleRound() {
               moveType: bestMove.elementType,
               damage: Number(damage.toFixed(0)),
               defender: target.name,
-              defenderTeam: pokemon.team,
+              defenderTeam: target.team,
               defenderHealth: Number(target.health.toFixed(0)),
             };
             this.logMessage(logObject);
