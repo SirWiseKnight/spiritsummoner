@@ -1,1 +1,1 @@
-export 'package:spirit_summoner/pages/battle/widgets/battleWidgetExample.dart';
+export 'package:spirit_summoner/pages/battle/widgets/battleFieldAnimatedContainer.dart';
