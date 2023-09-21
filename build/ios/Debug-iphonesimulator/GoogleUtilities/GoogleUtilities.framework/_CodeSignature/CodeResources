@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/GULAppEnvironmentUtil.h</key>
 		<data>
-		MT6NpumMIS16WTW61244JN6gv/8=
+		NGo9Y7oLjVb4AS8n5vgMLDZ0uqM=
 		</data>
 		<key>Headers/GULApplication.h</key>
 		<data>
@@ -76,10 +76,6 @@
 		<data>
 		zakav2dnnHEg+jKlDffWx35g+4E=
 		</data>
-		<key>Headers/GULOriginalIMPConvenienceMacros.h</key>
-		<data>
-		ioFNLvVtBav6ChtkDGBfImNqRJg=
-		</data>
 		<key>Headers/GULReachabilityChecker.h</key>
 		<data>
 		UHZxn2/zMhUivGD/BRSg0Tiuez4=
@@ -92,21 +88,13 @@
 		<data>
 		t/fXV0x5vnY3wbVku4mOWIkSf9o=
 		</data>
-		<key>Headers/GULSwizzler.h</key>
-		<data>
-		kqRN0S855mcEoeddcbC6llfp/j0=
-		</data>
 		<key>Headers/GULURLSessionDataResponse.h</key>
 		<data>
 		C7k2DFJRl4sOYxgFqiOpnGh1Xho=
 		</data>
-		<key>Headers/GULUserDefaults.h</key>
-		<data>
-		EBGg0ZapNUzyIzb6nCliBREczUA=
-		</data>
 		<key>Headers/GoogleUtilities-umbrella.h</key>
 		<data>
-		Xv5QfNW6hN1FlU1D6NKneQEeXW0=
+		HngxoKMV2A2frpPdNBGjW8VKjEg=
 		</data>
 		<key>Headers/NSURLSession+GULPromises.h</key>
 		<data>
@@ -114,7 +102,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		HqZiNtZvztkilDedBXH/QR+qUHQ=
+		zfLeERMh4gzB9gbh9Qa7LsoFJ3g=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -138,11 +126,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			MT6NpumMIS16WTW61244JN6gv/8=
+			NGo9Y7oLjVb4AS8n5vgMLDZ0uqM=
 			</data>
 			<key>hash2</key>
 			<data>
-			IgUrGFPeOFr74VJHh38uXGg0jy2TebCaQYCguJFZ43U=
+			IB43SiNSY97Pj+GaCp1vc//zy7TML0KMz0/nrb5NquI=
 			</data>
 		</dict>
 		<key>Headers/GULApplication.h</key>
@@ -321,17 +309,6 @@
 			v1KWie2xQxLa73blnQdgSwWNYSFbijx3l7mixX1BAsw=
 			</data>
 		</dict>
-		<key>Headers/GULOriginalIMPConvenienceMacros.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			ioFNLvVtBav6ChtkDGBfImNqRJg=
-			</data>
-			<key>hash2</key>
-			<data>
-			fNvM52Y4+ks99B81gcFB9L3SghXwZrd5S2dBJEKW5mw=
-			</data>
-		</dict>
 		<key>Headers/GULReachabilityChecker.h</key>
 		<dict>
 			<key>hash</key>
@@ -365,17 +342,6 @@
 			kWT1ykqi+tOoUFBDwqhOPx7axNyeUYgduCruJb7EaTQ=
 			</data>
 		</dict>
-		<key>Headers/GULSwizzler.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			kqRN0S855mcEoeddcbC6llfp/j0=
-			</data>
-			<key>hash2</key>
-			<data>
-			nHEVLRZiAlaBzWwIgNfNZ9l61OpmGZSCbpSaKf3yIqs=
-			</data>
-		</dict>
 		<key>Headers/GULURLSessionDataResponse.h</key>
 		<dict>
 			<key>hash</key>
@@ -387,26 +353,15 @@
 			n5k4qaKh2bYI2mwBIAa845pVXUSRxdfJfPyeZ/AIEyA=
 			</data>
 		</dict>
-		<key>Headers/GULUserDefaults.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EBGg0ZapNUzyIzb6nCliBREczUA=
-			</data>
-			<key>hash2</key>
-			<data>
-			ys09g5WqzZ5D/IaWg2v2AyTadtZDy7y+bS/G95iNTnE=
-			</data>
-		</dict>
 		<key>Headers/GoogleUtilities-umbrella.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Xv5QfNW6hN1FlU1D6NKneQEeXW0=
+			HngxoKMV2A2frpPdNBGjW8VKjEg=
 			</data>
 			<key>hash2</key>
 			<data>
-			X2K/fa3vprNE1V3W+WeDjDwD8mXmRM0DX85McoPYPpg=
+			TY/yKChBz50po6mNv+kGlFf/ImfXrJfy4kcW2TVxOSE=
 			</data>
 		</dict>
 		<key>Headers/NSURLSession+GULPromises.h</key>

@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/FLTGoogleSignInPlugin.h</key>
 		<data>
-		aLSkas59m65qWuSbVafJEXYV7iI=
+		3UXHUFn8N+FegCm0iLthvmi4NWs=
 		</data>
 		<key>Headers/FLTGoogleSignInPlugin_Test.h</key>
 		<data>
@@ -16,9 +16,13 @@
 		<data>
 		RrqM4xUyvP2T3hCL19NgC7jfqbc=
 		</data>
+		<key>Headers/messages.g.h</key>
+		<data>
+		3XD9jSfMDL7t55fYQTNqcIxRiC0=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		iq16b7sYCR8EET4kvuMzm6297Qo=
+		J/s9dJWtAU9wynIC/X1sL+twTE8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -31,11 +35,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			aLSkas59m65qWuSbVafJEXYV7iI=
+			3UXHUFn8N+FegCm0iLthvmi4NWs=
 			</data>
 			<key>hash2</key>
 			<data>
-			m8mWTErlke3hzA3xbpczdGcLJYnAO/S96rJ7TRQr+uw=
+			ZgbcILMR5I3/5ZgXOrT+kad17GhMGMtOEWq9XDD8WNE=
 			</data>
 		</dict>
 		<key>Headers/FLTGoogleSignInPlugin_Test.h</key>
@@ -58,6 +62,17 @@
 			<key>hash2</key>
 			<data>
 			phjaL5ZvnN4HWh+cBiDIdEw05Yq1ag54r6ehOOPbODU=
+			</data>
+		</dict>
+		<key>Headers/messages.g.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			3XD9jSfMDL7t55fYQTNqcIxRiC0=
+			</data>
+			<key>hash2</key>
+			<data>
+			cketWyLzbPzBcOlcJQRjymJ2XtP9zzjAYlN58U+BM1w=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

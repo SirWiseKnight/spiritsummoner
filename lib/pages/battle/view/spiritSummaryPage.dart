@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:spirit_summoner/pages/home/shared/homeBarrel.dart';
 import 'package:spirit_summoner/config/barrel.dart';
 
-class ChatScreen extends StatelessWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+class SpiritSummaryScreen extends StatelessWidget {
+  const SpiritSummaryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,6 @@ class ChatScreen extends StatelessWidget {
                     child: PartnerNameWIP(),
                   ),
                   PartnerHPWIP(),
-                  PartnerActionButtons(),
                   Container(height: 280),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -71,7 +70,6 @@ class ChatScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

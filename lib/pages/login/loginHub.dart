@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:spirit_summoner/pages/home/view/homeHub.dart';
 import 'package:spirit_summoner/domain/authentication/auth.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+//import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:spirit_summoner/pages/sign_up/signupHub.dart';
 
 const kTextFieldDecoration = InputDecoration(
@@ -174,6 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 10,
             ),
+            /*
             FutureBuilder<Object>(
               future: SignInWithApple.isAvailable(),
               builder: (context, snapshot) {
@@ -187,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   return Container();
                 }
               },
-            ),
+            ),*/
             Expanded(
               child: Container(),
             ),

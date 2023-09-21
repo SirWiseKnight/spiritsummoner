@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/FLTFirebaseFirestorePlugin.h</key>
 		<data>
-		vcq+2tkE79mEyK8im1VjPkXes4I=
+		0vopQv7Ug0Gf7ubjnPk9BgeGrXE=
 		</data>
 		<key>Headers/cloud_firestore-umbrella.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		+iQuubs957z6YnsVlRcFngnAgfM=
+		1hamTJfxuN/QHVpS1zi8o68Ic/o=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -24,13 +24,17 @@
 		<data>
 		Fr7k2a743dDIcZA/g1EToI3BU3w=
 		</data>
+		<key>PrivateHeaders/FLTFirebaseFirestoreExtension.h</key>
+		<data>
+		d8T8sjAuB6X+HYkiIGUGw8XQb6s=
+		</data>
 		<key>PrivateHeaders/FLTFirebaseFirestoreReader.h</key>
 		<data>
 		WeVzSDKzsXYhOVz72nEj1fjN3CQ=
 		</data>
 		<key>PrivateHeaders/FLTFirebaseFirestoreUtils.h</key>
 		<data>
-		CfhHmwOOMrmZO7yTDgHu0QYI68w=
+		HsJK1W3D5SSTMUmyC4jx1l+ymc0=
 		</data>
 		<key>PrivateHeaders/FLTFirebaseFirestoreWriter.h</key>
 		<data>
@@ -59,11 +63,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			vcq+2tkE79mEyK8im1VjPkXes4I=
+			0vopQv7Ug0Gf7ubjnPk9BgeGrXE=
 			</data>
 			<key>hash2</key>
 			<data>
-			nzste0cB5Nqr39RvxRvQXZSq6M2FwdtwdxrlWu8wRgc=
+			EQATirQhXgnCmTmkxkup2UpZFEohMAuzvYVqyErXp/A=
 			</data>
 		</dict>
 		<key>Headers/cloud_firestore-umbrella.h</key>
@@ -99,6 +103,17 @@
 			yKe109drhNh+JG1ZgaDfAJyHb1idv7e5f1SrjzRm0F8=
 			</data>
 		</dict>
+		<key>PrivateHeaders/FLTFirebaseFirestoreExtension.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			d8T8sjAuB6X+HYkiIGUGw8XQb6s=
+			</data>
+			<key>hash2</key>
+			<data>
+			RAczZqjdBVDOZxaK+WCBs4Uxzcor8FaLCzeOzh3u5Lk=
+			</data>
+		</dict>
 		<key>PrivateHeaders/FLTFirebaseFirestoreReader.h</key>
 		<dict>
 			<key>hash</key>
@@ -114,11 +129,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			CfhHmwOOMrmZO7yTDgHu0QYI68w=
+			HsJK1W3D5SSTMUmyC4jx1l+ymc0=
 			</data>
 			<key>hash2</key>
 			<data>
-			MsW0tpbQxNfa/CmaB1qwo0N9X5SQhfWQHCIQcmJ/O7o=
+			tH5WJVuWxerKPkezysk/Pwiop2hz3SspjYescUdefWE=
 			</data>
 		</dict>
 		<key>PrivateHeaders/FLTFirebaseFirestoreWriter.h</key>

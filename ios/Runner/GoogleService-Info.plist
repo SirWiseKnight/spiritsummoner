@@ -3,19 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1093609987643-q1sr2ar6fa3t9j6v5l6tmicp18n2m92a.apps.googleusercontent.com</string>
+	<string>1093609987643-kmuk23o3k020m4hqc8lmqoqef25933vn.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1093609987643-q1sr2ar6fa3t9j6v5l6tmicp18n2m92a</string>
+	<string>com.googleusercontent.apps.1093609987643-kmuk23o3k020m4hqc8lmqoqef25933vn</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>1093609987643-c3hivn2ce08ekgg2plvq60at9apuq7om.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCprhthmkyjDMVRSC2oGMj2S6WAvicssp0</string>
+	<string>AIzaSyDApe7ippgHFxdIfwVnegseNyPMa6SE4qM</string>
 	<key>GCM_SENDER_ID</key>
 	<string>1093609987643</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>spiritsummonerwip.com</string>
+	<string>com.SpiritSummoner.Firebase</string>
 	<key>PROJECT_ID</key>
 	<string>spirit-summoner-679be</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1093609987643:ios:fafe32327fb37818e7061e</string>
+	<string>1:1093609987643:ios:b0341163b0ccffb9e7061e</string>
 	<key>DATABASE_URL</key>
 	<string>https://spirit-summoner-679be-default-rtdb.firebaseio.com</string>
 </dict>
