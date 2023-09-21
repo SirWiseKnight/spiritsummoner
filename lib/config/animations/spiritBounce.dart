@@ -52,6 +52,7 @@ class _BouncingImageState extends State<BouncingImage>
       child: Image.asset(
         widget.imageUrl,
         fit: BoxFit.contain,
+        isAntiAlias: true,
       ),
     );
   }

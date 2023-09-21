@@ -13,7 +13,7 @@ class PartnerStatsWIP extends StatelessWidget {
       future: FirebaseFirestore.instance
           .collection('spirit-partner')
           .where('uid', isEqualTo: AuthService().uid)
-          .get(),
+          .get(GetOptions(source: Source.serverAndCache)),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(

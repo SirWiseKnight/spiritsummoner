@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spirit_summoner/pages/battle/view/spiritSummaryPage.dart';
 import 'package:spirit_summoner/pages/home/shared/homeBarrel.dart';
 import 'package:spirit_summoner/config/barrel.dart';
 
@@ -52,11 +53,26 @@ class HomeScreen extends StatelessWidget {
                                 height:
                                     MediaQuery.of(context).size.height * 0.12,
                               ),
-                              Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.4,
-                                width: MediaQuery.of(context).size.width * 0.5,
-                                child: PartnerImageWIP(),
+                              GestureDetector(
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.4,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  child: PartnerImageWIP(),
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SpiritSummaryScreen()),
+                                  );
+                                },
+                                onLongPress: () {
+                                  print(
+                                      'Invoke a way to change partner spirit.');
+                                },
                               ),
                             ],
                           ),

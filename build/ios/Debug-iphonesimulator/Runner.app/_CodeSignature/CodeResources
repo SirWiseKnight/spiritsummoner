@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		O/OSdpOigY0o/tukn76q0j/b0Ks=
+		1SoH64oaz1dZxxhGXhOEw0GD35w=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,15 +54,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		1JkTR/zGOgTlgzEDlJ28l2dgTEE=
+		sYqUrGEYz+x3326lshXYSXNWOnw=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		Ljc2pRUwhSnTLrGMbJVi3wFk50A=
+		tyxOVNmhPx7sTws5vXbFnmc9228=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		dnNy2Y/jr70aq8sAEkKy8UuQxOY=
+		nO9YCqQIfXXdxfoAm15G3O6uupY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -320,6 +320,18 @@
 		<data>
 		UYayheY2UQo1P3AZ+Bu6P+JAxZw=
 		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/96_Chicki_ALT.png</key>
+		<data>
+		LSRciy4d4jpR9P36H4gQdEBuZZI=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicking.png</key>
+		<data>
+		HGf6bvOnPvyj9/Up/OBF14ZzUFg=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicking_ALT.png</key>
+		<data>
+		i5+/ACQa+Hn3KyNPqf91F+gdNqQ=
+		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/99_malusk.png</key>
 		<data>
 		EbUZnfUBEHsdzj9jagJxMpSPeZg=
@@ -386,7 +398,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		KP4i0ZjNACvrEXwZi0r+U+vhb78=
+		7iX04zqDOVfQwfxoXl3VCkGIpqQ=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -1195,7 +1207,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			nXQL3Ei6u/XRz4YBo71ke82fFFf+LbEnpC6BSY+t2Io=
+			dEWk3Vv/9En6Cz7BBBh64dXuZ3u+W8Av05W7A1n/N0g=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1209,21 +1221,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kLQN3jf/Qyw3Houlw2895ZxxNW1bVLNG5D12X6XA5nQ=
+			C1JMVYvuNMbZKptoWdmZ5xXIFsY9D3G0uHywexGTZTE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FMWmhYADZ5w82/EaMVZAWLqmEuFgWoFx4myTjYROk9Y=
+			BeIYf2RzCEsv1Vw9DOv7Z9+5CSAh2Rk9F8K7SdJ4i/A=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cImQTi+E6B3EhiG5VJGdmaVy+86AHKHHZY8QDcxA1d4=
+			mJUgcOUMdEH7YLMR4o2K/9jjYIiKbxtXBtehUJUB+ZE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -1674,6 +1686,27 @@
 			uvm3bVkvehc76DP9nTYdwyyq3xwxSmt/lkmqbzZOz9A=
 			</data>
 		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/96_Chicki_ALT.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			8BYdQGPrl0Phxncn9J1/kBqaQFEQNzMkLwIsJ77AvZY=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicking.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fpoCS+UU4soSTCKw0TrHJSuC3yGP7CBToAWsCUMJjA4=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicking_ALT.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			vitDLDEkmgbUykMDcHi4HGcObRm6PsKsC15qetEVQ6c=
+			</data>
+		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/99_malusk.png</key>
 		<dict>
 			<key>hash2</key>
@@ -1790,7 +1823,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			es44DYKsYVzgZe8kfq81AXy8v49WtiJKtv7Ek5A5mpk=
+			iNQ8LBYZG96m0aGCUzfilZrh5SrUcRMQdyq1DrTP9jk=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
