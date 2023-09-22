@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:spirit_summoner/pages/battle/view/spiritSummaryPage.dart';
 import 'package:spirit_summoner/pages/home/shared/homeBarrel.dart';
 import 'package:spirit_summoner/config/barrel.dart';
+import 'package:spirit_summoner/pages/home/widgets/homePartnerID.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -62,11 +62,10 @@ class HomeScreen extends StatelessWidget {
                                   child: PartnerImageWIP(),
                                 ),
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SpiritSummaryScreen()),
+                                  Navigator.of(context).pushNamed(
+                                    '/spirit_summary_page',
+                                    arguments: PartnerID()
+                                        .toString(), // this needs to be fixed as the types don't match
                                   );
                                 },
                                 onLongPress: () {
@@ -124,7 +123,7 @@ class HomeScreen extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  PartnerNameWIP(),
+                                  PartnerName(),
                                 ],
                               ),
                             ),
@@ -140,7 +139,7 @@ class HomeScreen extends StatelessWidget {
                                   height: MediaQuery.of(context).size.height *
                                       0.415,
                                 ),
-                                PartnerHPWIP(),
+                                PartnerHP(),
                                 PartnerStatsWIP(),
                               ],
                             ),

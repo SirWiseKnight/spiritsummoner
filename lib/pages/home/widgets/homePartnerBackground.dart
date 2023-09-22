@@ -9,8 +9,9 @@ class PartnerBackgroundWIP extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder<QuerySnapshot>(
       future: FirebaseFirestore.instance
-          .collection('spirit-partner')
+          .collection('spirit-list')
           .where('uid', isEqualTo: AuthService().uid)
+          .where('partner', isEqualTo: 'Y')
           .get(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {

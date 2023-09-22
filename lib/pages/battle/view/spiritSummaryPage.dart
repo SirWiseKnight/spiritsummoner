@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:spirit_summoner/pages/battle/widgets/spiritGear.dart';
+import 'package:spirit_summoner/pages/battle/widgets/spiritHealthPoints.dart';
+import 'package:spirit_summoner/pages/battle/widgets/spiritImage.dart';
 import 'package:spirit_summoner/pages/battle/widgets/spiritMoves.dart';
+import 'package:spirit_summoner/pages/battle/widgets/spiritName.dart';
+import 'package:spirit_summoner/pages/battle/widgets/spiritPlatform.dart';
 import 'package:spirit_summoner/pages/battle/widgets/spiritStats.dart';
 import 'package:spirit_summoner/pages/battle/widgets/spiritTalent.dart';
-import 'package:spirit_summoner/pages/home/shared/homeBarrel.dart';
 
 class SpiritSummaryScreen extends StatelessWidget {
-  const SpiritSummaryScreen({Key? key}) : super(key: key);
+  const SpiritSummaryScreen({Key? key, docId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +43,7 @@ class SpiritSummaryScreen extends StatelessWidget {
             child: Container(
               height: 200,
               width: 400,
-              child: Center(child: PartnerPlatformWIP()),
+              child: Center(child: SpiritPlatform(docId: '')),
             ),
           ),
           Padding(
@@ -51,7 +54,7 @@ class SpiritSummaryScreen extends StatelessWidget {
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.4,
                 width: MediaQuery.of(context).size.width * 0.4,
-                child: PartnerImageWIP(),
+                child: SpiritImage(docId: ''),
               ),
             ),
           ),
@@ -421,22 +424,22 @@ class SpiritSummaryScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
-                child: PartnerNameWIP(),
+                child: SpiritName(docId: ''),
               ),
-              PartnerHPWIP(),
+              SpiritHP(docId: ''),
               Container(height: 300),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SpiritTalent(),
-                  SpiritGear(),
+                  SpiritTalent(docId: ''),
+                  SpiritGear(docId: ''),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SpiritStats(),
-                  SpiritMoves(),
+                  SpiritStats(docId: ''),
+                  SpiritMoves(docId: ''),
                 ],
               ),
             ],

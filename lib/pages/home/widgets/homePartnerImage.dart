@@ -10,8 +10,9 @@ class PartnerImageWIP extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder<QuerySnapshot>(
         future: FirebaseFirestore.instance
-            .collection('spirit-partner')
+            .collection('spirit-list')
             .where('uid', isEqualTo: AuthService().uid)
+            .where('partner', isEqualTo: 'Y')
             .get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -34,7 +35,7 @@ class PartnerImageWIP extends StatelessWidget {
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
-                String partnerIndexNumber = data['indexNumber'] ?? '';
+                String partnerIndexNumber = data['index'] ?? '';
                 String partnerName = data['name'] ?? '';
 
                 return Container(

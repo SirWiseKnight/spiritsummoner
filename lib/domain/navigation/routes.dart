@@ -1,3 +1,4 @@
+import 'package:spirit_summoner/pages/battle/view/spiritSummaryPage.dart';
 import 'package:spirit_summoner/pages/login/login_home.dart';
 import 'package:spirit_summoner/pages/splash/welcome.dart';
 import 'package:spirit_summoner/pages/battle/view/battleHub.dart';
@@ -14,4 +15,5 @@ var appRoutes = {
   '/battle': (context) => BattleScreen(),
   '/shop': (context) => const ShopScreen(),
   '/chat': (context) => ChatScreen(),
+  '/spirit_summary_page': (context) => SpiritSummaryScreen(),
 };

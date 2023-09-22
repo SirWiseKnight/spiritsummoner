@@ -1,96 +1,109 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:rxdart/rxdart.dart';
-import 'package:spirit_summoner/domain/repository_spirits/src/models/models.dart';
-//import 'package:spirit_summoner/Services/auth.dart';
+import 'package:spirit_summoner/domain/authentication/auth.dart';
 
-class PartnerName extends StatefulWidget {
+class PartnerName extends StatelessWidget {
   const PartnerName({Key? key}) : super(key: key);
 
   @override
-  State<PartnerName> createState() => _PartnerNameState();
-}
-
-class FirestoreService {
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
-
-  /// Retrieves a single spirit document
-  Future<Spirit> getSpirit(String name) async {
-    var ref = _db.collection('spirit').doc(name);
-    var snapshot = await ref.get();
-    var spirit = Spirit.fromJson(snapshot.data() ?? {});
-    return spirit;
-  }
-}
-
-Spirit spirit = Spirit(name: 'SpiritName');
-String spiritName = spirit.name;
-
-class _PartnerNameState extends State<PartnerName> {
-  @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          alignment: Alignment.center,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 8.0,
-              bottom: 8.0,
-              left: 32.0,
-              right: 32.0,
-            ),
-            child: Text(
-              spirit.name,
-              style: GoogleFonts.poppins(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                shadows: <Shadow>[
-                  Shadow(
-                    color: Colors.black.withOpacity(0.7),
-                    blurRadius: 1.0,
-                    offset: Offset(
-                      1,
-                      1,
+    return FutureBuilder<QuerySnapshot>(
+      future: FirebaseFirestore.instance
+          .collection('spirit-list')
+          .where('uid', isEqualTo: AuthService().uid)
+          .where('partner', isEqualTo: 'Y')
+          .get(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (snapshot.hasError) {
+          return Center(
+            child: Text('Error: ${snapshot.error}'),
+          );
+        }
+        if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          return Center(
+            child: Text('No spirit found.'),
+          );
+        }
+        return Container(
+          height: 56,
+          child: ListView(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              children:
+                  // Access the document data
+                  snapshot.data!.docs.map(
+                (DocumentSnapshot document) {
+                  Map<String, dynamic> data =
+                      document.data() as Map<String, dynamic>;
+                  String partnerName = data['name'] ?? '';
+                  String partnerLvl = data['level'] ?? '';
+                  String partnerCoreType = data['core-type'] ?? '';
+                  return Container(
+                    width: 300,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                  )
-                ],
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class partnerLevel extends StatelessWidget {
-  const partnerLevel({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(100)),
-            color: Colors.white.withOpacity(0.6)),
-        width: 100,
-        height: 30,
-        alignment: Alignment.center,
-        child: Text(
-          "Level 20",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            height: 38,
+                            width: 40,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(
+                              partnerLvl,
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            height: 38,
+                            child: Text(
+                              partnerName,
+                              style: GoogleFonts.poppins(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 38,
+                            width: 40,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.blue.shade100,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Image.asset(
+                                'assets/Types/type' + partnerCoreType + '.png'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ).toList()),
+        );
+      },
     );
   }
 }
