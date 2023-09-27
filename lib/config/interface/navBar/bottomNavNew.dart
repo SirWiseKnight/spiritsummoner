@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:spirit_summoner/pages/battle/view/battleHub.dart';
 import 'package:spirit_summoner/pages/battle/view/spiritListPage.dart';
-import 'package:spirit_summoner/pages/battle/view/spiritSummaryPage.dart';
-import 'package:spirit_summoner/pages/chat/view/chatHub.dart';
 import 'package:spirit_summoner/pages/home/view/homeHub.dart';
 import 'package:spirit_summoner/pages/quest/view/questHub.dart';
 import 'package:spirit_summoner/pages/shop/view/shopHub.dart';

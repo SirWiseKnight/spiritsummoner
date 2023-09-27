@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:spirit_summoner/domain/authentication/auth.dart';
 
 class SpiritPlatform extends StatefulWidget {
   final String docId;

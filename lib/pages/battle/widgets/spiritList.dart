@@ -260,7 +260,7 @@ class SpiritList extends StatelessWidget {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.285,
+                                                0.2965,
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
                                                 alignment: Alignment.center,
