@@ -947,6 +947,65 @@ class SpiritList extends StatelessWidget {
                                                 }
                                               },
                                             ),
+                                            PopupMenuItem(
+                                              child: Container(
+                                                height: 40,
+                                                width: double.infinity,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.red[600],
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          16.0),
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    'Partner',
+                                                    style: GoogleFonts.bungee(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              value: 'Partner',
+                                              onTap: () async {
+                                                QuerySnapshot querySnap4 =
+                                                    await FirebaseFirestore
+                                                        .instance
+                                                        .collection(
+                                                            'spirit-list')
+                                                        .where('uid',
+                                                            isEqualTo:
+                                                                AuthService()
+                                                                    .uid)
+                                                        .where('partner',
+                                                            isEqualTo: 'Y')
+                                                        .get();
+
+                                                if (querySnap4
+                                                    .docs.isNotEmpty) {
+                                                  QueryDocumentSnapshot doc4 =
+                                                      querySnap4.docs[0];
+                                                  DocumentReference docRef4 =
+                                                      doc4.reference;
+                                                  await docRef4
+                                                      .update({'partner': 'N'});
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('spirit-list')
+                                                      .doc(docId)
+                                                      .update({'partner': 'Y'});
+                                                } else {
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('spirit-list')
+                                                      .doc(docId)
+                                                      .update({'partner': 'Y'});
+                                                }
+                                              },
+                                            ),
                                           ],
                                         ),
                                       ),
