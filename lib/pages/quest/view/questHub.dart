@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:spirit_summoner/pages/battle/view/spiritListPage.dart';
 import 'package:spirit_summoner/pages/quest/shared/questBarrel.dart';
 import 'package:spirit_summoner/config/barrel.dart';
 
@@ -69,6 +70,12 @@ class QuestScreen extends StatelessWidget {
                                   ),
                                 ),
                                 onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SpiritListScreen()),
+                                  );
                                   print("You pressed the Spirits button!");
                                 },
                                 child: Text(
