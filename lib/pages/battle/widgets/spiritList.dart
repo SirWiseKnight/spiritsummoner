@@ -4,9 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spirit_summoner/domain/authentication/auth.dart';
-import 'package:spirit_summoner/pages/battle/widgets/spiritSquad1.dart';
-import 'package:spirit_summoner/pages/battle/widgets/spiritSquad2.dart';
-import 'package:spirit_summoner/pages/battle/widgets/spiritSquad3.dart';
 
 class SpiritList extends StatelessWidget {
   const SpiritList({Key? key}) : super(key: key);
@@ -790,8 +787,42 @@ class SpiritList extends StatelessWidget {
                                                 ),
                                               ),
                                               value: 'Slot 1',
-                                              onTap: () {
-                                                print('Selection 1');
+                                              onTap: () async {
+                                                QuerySnapshot querySnap1 =
+                                                    await FirebaseFirestore
+                                                        .instance
+                                                        .collection(
+                                                            'spirit-list')
+                                                        .where('uid',
+                                                            isEqualTo:
+                                                                AuthService()
+                                                                    .uid)
+                                                        .where('position',
+                                                            isEqualTo: '1')
+                                                        .get();
+
+                                                if (querySnap1
+                                                    .docs.isNotEmpty) {
+                                                  QueryDocumentSnapshot doc1 =
+                                                      querySnap1.docs[0];
+                                                  DocumentReference docRef1 =
+                                                      doc1.reference;
+                                                  await docRef1.update(
+                                                      {'position': 'NULL'});
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('spirit-list')
+                                                      .doc(docId)
+                                                      .update(
+                                                          {'position': '1'});
+                                                } else {
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('spirit-list')
+                                                      .doc(docId)
+                                                      .update(
+                                                          {'position': '1'});
+                                                }
                                               },
                                             ),
                                             PopupMenuItem(
@@ -817,8 +848,42 @@ class SpiritList extends StatelessWidget {
                                                 ),
                                               ),
                                               value: 'Slot 2',
-                                              onTap: () {
-                                                print('Selection 2');
+                                              onTap: () async {
+                                                QuerySnapshot querySnap2 =
+                                                    await FirebaseFirestore
+                                                        .instance
+                                                        .collection(
+                                                            'spirit-list')
+                                                        .where('uid',
+                                                            isEqualTo:
+                                                                AuthService()
+                                                                    .uid)
+                                                        .where('position',
+                                                            isEqualTo: '2')
+                                                        .get();
+
+                                                if (querySnap2
+                                                    .docs.isNotEmpty) {
+                                                  QueryDocumentSnapshot doc2 =
+                                                      querySnap2.docs[0];
+                                                  DocumentReference docRef2 =
+                                                      doc2.reference;
+                                                  await docRef2.update(
+                                                      {'position': 'NULL'});
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('spirit-list')
+                                                      .doc(docId)
+                                                      .update(
+                                                          {'position': '2'});
+                                                } else {
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('spirit-list')
+                                                      .doc(docId)
+                                                      .update(
+                                                          {'position': '2'});
+                                                }
                                               },
                                             ),
                                             PopupMenuItem(
@@ -844,8 +909,42 @@ class SpiritList extends StatelessWidget {
                                                 ),
                                               ),
                                               value: 'Slot 3',
-                                              onTap: () {
-                                                print('Selection 3');
+                                              onTap: () async {
+                                                QuerySnapshot querySnap3 =
+                                                    await FirebaseFirestore
+                                                        .instance
+                                                        .collection(
+                                                            'spirit-list')
+                                                        .where('uid',
+                                                            isEqualTo:
+                                                                AuthService()
+                                                                    .uid)
+                                                        .where('position',
+                                                            isEqualTo: '3')
+                                                        .get();
+
+                                                if (querySnap3
+                                                    .docs.isNotEmpty) {
+                                                  QueryDocumentSnapshot doc3 =
+                                                      querySnap3.docs[0];
+                                                  DocumentReference docRef3 =
+                                                      doc3.reference;
+                                                  await docRef3.update(
+                                                      {'position': 'NULL'});
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('spirit-list')
+                                                      .doc(docId)
+                                                      .update(
+                                                          {'position': '3'});
+                                                } else {
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('spirit-list')
+                                                      .doc(docId)
+                                                      .update(
+                                                          {'position': '3'});
+                                                }
                                               },
                                             ),
                                           ],

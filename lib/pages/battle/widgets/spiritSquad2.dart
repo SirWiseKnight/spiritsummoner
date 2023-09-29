@@ -9,12 +9,12 @@ class SpiritSquad2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<QuerySnapshot>(
-      future: FirebaseFirestore.instance
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
           .collection('spirit-list')
           .where('uid', isEqualTo: AuthService().uid)
           .where('position', isEqualTo: '2')
-          .get(),
+          .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
@@ -28,7 +28,13 @@ class SpiritSquad2 extends StatelessWidget {
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
           return Center(
-            child: Text('No spirits found.'),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.26,
+              width: MediaQuery.of(context).size.width * 0.3115,
+              child: Center(
+                child: Text('No spirit set.'),
+              ),
+            ),
           );
         }
         return Container(
