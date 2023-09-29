@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spirit_summoner/domain/authentication/auth.dart';
+import 'package:spirit_summoner/pages/battle/widgets/spiritSquad1.dart';
+import 'package:spirit_summoner/pages/battle/widgets/spiritSquad2.dart';
+import 'package:spirit_summoner/pages/battle/widgets/spiritSquad3.dart';
 
 class SpiritList extends StatelessWidget {
   const SpiritList({Key? key}) : super(key: key);
@@ -33,515 +37,6 @@ class SpiritList extends StatelessWidget {
         }
         return Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 12.0,
-                top: 16.0,
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Squad',
-                      style: GoogleFonts.poppins(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                            // bottomLeft
-                            offset: Offset(-1, -1),
-                            color: Colors.black,
-                          ),
-                          Shadow(
-                            // bottomRight
-                            offset: Offset(1, -1),
-                            color: Colors.black,
-                          ),
-                          Shadow(
-                            // topRight
-                            offset: Offset(1, 1),
-                            color: Colors.black,
-                          ),
-                          Shadow(
-                            // topLeft
-                            offset: Offset(-1, 1),
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(child: Container()),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12.0),
-                    child: GestureDetector(
-                      child: Stack(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  const Color.fromARGB(255, 237, 40, 40),
-                                  const Color.fromARGB(255, 237, 40, 40),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              border: GradientBoxBorder(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomLeft,
-                                  colors: [
-                                    const Color.fromARGB(150, 131, 40, 40),
-                                    const Color.fromARGB(150, 131, 40, 40),
-                                  ],
-                                ),
-                                width:
-                                    MediaQuery.of(context).size.width * 0.0035,
-                              ),
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            alignment: Alignment.center,
-                            height: 40,
-                            width: 112,
-                            child: Text(
-                              'Saved',
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                shadows: [
-                                  Shadow(
-                                    // bottomLeft
-                                    offset: Offset(-1, -1),
-                                    color:
-                                        const Color.fromARGB(255, 77, 21, 21),
-                                  ),
-                                  Shadow(
-                                    // bottomRight
-                                    offset: Offset(1, -1),
-                                    color:
-                                        const Color.fromARGB(255, 77, 21, 21),
-                                  ),
-                                  Shadow(
-                                    // topRight
-                                    offset: Offset(1, 1),
-                                    color:
-                                        const Color.fromARGB(255, 77, 21, 21),
-                                  ),
-                                  Shadow(
-                                    // topLeft
-                                    offset: Offset(-1, 1),
-                                    color:
-                                        const Color.fromARGB(255, 77, 21, 21),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color.fromARGB(120, 255, 255, 255),
-                                  Color.fromARGB(70, 255, 255, 255),
-                                  Color.fromARGB(15, 255, 255, 255),
-                                  Color.fromARGB(15, 255, 255, 255),
-                                  Color.fromARGB(1, 255, 255, 255),
-                                  Color.fromARGB(5, 0, 0, 0),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomCenter,
-                              ),
-                              border: GradientBoxBorder(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomLeft,
-                                  colors: [
-                                    const Color.fromARGB(150, 131, 40, 40),
-                                    const Color.fromARGB(150, 131, 40, 40),
-                                  ],
-                                ),
-                                width:
-                                    MediaQuery.of(context).size.width * 0.0035,
-                              ),
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            height: 40,
-                            width: 112,
-                          ),
-                        ],
-                      ),
-                      onTap: () {
-                        print('You pressed the Saved Button!');
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.275,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: false,
-                padding: EdgeInsets.only(
-                  top: 8.0,
-                  left: 8.0,
-                  right: 8.0,
-                ),
-                children: snapshot.data!.docs.map(
-                  (DocumentSnapshot document) {
-                    Map<String, dynamic> data =
-                        document.data() as Map<String, dynamic>;
-                    String spiritName = data['name'] ?? '';
-                    String spiritNickname = data['name-alt'] ?? '';
-                    String spiritIndex = data['index'] ?? '';
-                    String spiritDeviant = data['deviant'] ?? '';
-                    String spiritType = data['core-type'] ?? '';
-                    String spiritLevel = data['level'] ?? '';
-                    String docId = document.id;
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                        right: 4.0,
-                        bottom: 4.0,
-                        top: 8.0,
-                      ),
-                      child: GestureDetector(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * 0.15,
-                          width: MediaQuery.of(context).size.width * 0.3115,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: GradientBoxBorder(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomLeft,
-                                  colors: [
-                                    Colors.white.withOpacity(0.4),
-                                    Colors.white.withOpacity(0.01),
-                                    Colors.white.withOpacity(0.1),
-                                  ],
-                                ),
-                                width:
-                                    MediaQuery.of(context).size.width * 0.0075,
-                              ),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Stack(
-                              children: [
-                                ClipRRect(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      image: DecorationImage(
-                                        alignment: Alignment.center,
-                                        fit: BoxFit.cover,
-                                        image: AssetImage(
-                                            'assets/Backgrounds/bg' +
-                                                spiritType +
-                                                '.png'),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                      child: Stack(
-                                        children: [
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.2965,
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                alignment: Alignment.center,
-                                                fit: BoxFit.fitHeight,
-                                                image: AssetImage(
-                                                    'assets/Spirits/' +
-                                                        spiritIndex +
-                                                        '_' +
-                                                        spiritName +
-                                                        spiritDeviant +
-                                                        '.png'),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 12.0,
-                                              top: 8.0,
-                                              bottom: 8.0,
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  spiritNickname,
-                                                  style: GoogleFonts.poppins(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.black,
-                                                    shadows: [
-                                                      Shadow(
-                                                        // bottomLeft
-                                                        offset: Offset(-1, -1),
-                                                        color: Colors.white,
-                                                      ),
-                                                      Shadow(
-                                                        // bottomRight
-                                                        offset: Offset(1, -1),
-                                                        color: Colors.white,
-                                                      ),
-                                                      Shadow(
-                                                        // topRight
-                                                        offset: Offset(1, 1),
-                                                        color: Colors.white,
-                                                      ),
-                                                      Shadow(
-                                                        // topLeft
-                                                        offset: Offset(-1, 1),
-                                                        color: Colors.white,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Text(
-                                                  'Lvl ' + spiritLevel,
-                                                  style: GoogleFonts.poppins(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.black,
-                                                    shadows: [
-                                                      Shadow(
-                                                        // bottomLeft
-                                                        offset: Offset(-1, -1),
-                                                        color: Colors.white,
-                                                      ),
-                                                      Shadow(
-                                                        // bottomRight
-                                                        offset: Offset(1, -1),
-                                                        color: Colors.white,
-                                                      ),
-                                                      Shadow(
-                                                        // topRight
-                                                        offset: Offset(1, 1),
-                                                        color: Colors.white,
-                                                      ),
-                                                      Shadow(
-                                                        // topLeft
-                                                        offset: Offset(-1, 1),
-                                                        color: Colors.white,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Container(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.03,
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.03,
-                                                  decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                      alignment:
-                                                          Alignment.centerLeft,
-                                                      fit: BoxFit.fill,
-                                                      image: AssetImage(
-                                                          'assets/Icons/type' +
-                                                              spiritType +
-                                                              '.png'),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        onTap: () {
-                          Navigator.of(context).pushNamed(
-                            '/spirit_summary_page', // Replace with your route name
-                            arguments:
-                                docId, // Replace with the actual docId you want to pass
-                          );
-                        },
-                        onLongPress: () {
-                          print('Invoke a way to change squad members.');
-                        },
-                      ),
-                    );
-                  },
-                ).toList(),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 12.0,
-                    top: 16.0,
-                  ),
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Spirit List',
-                      style: GoogleFonts.poppins(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                            // bottomLeft
-                            offset: Offset(-1, -1),
-                            color: Colors.black,
-                          ),
-                          Shadow(
-                            // bottomRight
-                            offset: Offset(1, -1),
-                            color: Colors.black,
-                          ),
-                          Shadow(
-                            // topRight
-                            offset: Offset(1, 1),
-                            color: Colors.black,
-                          ),
-                          Shadow(
-                            // topLeft
-                            offset: Offset(-1, 1),
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(child: Container()),
-                Padding(
-                  padding: const EdgeInsets.only(right: 12.0),
-                  child: GestureDetector(
-                    child: Stack(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                const Color.fromARGB(255, 237, 40, 40),
-                                const Color.fromARGB(255, 237, 40, 40),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            border: GradientBoxBorder(
-                              gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomLeft,
-                                colors: [
-                                  const Color.fromARGB(150, 131, 40, 40),
-                                  const Color.fromARGB(150, 131, 40, 40),
-                                ],
-                              ),
-                              width: MediaQuery.of(context).size.width * 0.0035,
-                            ),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          alignment: Alignment.center,
-                          height: 40,
-                          width: 112,
-                          child: Text(
-                            'Index',
-                            style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              shadows: [
-                                Shadow(
-                                  // bottomLeft
-                                  offset: Offset(-1, -1),
-                                  color: const Color.fromARGB(255, 77, 21, 21),
-                                ),
-                                Shadow(
-                                  // bottomRight
-                                  offset: Offset(1, -1),
-                                  color: const Color.fromARGB(255, 77, 21, 21),
-                                ),
-                                Shadow(
-                                  // topRight
-                                  offset: Offset(1, 1),
-                                  color: const Color.fromARGB(255, 77, 21, 21),
-                                ),
-                                Shadow(
-                                  // topLeft
-                                  offset: Offset(-1, 1),
-                                  color: const Color.fromARGB(255, 77, 21, 21),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromARGB(120, 255, 255, 255),
-                                Color.fromARGB(70, 255, 255, 255),
-                                Color.fromARGB(15, 255, 255, 255),
-                                Color.fromARGB(15, 255, 255, 255),
-                                Color.fromARGB(1, 255, 255, 255),
-                                Color.fromARGB(5, 0, 0, 0),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomCenter,
-                            ),
-                            border: GradientBoxBorder(
-                              gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomLeft,
-                                colors: [
-                                  const Color.fromARGB(150, 131, 40, 40),
-                                  const Color.fromARGB(150, 131, 40, 40),
-                                ],
-                              ),
-                              width: MediaQuery.of(context).size.width * 0.0035,
-                            ),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          height: 40,
-                          width: 112,
-                        ),
-                      ],
-                    ),
-                    onTap: () {
-                      print('You pressed the Index Button!');
-                    },
-                  ),
-                ),
-              ],
-            ),
             Container(
               height: MediaQuery.of(context).size.height * 0.29,
               child: ListView(
@@ -620,7 +115,7 @@ class SpiritList extends StatelessWidget {
                       ),
                       child: GestureDetector(
                         child: Container(
-                          height: MediaQuery.of(context).size.height * 0.15,
+                          height: MediaQuery.of(context).size.height * 0.125,
                           width: double.infinity,
                           child: Container(
                             decoration: BoxDecoration(
@@ -642,7 +137,7 @@ class SpiritList extends StatelessWidget {
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
+                                    borderRadius: BorderRadius.circular(12),
                                     image: DecorationImage(
                                       alignment: Alignment.center,
                                       fit: BoxFit.cover,
@@ -657,13 +152,18 @@ class SpiritList extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
-                                      width: 175,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      width: 150,
                                       child: Stack(
                                         children: [
                                           Container(
                                             height: double.infinity,
                                             child: Container(
                                               decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
                                                 image: DecorationImage(
                                                   alignment:
                                                       Alignment.centerRight,
@@ -1127,7 +627,7 @@ class SpiritList extends StatelessWidget {
                                                                 Color.fromARGB(
                                                                     255,
                                                                     179,
-                                                                    101,
+                                                                    143,
                                                                     12),
                                                               ),
                                                               backgroundColor:
@@ -1153,7 +653,7 @@ class SpiritList extends StatelessWidget {
                                                               valueColor:
                                                                   AlwaysStoppedAnimation<
                                                                       Color>(
-                                                                Colors.orange,
+                                                                Colors.yellow,
                                                               ),
                                                               backgroundColor:
                                                                   Colors
@@ -1201,7 +701,7 @@ class SpiritList extends StatelessWidget {
                                                                 Color.fromARGB(
                                                                     255,
                                                                     179,
-                                                                    176,
+                                                                    76,
                                                                     12),
                                                               ),
                                                               backgroundColor:
@@ -1227,7 +727,7 @@ class SpiritList extends StatelessWidget {
                                                               valueColor:
                                                                   AlwaysStoppedAnimation<
                                                                       Color>(
-                                                                Colors.yellow,
+                                                                Colors.orange,
                                                               ),
                                                               backgroundColor:
                                                                   Colors
@@ -1245,6 +745,113 @@ class SpiritList extends StatelessWidget {
                                         ),
                                       ),
                                     ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        height: 55,
+                                        width: 55,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            100.0,
+                                          ),
+                                          color: Colors.orange[900],
+                                        ),
+                                        child: PopupMenuButton(
+                                          position: PopupMenuPosition.over,
+                                          icon: Icon(
+                                            FontAwesomeIcons.ellipsis,
+                                            color: Colors.white,
+                                          ),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(24.0),
+                                          ),
+                                          itemBuilder: (context) => [
+                                            PopupMenuItem(
+                                              child: Container(
+                                                height: 40,
+                                                width: double.infinity,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange[900],
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          16.0),
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    '1',
+                                                    style: GoogleFonts.bungee(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              value: 'Slot 1',
+                                              onTap: () {
+                                                print('Selection 1');
+                                              },
+                                            ),
+                                            PopupMenuItem(
+                                              child: Container(
+                                                height: 40,
+                                                width: double.infinity,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange[900],
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          16.0),
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    '2',
+                                                    style: GoogleFonts.bungee(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              value: 'Slot 2',
+                                              onTap: () {
+                                                print('Selection 2');
+                                              },
+                                            ),
+                                            PopupMenuItem(
+                                              child: Container(
+                                                height: 40,
+                                                width: double.infinity,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange[900],
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          16.0),
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    '3',
+                                                    style: GoogleFonts.bungee(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              value: 'Slot 3',
+                                              onTap: () {
+                                                print('Selection 3');
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ],
@@ -1257,9 +864,6 @@ class SpiritList extends StatelessWidget {
                             arguments:
                                 docId, // Replace with the actual docId you want to pass
                           );
-                        },
-                        onLongPress: () {
-                          print('Invoke a way to change squad members.');
                         },
                       ),
                     );

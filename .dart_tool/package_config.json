@@ -536,6 +536,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "popover",
+      "rootUri": "file:///Users/masonjohnson/.pub-cache/hosted/pub.dev/popover-0.2.8+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "provider",
       "rootUri": "file:///Users/masonjohnson/.pub-cache/hosted/pub.dev/provider-6.0.5",
       "packageUri": "lib/",
@@ -704,7 +710,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-09-20T19:28:02.748769Z",
+  "generated": "2023-09-28T01:52:28.476222Z",
   "generator": "pub",
   "generatorVersion": "3.1.2"
 }

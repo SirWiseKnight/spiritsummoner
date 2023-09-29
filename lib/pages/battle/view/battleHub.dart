@@ -432,7 +432,7 @@ class _BattleScreenState extends State<BattleScreen>
                   MaterialPageRoute(builder: (context) => const HomeScreen()),
                 );
               },
-              child: Text('OK'),
+              child: Text('Close'),
             ),
           ],
         );
