@@ -76,7 +76,6 @@ class QuestScreen extends StatelessWidget {
                                         builder: (context) =>
                                             const SpiritListScreen()),
                                   );
-                                  print("You pressed the Spirits button!");
                                 },
                                 child: Text(
                                   'Spirits',

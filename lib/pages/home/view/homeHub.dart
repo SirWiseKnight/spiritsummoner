@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:spirit_summoner/pages/battle/view/spiritListPage.dart';
 import 'package:spirit_summoner/pages/home/shared/homeBarrel.dart';
 import 'package:spirit_summoner/config/barrel.dart';
-import 'package:spirit_summoner/pages/home/widgets/homePartnerID.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -62,10 +62,11 @@ class HomeScreen extends StatelessWidget {
                                   child: PartnerImageWIP(),
                                 ),
                                 onTap: () {
-                                  Navigator.of(context).pushNamed(
-                                    '/spirit_summary_page',
-                                    arguments: PartnerID()
-                                        .toString(), // this needs to be fixed as the types don't match
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SpiritListScreen()),
                                   );
                                 },
                                 onLongPress: () {
