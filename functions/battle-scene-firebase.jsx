@@ -16,31 +16,32 @@ class FirestoreConnection {
     this.db = firebase.firestore();
   }
 
-  async getDataFromCollection(collectionName) {
+  async getDataFromSubcollection(userId) {
     try {
-      const collectionRef = this.db.collection(collectionName);
-      const snapshot = await collectionRef.get();
+      const userRef = this.db.collection('users').doc(userId);
+      const activeSquadRef = userRef.collection('active-squad');
+      const snapshot = await activeSquadRef.get();
 
       snapshot.forEach((doc) => {
         const data = doc.data();
         console.log("Document ID:", doc.id, "Data:", data);
       });
     } catch (error) {
-      console.error("Error getting documents from collection:", error);
+      console.error("Error getting documents from subcollection:", error);
     }
   }
 }
 
-console.log("---TEST---");
-
 // Usage of FirestoreConnection class
 const firestoreConnection = new FirestoreConnection();
 
-// Specify the name of the collection you want to retrieve data from
-const collectionName = "users";
-firestoreConnection.getDataFromCollection(collectionName);
+// Specify the user ID for which you want to retrieve data from the 'active-squad' subcollection
+const attackerUserId = "tRzkTK8rFWdM3omN0efkHnQAzPh2"; // need to pass this from application
+firestoreConnection.getDataFromSubcollection(attackerUserId);
 
-
+// Specify the user ID for which you want to retrieve data from the 'active-squad' subcollection
+const defenderUserId = "HV4CA1bZK9Xe0J2AOO5djOH0MvY2"; // need to pass this from application
+firestoreConnection.getDataFromSubcollection(defenderUserId);
 
 // define the Move class
 class Move {
