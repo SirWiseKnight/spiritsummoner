@@ -38,6 +38,7 @@ class SummonerList extends StatelessWidget {
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data =
                   document.data() as Map<String, dynamic>;
+              String docId = document.id;
               String summonerName = data['username'] ?? '';
               int summonerLevel = data['level'] ?? '';
               return Padding(

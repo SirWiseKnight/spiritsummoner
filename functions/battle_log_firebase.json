@@ -1,0 +1,521 @@
+{
+  "teams": {
+    "team1": [
+      {
+        "team": 1,
+        "id": 5,
+        "name": "Reindeer",
+        "nickname": "Reindeer",
+        "level": 70,
+        "maxHealth": 671,
+        "health": -432.05529411764707,
+        "attack": 42,
+        "defense": 48,
+        "magicAttack": 368,
+        "magicDefense": 68,
+        "speed": 565,
+        "intelligence": 86,
+        "ability": "Endurance",
+        "heldItem": "Flashlight",
+        "coreType": "Neutral",
+        "moves": [
+          {
+            "name": "Dark Blessing",
+            "elementType": "Dark",
+            "moveType": "Magical",
+            "power": 100
+          },
+          {
+            "name": "Horn Attack",
+            "elementType": "Neutral",
+            "moveType": "Physical",
+            "power": 100
+          },
+          {
+            "name": "Polar Light",
+            "elementType": "Light",
+            "moveType": "Magical",
+            "power": 140
+          },
+          {
+            "name": "Chomp",
+            "elementType": "Neutral",
+            "moveType": "Physical",
+            "power": 120
+          }
+        ],
+        "usedEndurance": true
+      },
+      {
+        "team": 1,
+        "id": 7,
+        "name": "Traruza",
+        "nickname": "Traruza",
+        "level": 70,
+        "maxHealth": 832,
+        "health": -88.45722204724404,
+        "attack": 340,
+        "defense": 129,
+        "magicAttack": 54,
+        "magicDefense": 127,
+        "speed": 510,
+        "intelligence": 73,
+        "ability": "Ground",
+        "heldItem": "Sledgehammer",
+        "coreType": "Earth",
+        "moves": [
+          {
+            "name": "Smash",
+            "elementType": "Neutral",
+            "moveType": "Physical",
+            "power": 100
+          },
+          {
+            "name": "Dragon Quake",
+            "elementType": "Earth",
+            "moveType": "Physical",
+            "power": 150
+          },
+          {
+            "name": "Earthquake",
+            "elementType": "Earth",
+            "moveType": "Physical",
+            "power": 100
+          },
+          {
+            "name": "Double Punch",
+            "elementType": "Neutral",
+            "moveType": "Physical",
+            "power": 150
+          }
+        ],
+        "usedEndurance": false
+      },
+      {
+        "team": 1,
+        "id": 9,
+        "name": "Warhulk",
+        "nickname": "Warhulk",
+        "level": 70,
+        "maxHealth": 930,
+        "health": -119.86015135135116,
+        "attack": 382,
+        "defense": 416,
+        "magicAttack": 5,
+        "magicDefense": 296,
+        "speed": 35,
+        "intelligence": 41,
+        "ability": "Spike",
+        "heldItem": "Cloak",
+        "coreType": "Dark",
+        "moves": [
+          {
+            "name": "Smash",
+            "elementType": "Neutral",
+            "moveType": "Physical",
+            "power": 100
+          },
+          {
+            "name": "Static Smash",
+            "elementType": "Electric",
+            "moveType": "Physical",
+            "power": 100
+          },
+          {
+            "name": "Super Smash",
+            "elementType": "Neutral",
+            "moveType": "Physical",
+            "power": 150
+          },
+          {
+            "name": "Black Hole",
+            "elementType": "Dark",
+            "moveType": "Physical",
+            "power": 150
+          }
+        ],
+        "usedEndurance": false
+      }
+    ],
+    "team2": [
+      {
+        "team": 2,
+        "id": 6,
+        "name": "Skiina",
+        "nickname": "Skiina",
+        "level": 70,
+        "maxHealth": 718,
+        "health": -379.25,
+        "attack": 5,
+        "defense": 48,
+        "magicAttack": 457,
+        "magicDefense": 50,
+        "speed": 555,
+        "intelligence": 114,
+        "ability": "Endurance",
+        "heldItem": "Flashlight",
+        "coreType": "Wind",
+        "moves": [
+          {
+            "name": "Queen Breath",
+            "elementType": "Light",
+            "moveType": "Magical",
+            "power": 100
+          },
+          {
+            "name": "Whirlwind Zone",
+            "elementType": "Wind",
+            "moveType": "Magical",
+            "power": 140
+          },
+          {
+            "name": "Sonic Combustion",
+            "elementType": "Wind",
+            "moveType": "Magical",
+            "power": 150
+          },
+          {
+            "name": "Polar Light",
+            "elementType": "Light",
+            "moveType": "Magical",
+            "power": 140
+          }
+        ],
+        "usedEndurance": true
+      },
+      {
+        "team": 2,
+        "id": 8,
+        "name": "Frogi",
+        "nickname": "Frogi",
+        "level": 70,
+        "maxHealth": 671,
+        "health": -262.6061821714285,
+        "attack": 5,
+        "defense": 70,
+        "magicAttack": 308,
+        "magicDefense": 55,
+        "speed": 555,
+        "intelligence": 150,
+        "ability": "Torrent",
+        "heldItem": "Mystic Water",
+        "coreType": "Water",
+        "moves": [
+          {
+            "name": "Bubble",
+            "elementType": "Water",
+            "moveType": "Magical",
+            "power": 100
+          },
+          {
+            "name": "Consume",
+            "elementType": "Poison",
+            "moveType": "Magical",
+            "power": 100
+          },
+          {
+            "name": "Touch",
+            "elementType": "Earth",
+            "moveType": "Magical",
+            "power": 100
+          },
+          {
+            "name": "Waterfall",
+            "elementType": "Water",
+            "moveType": "Magical",
+            "power": 150
+          }
+        ],
+        "usedEndurance": false
+      },
+      {
+        "team": 2,
+        "id": 6,
+        "name": "Skiina",
+        "nickname": "Skiina",
+        "level": 70,
+        "maxHealth": 718,
+        "health": -1,
+        "attack": 5,
+        "defense": 46,
+        "magicAttack": 453,
+        "magicDefense": 58,
+        "speed": 555,
+        "intelligence": 115,
+        "ability": "Endurance",
+        "heldItem": "Flashlight",
+        "coreType": "Wind",
+        "moves": [
+          {
+            "name": "Queen Breath",
+            "elementType": "Light",
+            "moveType": "Magical",
+            "power": 100
+          },
+          {
+            "name": "Whirlwind Zone",
+            "elementType": "Wind",
+            "moveType": "Magical",
+            "power": 140
+          },
+          {
+            "name": "Sonic Combustion",
+            "elementType": "Wind",
+            "moveType": "Magical",
+            "power": 150
+          },
+          {
+            "name": "Polar Light",
+            "elementType": "Light",
+            "moveType": "Magical",
+            "power": 140
+          }
+        ],
+        "usedEndurance": true
+      }
+    ]
+  },
+  "log": [
+    {
+      "turn": 1,
+      "attacker": "Reindeer",
+      "attackerTeam": 1,
+      "attackerHealth": 671,
+      "moveName": "Dark Blessing",
+      "moveType": "Dark",
+      "damage": 264,
+      "defender": "Skiina",
+      "defenderTeam": 2,
+      "defenderHealth": 454
+    },
+    {
+      "turn": 2,
+      "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 454,
+      "moveName": "Sonic Combustion",
+      "moveType": "Wind",
+      "damage": 433,
+      "defender": "Reindeer",
+      "defenderTeam": 1,
+      "defenderHealth": 238
+    },
+    {
+      "turn": 3,
+      "attacker": "Reindeer",
+      "attackerTeam": 1,
+      "attackerHealth": 238,
+      "moveName": "Dark Blessing",
+      "moveType": "Dark",
+      "damage": 264,
+      "defender": "Skiina",
+      "defenderTeam": 2,
+      "defenderHealth": 190
+    },
+    {
+      "turn": 4,
+      "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 190,
+      "moveName": "Sonic Combustion",
+      "moveType": "Wind",
+      "damage": 433,
+      "defender": "Reindeer",
+      "defenderTeam": 1,
+      "defenderHealth": 1
+    },
+    {
+      "turn": 5,
+      "attacker": "Reindeer",
+      "attackerTeam": 1,
+      "attackerHealth": 1,
+      "moveName": "Dark Blessing",
+      "moveType": "Dark",
+      "damage": 264,
+      "defender": "Skiina",
+      "defenderTeam": 2,
+      "defenderHealth": 1
+    },
+    {
+      "turn": 6,
+      "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 1,
+      "moveName": "Sonic Combustion",
+      "moveType": "Wind",
+      "damage": 433,
+      "defender": "Reindeer",
+      "defenderTeam": 1,
+      "defenderHealth": -432
+    },
+    {
+      "turn": 7,
+      "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 1,
+      "moveName": "Sonic Combustion",
+      "moveType": "Wind",
+      "damage": 466,
+      "defender": "Traruza",
+      "defenderTeam": 1,
+      "defenderHealth": 366
+    },
+    {
+      "turn": 8,
+      "attacker": "Traruza",
+      "attackerTeam": 1,
+      "attackerHealth": 366,
+      "moveName": "Double Punch",
+      "moveType": "Neutral",
+      "damage": 380,
+      "defender": "Skiina",
+      "defenderTeam": 2,
+      "defenderHealth": -379
+    },
+    {
+      "turn": 9,
+      "attacker": "Frogi",
+      "attackerTeam": 2,
+      "attackerHealth": 671,
+      "moveName": "Waterfall",
+      "moveType": "Water",
+      "damage": 227,
+      "defender": "Traruza",
+      "defenderTeam": 1,
+      "defenderHealth": 139
+    },
+    {
+      "turn": 10,
+      "attacker": "Traruza",
+      "attackerTeam": 1,
+      "attackerHealth": 139,
+      "moveName": "Dragon Quake",
+      "moveType": "Earth",
+      "damage": 452,
+      "defender": "Frogi",
+      "defenderTeam": 2,
+      "defenderHealth": 219
+    },
+    {
+      "turn": 11,
+      "attacker": "Frogi",
+      "attackerTeam": 2,
+      "attackerHealth": 219,
+      "moveName": "Waterfall",
+      "moveType": "Water",
+      "damage": 227,
+      "defender": "Traruza",
+      "defenderTeam": 1,
+      "defenderHealth": -88
+    },
+    {
+      "turn": 12,
+      "attacker": "Frogi",
+      "attackerTeam": 2,
+      "attackerHealth": 197,
+      "moveName": "Waterfall",
+      "moveType": "Water",
+      "damage": 99,
+      "defender": "Warhulk",
+      "defenderTeam": 1,
+      "defenderHealth": 831
+    },
+    {
+      "turn": 13,
+      "attacker": "Frogi",
+      "attackerTeam": 2,
+      "attackerHealth": 178,
+      "moveName": "Waterfall",
+      "moveType": "Water",
+      "damage": 99,
+      "defender": "Warhulk",
+      "defenderTeam": 1,
+      "defenderHealth": 731
+    },
+    {
+      "turn": 14,
+      "attacker": "Frogi",
+      "attackerTeam": 2,
+      "attackerHealth": 160,
+      "moveName": "Waterfall",
+      "moveType": "Water",
+      "damage": 99,
+      "defender": "Warhulk",
+      "defenderTeam": 1,
+      "defenderHealth": 632
+    },
+    {
+      "turn": 15,
+      "attacker": "Warhulk",
+      "attackerTeam": 1,
+      "attackerHealth": 632,
+      "moveName": "Black Hole",
+      "moveType": "Dark",
+      "damage": 423,
+      "defender": "Frogi",
+      "defenderTeam": 2,
+      "defenderHealth": -263
+    },
+    {
+      "turn": 16,
+      "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 646,
+      "moveName": "Polar Light",
+      "moveType": "Light",
+      "damage": 188,
+      "defender": "Warhulk",
+      "defenderTeam": 1,
+      "defenderHealth": 444
+    },
+    {
+      "turn": 17,
+      "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 582,
+      "moveName": "Polar Light",
+      "moveType": "Light",
+      "damage": 188,
+      "defender": "Warhulk",
+      "defenderTeam": 1,
+      "defenderHealth": 256
+    },
+    {
+      "turn": 18,
+      "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": 523,
+      "moveName": "Polar Light",
+      "moveType": "Light",
+      "damage": 188,
+      "defender": "Warhulk",
+      "defenderTeam": 1,
+      "defenderHealth": 68
+    },
+    {
+      "turn": 19,
+      "attacker": "Warhulk",
+      "attackerTeam": 1,
+      "attackerHealth": 68,
+      "moveName": "Black Hole",
+      "moveType": "Dark",
+      "damage": 641,
+      "defender": "Skiina",
+      "defenderTeam": 2,
+      "defenderHealth": 1
+    },
+    {
+      "turn": 20,
+      "attacker": "Skiina",
+      "attackerTeam": 2,
+      "attackerHealth": -1,
+      "moveName": "Polar Light",
+      "moveType": "Light",
+      "damage": 188,
+      "defender": "Warhulk",
+      "defenderTeam": 1,
+      "defenderHealth": -120
+    }
+  ],
+  "winner": "Team2"
+}
