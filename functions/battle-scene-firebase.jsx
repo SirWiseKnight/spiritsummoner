@@ -16,18 +16,27 @@ class FirestoreConnection {
     this.db = firebase.firestore();
   }
 
-  async getDataFromSubcollection(userId) {
+  async getDataFromSubcollection(userId, fieldName, fieldValue) {
     try {
       const userRef = this.db.collection('users').doc(userId);
       const activeSquadRef = userRef.collection('active-squad');
-      const snapshot = await activeSquadRef.get();
+      
+      // Query documents where the field matches the specified value
+      const query = activeSquadRef.where('position', '==', 1); // Use this field to grab only spirits in the respective squad position
+      const snapshot = await query.get();
 
+      const data = [];
       snapshot.forEach((doc) => {
-        const data = doc.data();
-        console.log("Document ID:", doc.id, "Data:", data);
+        data.push({
+          id: doc.id,
+          ...doc.data()
+        });
       });
+
+      return data;
     } catch (error) {
       console.error("Error getting documents from subcollection:", error);
+      throw error;
     }
   }
 }
@@ -41,8 +50,35 @@ const attackerUserId = "tRzkTK8rFWdM3omN0efkHnQAzPh2"; // need to pass this from
 // Call the method and store the results in a variable
 async function fetchAttackerData() {
   try {
-    const data = await firestoreConnection.getDataFromSubcollection(attackerUserId);
-    // You can now use the 'data' variable in the rest of your script
+    const attackerTeamData = await firestoreConnection.getDataFromSubcollection(attackerUserId);
+    
+    // Destructuring the array into individual variables
+    for (const attacker of attackerTeamData) {
+      const { id, name, deviant, nickname, level, coreType, ability, index, heldItem, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, move1name, move2name, move3name, move4name, usedEndurance /* ...other fields */ } = attacker;
+      console.log(`Spirit ID: ${id}`);
+      console.log(`Index: ${index}`);
+      console.log(`Deviant: ${deviant}`);
+      console.log(`Name: ${name}`);
+      console.log(`Nickname: ${nickname}`);
+      console.log(`Level: ${level}`);
+      console.log(`Core Type: ${coreType}`);
+      console.log(`Ability: ${ability}`);
+      console.log(`Held Item: ${heldItem}`);
+      console.log(`Max HP: ${maxHealth}`);
+      console.log(`HP: ${health}`);
+      console.log(`ATK: ${attack}`);
+      console.log(`DEF: ${defense}`);
+      console.log(`MGK: ${magicAttack}`);
+      console.log(`MDF: ${magicDefense}`);
+      console.log(`SPD: ${speed}`);
+      console.log(`INT: ${intelligence}`);
+      console.log(`Move 1: ${move1name}`);
+      console.log(`Move 2: ${move2name}`);
+      console.log(`Move 3: ${move3name}`);
+      console.log(`Move 4: ${move4name}`);
+      console.log(`Endurance Flag: ${usedEndurance}`);
+      // Use id, name, and other fields as separate variables
+    }
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -56,8 +92,8 @@ const defenderUserId = "HV4CA1bZK9Xe0J2AOO5djOH0MvY2"; // need to pass this from
 // Call the method and store the results in a variable
 async function fetchDefenderData() {
   try {
-    const data = await firestoreConnection.getDataFromSubcollection(defenderUserId);
-    // You can now use the 'data' variable in the rest of your script
+    const defenderTeamData = await firestoreConnection.getDataFromSubcollection(defenderUserId);
+    // You can now use the 'defenderTeamData' variable in the rest of your script
   } catch (error) {
     console.error("Error fetching data:", error);
   }
