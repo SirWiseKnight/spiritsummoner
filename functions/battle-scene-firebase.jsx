@@ -16,7 +16,7 @@ class FirestoreConnection {
     this.db = firebase.firestore();
   }
 
-  async getDataFromSubcollection(userId, fieldName, fieldValue) {
+  async getDataFromSubcollection(userId) {
     try {
       const userRef = this.db.collection('users').doc(userId);
       const activeSquadRef = userRef.collection('active-squad');
@@ -54,30 +54,9 @@ async function fetchAttackerData() {
     
     // Destructuring the array into individual variables
     for (const attacker of attackerTeamData) {
-      const { id, name, deviant, nickname, level, coreType, ability, index, heldItem, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, move1name, move2name, move3name, move4name, usedEndurance /* ...other fields */ } = attacker;
-      console.log(`Spirit ID: ${id}`);
-      console.log(`Index: ${index}`);
-      console.log(`Deviant: ${deviant}`);
-      console.log(`Name: ${name}`);
-      console.log(`Nickname: ${nickname}`);
-      console.log(`Level: ${level}`);
-      console.log(`Core Type: ${coreType}`);
-      console.log(`Ability: ${ability}`);
-      console.log(`Held Item: ${heldItem}`);
-      console.log(`Max HP: ${maxHealth}`);
-      console.log(`HP: ${health}`);
-      console.log(`ATK: ${attack}`);
-      console.log(`DEF: ${defense}`);
-      console.log(`MGK: ${magicAttack}`);
-      console.log(`MDF: ${magicDefense}`);
-      console.log(`SPD: ${speed}`);
-      console.log(`INT: ${intelligence}`);
-      console.log(`Move 1: ${move1name}`);
-      console.log(`Move 2: ${move2name}`);
-      console.log(`Move 3: ${move3name}`);
-      console.log(`Move 4: ${move4name}`);
-      console.log(`Endurance Flag: ${usedEndurance}`);
-      // Use id, name, and other fields as separate variables
+      const {name, nickname, level, coreType, ability, index, heldItem, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, move1name, move2name, move3name, move4name, usedEndurance /* ...other fields */ } = attacker;
+      spirit1 = new Pokemon(1, index, name, nickname, level, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, move1name, move2name, move3name, move4name);
+      console.log(spirit1);
     }
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -101,6 +80,8 @@ async function fetchDefenderData() {
 
 fetchDefenderData();
 
+
+
 // define the Move class
 class Move {
   constructor(name, elementType, moveType, power) {
@@ -113,7 +94,7 @@ class Move {
 
 // define the Pokemon class
 class Pokemon {
-  constructor(team, id, name, nickname, level, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, moves, usedEndurance) {
+  constructor(team, id, name, nickname, level, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, move1, move2, move3, move4, usedEndurance) {
     // Add a custom serialization method for the Pokemon class
     this.team = team,
     this.id = id,
@@ -131,10 +112,15 @@ class Pokemon {
     this.ability = ability,
     this.heldItem = heldItem,
     this.coreType = coreType,
-    this.moves = moves,
+    this.move1 = move1,
+    this.move2 = move2,
+    this.move3 = move3,
+    this.move4 = move4,
     this.usedEndurance = false;
     }
   
+
+
   // method to calculate damage multiplier based on type effectiveness
 getTypeMultiplier(moveElementType, opponentCoreType) {
   // Define type effectiveness multipliers based on type matchups
@@ -305,7 +291,7 @@ getTypeMultiplier(moveElementType, opponentCoreType) {
     let bestMove;
     let maxDamage = 0;
 
-    for (let move of this.moves) {
+    for (let move of [this.move1, this.move2, this.move3, this.move4]) {
       let damage = this.calculateMoveDamage(move, opponent);
       if (damage > maxDamage) {
         maxDamage = damage;
@@ -345,12 +331,17 @@ getTypeMultiplier(moveElementType, opponentCoreType) {
       ability: this.ability,
       heldItem: this.heldItem,
       coreType: this.coreType,
-      moves: this.moves.map(move => ({ ...move })),
+      move1: this.move1,
+      move2: this.move2,
+      move3: this.move3,
+      move4: this.move4,
       usedEndurance: this.usedEndurance,
     };
   }
 }
 
+async function main() {
+  await fetchAttackerData();
 // define the Battle class
 class Battle {
   constructor(team1, team2) {
@@ -548,13 +539,12 @@ let dragonQuake = new Move("Dragon Quake", "Earth", "Physical", 150);
 let doublePunch = new Move("Double Punch", "Neutral", "Physical", 150);
 
 // create some Pokemon
-let spirit1= new Pokemon(1, 5, "Reindeer", "Reindeer", 70 , 671 ,671 ,42 ,48 ,368 ,68 ,565 ,86 ,"Endurance","Flashlight","Neutral",[darkBlessing,hornAttack,polarLight,chomp]);
-let spirit2= new Pokemon(1, 7, "Traruza", "Traruza",70 , 832 ,832 ,340 ,129 ,54 ,127 ,510 ,73 ,"Ground","Sledgehammer","Earth",[dragonTail,dragonQuake,earthquake,doublePunch]);
-let spirit3= new Pokemon(1, 9, "Warhulk", "Warhulk",70 , 930 , 930, 382 ,416 ,5 ,296 ,35 ,41 ,"Spike","Cloak","Dark",[smash,staticSmash,superSmash,blackHole]);
+let spirit2= new Pokemon(1, 7, "Traruza", "Traruza",70 , 832 ,832 ,340 ,129 ,54 ,127 ,510 ,73 ,"Ground","Sledgehammer","Earth",dragonTail,dragonQuake,earthquake,doublePunch);
+let spirit3= new Pokemon(1, 9, "Warhulk", "Warhulk",70 , 930 , 930, 382 ,416 ,5 ,296 ,35 ,41 ,"Spike","Cloak","Dark",smash,staticSmash,superSmash,blackHole);
 
-let spirit4= new Pokemon(2, 6, "Skiina", "Skiina",70 , 718 ,718 ,5 ,48 ,457 ,50 ,555 ,114 ,"Endurance","Flashlight","Wind",[queenBreath,whirlwindZone,sonicCombustion,polarLight]);
-let spirit5= new Pokemon(2, 8, "Frogi", "Frogi",70 , 671 ,671 ,5 ,70 ,308 ,55 ,555 ,150 ,"Torrent","Mystic Water","Water",[bubble,consume,touch,waterfall]);
-let spirit6= new Pokemon(2, 6, "Skiina", "Skiina",70 , 718 ,718 ,5 ,46 ,453 ,58 ,555 ,115 ,"Endurance","Flashlight","Wind",[queenBreath,whirlwindZone,sonicCombustion,polarLight]);
+let spirit4= new Pokemon(2, 6, "Skiina", "Skiina",70 , 718 ,718 ,5 ,48 ,457 ,50 ,555 ,114 ,"Endurance","Flashlight","Wind",queenBreath,whirlwindZone,sonicCombustion,polarLight);
+let spirit5= new Pokemon(2, 8, "Frogi", "Frogi",70 , 671 ,671 ,5 ,70 ,308 ,55 ,555 ,150 ,"Torrent","Mystic Water","Water",bubble,consume,touch,waterfall);
+let spirit6= new Pokemon(2, 6, "Skiina", "Skiina",70 , 718 ,718 ,5 ,46 ,453 ,58 ,555 ,115 ,"Endurance","Flashlight","Wind",queenBreath,whirlwindZone,sonicCombustion,polarLight);
 
 // create the teams
 let team1 = [spirit1,spirit2,spirit3];
@@ -615,4 +605,8 @@ fs.writeFile("battle_log_firebase.json", jsonResult, (err) => {
   } else {
     console.log("Battle log exported to battle_log_firebase.json successfully!");
   }
-});
+})
+// Other code that depends on fetchAttackerData can go here
+}
+
+main();
