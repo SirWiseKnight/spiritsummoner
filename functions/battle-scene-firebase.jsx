@@ -35,13 +35,35 @@ class FirestoreConnection {
 // Usage of FirestoreConnection class
 const firestoreConnection = new FirestoreConnection();
 
-// Specify the user ID for which you want to retrieve data from the 'active-squad' subcollection
+// Specify the user ID for the attacker
 const attackerUserId = "tRzkTK8rFWdM3omN0efkHnQAzPh2"; // need to pass this from application
-firestoreConnection.getDataFromSubcollection(attackerUserId);
 
-// Specify the user ID for which you want to retrieve data from the 'active-squad' subcollection
+// Call the method and store the results in a variable
+async function fetchAttackerData() {
+  try {
+    const data = await firestoreConnection.getDataFromSubcollection(attackerUserId);
+    // You can now use the 'data' variable in the rest of your script
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+fetchAttackerData();
+
+// Specify the user ID for the defender
 const defenderUserId = "HV4CA1bZK9Xe0J2AOO5djOH0MvY2"; // need to pass this from application
-firestoreConnection.getDataFromSubcollection(defenderUserId);
+
+// Call the method and store the results in a variable
+async function fetchDefenderData() {
+  try {
+    const data = await firestoreConnection.getDataFromSubcollection(defenderUserId);
+    // You can now use the 'data' variable in the rest of your script
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+fetchDefenderData();
 
 // define the Move class
 class Move {
