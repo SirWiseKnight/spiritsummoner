@@ -16,7 +16,7 @@ class FirestoreConnection {
     this.db = firebase.firestore();
   }
 
-  async getDataFromSubcollection(userId) {
+  async getAttacker1Data(userId) {
     try {
       const userRef = this.db.collection('users').doc(userId);
       const activeSquadRef = userRef.collection('active-squad');
@@ -39,6 +39,127 @@ class FirestoreConnection {
       throw error;
     }
   }
+
+  async getAttacker2Data(userId) {
+    try {
+      const userRef = this.db.collection('users').doc(userId);
+      const activeSquadRef = userRef.collection('active-squad');
+      
+      // Query documents where the field matches the specified value
+      const query = activeSquadRef.where('position', '==', 2); // Use this field to grab only spirits in the respective squad position
+      const snapshot = await query.get();
+
+      const data = [];
+      snapshot.forEach((doc) => {
+        data.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+
+      return data;
+    } catch (error) {
+      console.error("Error getting documents from subcollection:", error);
+      throw error;
+    }
+  }
+
+async getAttacker3Data(userId) {
+    try {
+      const userRef = this.db.collection('users').doc(userId);
+      const activeSquadRef = userRef.collection('active-squad');
+      
+      // Query documents where the field matches the specified value
+      const query = activeSquadRef.where('position', '==', 3); // Use this field to grab only spirits in the respective squad position
+      const snapshot = await query.get();
+
+      const data = [];
+      snapshot.forEach((doc) => {
+        data.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+
+      return data;
+    } catch (error) {
+      console.error("Error getting documents from subcollection:", error);
+      throw error;
+    }
+  }
+
+  async getDefender1Data(userId) {
+      try {
+        const userRef = this.db.collection('users').doc(userId);
+        const activeSquadRef = userRef.collection('active-squad');
+        
+        // Query documents where the field matches the specified value
+        const query = activeSquadRef.where('position', '==', 1); // Use this field to grab only spirits in the respective squad position
+        const snapshot = await query.get();
+  
+        const data = [];
+        snapshot.forEach((doc) => {
+          data.push({
+            id: doc.id,
+            ...doc.data()
+          });
+        });
+  
+        return data;
+      } catch (error) {
+        console.error("Error getting documents from subcollection:", error);
+        throw error;
+      }
+    }
+
+    async getDefender2Data(userId) {
+        try {
+          const userRef = this.db.collection('users').doc(userId);
+          const activeSquadRef = userRef.collection('active-squad');
+          
+          // Query documents where the field matches the specified value
+          const query = activeSquadRef.where('position', '==', 2); // Use this field to grab only spirits in the respective squad position
+          const snapshot = await query.get();
+    
+          const data = [];
+          snapshot.forEach((doc) => {
+            data.push({
+              id: doc.id,
+              ...doc.data()
+            });
+          });
+    
+          return data;
+        } catch (error) {
+          console.error("Error getting documents from subcollection:", error);
+          throw error;
+        }
+      }
+
+      async getDefender3Data(userId) {
+          try {
+            const userRef = this.db.collection('users').doc(userId);
+            const activeSquadRef = userRef.collection('active-squad');
+            
+            // Query documents where the field matches the specified value
+            const query = activeSquadRef.where('position', '==', 3); // Use this field to grab only spirits in the respective squad position
+            const snapshot = await query.get();
+      
+            const data = [];
+            snapshot.forEach((doc) => {
+              data.push({
+                id: doc.id,
+                ...doc.data()
+              });
+            });
+      
+            return data;
+          } catch (error) {
+            console.error("Error getting documents from subcollection:", error);
+            throw error;
+          }
+        }
+
 }
 
 // Usage of FirestoreConnection class
@@ -48,39 +169,151 @@ const firestoreConnection = new FirestoreConnection();
 const attackerUserId = "tRzkTK8rFWdM3omN0efkHnQAzPh2"; // need to pass this from application
 
 // Call the method and store the results in a variable
-async function fetchAttackerData() {
+async function fetchAttacker1Data() {
   try {
-    const attackerTeamData = await firestoreConnection.getDataFromSubcollection(attackerUserId);
+    const attackerTeamData = await firestoreConnection.getAttacker1Data(attackerUserId);
     
     // Destructuring the array into individual variables
-    for (const attacker of attackerTeamData) {
-      const {name, nickname, level, coreType, ability, index, heldItem, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, move1name, move2name, move3name, move4name, usedEndurance /* ...other fields */ } = attacker;
+    for (var attacker of attackerTeamData) {
+      var {name, nickname, level, coreType, ability, index, heldItem, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, move1name, move1nameALT, move1element, move1type, move1power, move2name, move2nameALT, move2element, move2type, move2power, move3name, move3nameALT, move3element, move3type, move3power, move4name, move4nameALT, move4element, move4type, move4power, usedEndurance /* ...other fields */ } = attacker;
+      
+      // Define moves here
+      move1name = new Move(move1nameALT, move1element, move1type, move1power);
+      move2name = new Move(move2nameALT, move2element, move2type, move2power);
+      move3name = new Move(move3nameALT, move3element, move3type, move3power);
+      move4name = new Move(move4nameALT, move4element, move4type, move4power);
+
+      // Define spirit here
       spirit1 = new Pokemon(1, index, name, nickname, level, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, move1name, move2name, move3name, move4name);
-      console.log(spirit1);
+      //console.log(spirit1);
     }
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
 
-fetchAttackerData();
-
-// Specify the user ID for the defender
-const defenderUserId = "HV4CA1bZK9Xe0J2AOO5djOH0MvY2"; // need to pass this from application
-
 // Call the method and store the results in a variable
-async function fetchDefenderData() {
+async function fetchAttacker2Data() {
   try {
-    const defenderTeamData = await firestoreConnection.getDataFromSubcollection(defenderUserId);
-    // You can now use the 'defenderTeamData' variable in the rest of your script
+    const attackerTeamData = await firestoreConnection.getAttacker2Data(attackerUserId);
+    
+    // Destructuring the array into individual variables
+    for (var attacker of attackerTeamData) {
+      var {name, nickname, level, coreType, ability, index, heldItem, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, move1name, move1nameALT, move1element, move1type, move1power, move2name, move2nameALT, move2element, move2type, move2power, move3name, move3nameALT, move3element, move3type, move3power, move4name, move4nameALT, move4element, move4type, move4power, usedEndurance /* ...other fields */ } = attacker;
+      
+      // Define moves here
+      move1name = new Move(move1nameALT, move1element, move1type, move1power);
+      move2name = new Move(move2nameALT, move2element, move2type, move2power);
+      move3name = new Move(move3nameALT, move3element, move3type, move3power);
+      move4name = new Move(move4nameALT, move4element, move4type, move4power);
+
+      // Define spirit here
+      spirit2 = new Pokemon(1, index, name, nickname, level, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, move1name, move2name, move3name, move4name);
+      //console.log(spirit2);
+    }
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
 
-fetchDefenderData();
+// Call the method and store the results in a variable
+async function fetchAttacker3Data() {
+  try {
+    const attackerTeamData = await firestoreConnection.getAttacker3Data(attackerUserId);
+    
+    // Destructuring the array into individual variables
+    for (var attacker of attackerTeamData) {
+      var {name, nickname, level, coreType, ability, index, heldItem, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, move1name, move1nameALT, move1element, move1type, move1power, move2name, move2nameALT, move2element, move2type, move2power, move3name, move3nameALT, move3element, move3type, move3power, move4name, move4nameALT, move4element, move4type, move4power, usedEndurance /* ...other fields */ } = attacker;
+      
+      // Define moves here
+      move1name = new Move(move1nameALT, move1element, move1type, move1power);
+      move2name = new Move(move2nameALT, move2element, move2type, move2power);
+      move3name = new Move(move3nameALT, move3element, move3type, move3power);
+      move4name = new Move(move4nameALT, move4element, move4type, move4power);
 
+      // Define spirit here
+      spirit3 = new Pokemon(1, index, name, nickname, level, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, move1name, move2name, move3name, move4name);
+      //console.log(spirit3);
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
 
+// Specify the user ID for the defender
+const defenderUserId = "HV4CA1bZK9Xe0J2AOO5djOH0MvY2"; // need to pass this from application
+
+// Call the method and store the results in a variable
+async function fetchDefender1Data() {
+  try {
+    const defenderTeamData = await firestoreConnection.getDefender1Data(defenderUserId);
+    
+    // Destructuring the array into individual variables
+    for (var defender of defenderTeamData) {
+      var {name, nickname, level, coreType, ability, index, heldItem, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, move1name, move1nameALT, move1element, move1type, move1power, move2name, move2nameALT, move2element, move2type, move2power, move3name, move3nameALT, move3element, move3type, move3power, move4name, move4nameALT, move4element, move4type, move4power, usedEndurance /* ...other fields */ } = defender;
+      
+      // Define moves here
+      move1name = new Move(move1nameALT, move1element, move1type, move1power);
+      move2name = new Move(move2nameALT, move2element, move2type, move2power);
+      move3name = new Move(move3nameALT, move3element, move3type, move3power);
+      move4name = new Move(move4nameALT, move4element, move4type, move4power);
+
+      // Define spirit here
+      spirit4 = new Pokemon(2, index, name, nickname, level, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, move1name, move2name, move3name, move4name);
+      //console.log(spirit4);
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+// Call the method and store the results in a variable
+async function fetchDefender2Data() {
+  try {
+    const defenderTeamData = await firestoreConnection.getDefender2Data(defenderUserId);
+    
+    // Destructuring the array into individual variables
+    for (var defender of defenderTeamData) {
+      var {name, nickname, level, coreType, ability, index, heldItem, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, move1name, move1nameALT, move1element, move1type, move1power, move2name, move2nameALT, move2element, move2type, move2power, move3name, move3nameALT, move3element, move3type, move3power, move4name, move4nameALT, move4element, move4type, move4power, usedEndurance /* ...other fields */ } = defender;
+      
+      // Define moves here
+      move1name = new Move(move1nameALT, move1element, move1type, move1power);
+      move2name = new Move(move2nameALT, move2element, move2type, move2power);
+      move3name = new Move(move3nameALT, move3element, move3type, move3power);
+      move4name = new Move(move4nameALT, move4element, move4type, move4power);
+
+      // Define spirit here
+      spirit5 = new Pokemon(2, index, name, nickname, level, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, move1name, move2name, move3name, move4name);
+      //console.log(spirit5);
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+// Call the method and store the results in a variable
+async function fetchDefender3Data() {
+  try {
+    const defenderTeamData = await firestoreConnection.getDefender3Data(defenderUserId);
+    
+    // Destructuring the array into individual variables
+    for (var defender of defenderTeamData) {
+      var {name, nickname, level, coreType, ability, index, heldItem, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, move1name, move1nameALT, move1element, move1type, move1power, move2name, move2nameALT, move2element, move2type, move2power, move3name, move3nameALT, move3element, move3type, move3power, move4name, move4nameALT, move4element, move4type, move4power, usedEndurance /* ...other fields */ } = defender;
+      
+      // Define moves here
+      move1name = new Move(move1nameALT, move1element, move1type, move1power);
+      move2name = new Move(move2nameALT, move2element, move2type, move2power);
+      move3name = new Move(move3nameALT, move3element, move3type, move3power);
+      move4name = new Move(move4nameALT, move4element, move4type, move4power);
+
+      // Define spirit here
+      spirit6 = new Pokemon(2, index, name, nickname, level, maxHealth, health, attack, defense, magicAttack, magicDefense, speed, intelligence, ability, heldItem, coreType, move1name, move2name, move3name, move4name);
+      //console.log(spirit6);
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
 
 // define the Move class
 class Move {
@@ -215,6 +448,8 @@ getTypeMultiplier(moveElementType, opponentCoreType) {
       abilityDamageMultiplier = 2.0;
     } else if (this.ability === "Static" && move.elementType === "Electric") {
       abilityDamageMultiplier = 1.2;
+    } else if (this.ability === "Vortex" && move.elementType === "Wind") {
+      abilityDamageMultiplier = 1.2;
     } else if (this.ability === "Overgrow" && move.elementType === "Grass") {
       abilityDamageMultiplier = 1.2;
     } else if (this.ability === "Blaze" && move.elementType === "Fire") {
@@ -232,6 +467,8 @@ getTypeMultiplier(moveElementType, opponentCoreType) {
     // Apply held item effects
     let itemDamageMultiplier = 1;
     if (this.heldItem === "Light Ball" && move.elementType === "Electric") {
+      itemDamageMultiplier = 1.2;
+    } else if (this.heldItem === "Wind Scroll" && move.elementType === "Wind") {
       itemDamageMultiplier = 1.2;
     } else if (this.heldItem === "Charcoal" && move.elementType === "Fire") {
       itemDamageMultiplier = 1.2;
@@ -341,7 +578,12 @@ getTypeMultiplier(moveElementType, opponentCoreType) {
 }
 
 async function main() {
-  await fetchAttackerData();
+  await fetchAttacker1Data();
+  await fetchAttacker2Data();
+  await fetchAttacker3Data();
+  await fetchDefender1Data();
+  await fetchDefender2Data();
+  await fetchDefender3Data();
 // define the Battle class
 class Battle {
   constructor(team1, team2) {
@@ -512,39 +754,6 @@ battleRound() {
     return team1Fainted || team2Fainted;
   }
 }
-
-// create some moves
-let darkBlessing = new Move("Dark Blessing", "Dark", "Magical", 100);
-let hornAttack = new Move("Horn Attack", "Neutral", "Physical", 100);
-let polarLight = new Move("Polar Light", "Light", "Magical", 140);
-let chomp = new Move("Chomp", "Neutral", "Physical", 120);
-
-let bubble = new Move("Bubble", "Water", "Magical", 100);
-let consume = new Move("Consume", "Poison", "Magical", 100);
-let touch = new Move("Touch", "Earth", "Magical", 100);
-let waterfall = new Move("Waterfall", "Water", "Magical", 150);
-
-let whirlwindZone = new Move("Whirlwind Zone", "Wind", "Magical", 140);
-let sonicCombustion = new Move("Sonic Combustion", "Wind", "Magical", 150);
-let queenBreath = new Move("Queen Breath", "Light", "Magical", 100);
-
-let smash = new Move("Smash", "Neutral", "Physical", 100);
-let staticSmash = new Move("Static Smash", "Electric", "Physical", 100);
-let superSmash = new Move("Super Smash", "Neutral", "Physical", 150);
-let blackHole = new Move("Black Hole", "Dark", "Physical", 150);
-
-let dragonTail = new Move("Smash", "Neutral", "Physical", 100);
-let earthquake = new Move("Earthquake", "Earth", "Physical", 100);
-let dragonQuake = new Move("Dragon Quake", "Earth", "Physical", 150);
-let doublePunch = new Move("Double Punch", "Neutral", "Physical", 150);
-
-// create some Pokemon
-let spirit2= new Pokemon(1, 7, "Traruza", "Traruza",70 , 832 ,832 ,340 ,129 ,54 ,127 ,510 ,73 ,"Ground","Sledgehammer","Earth",dragonTail,dragonQuake,earthquake,doublePunch);
-let spirit3= new Pokemon(1, 9, "Warhulk", "Warhulk",70 , 930 , 930, 382 ,416 ,5 ,296 ,35 ,41 ,"Spike","Cloak","Dark",smash,staticSmash,superSmash,blackHole);
-
-let spirit4= new Pokemon(2, 6, "Skiina", "Skiina",70 , 718 ,718 ,5 ,48 ,457 ,50 ,555 ,114 ,"Endurance","Flashlight","Wind",queenBreath,whirlwindZone,sonicCombustion,polarLight);
-let spirit5= new Pokemon(2, 8, "Frogi", "Frogi",70 , 671 ,671 ,5 ,70 ,308 ,55 ,555 ,150 ,"Torrent","Mystic Water","Water",bubble,consume,touch,waterfall);
-let spirit6= new Pokemon(2, 6, "Skiina", "Skiina",70 , 718 ,718 ,5 ,46 ,453 ,58 ,555 ,115 ,"Endurance","Flashlight","Wind",queenBreath,whirlwindZone,sonicCombustion,polarLight);
 
 // create the teams
 let team1 = [spirit1,spirit2,spirit3];
