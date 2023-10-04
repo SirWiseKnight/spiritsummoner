@@ -102,10 +102,10 @@ class SpiritSummaryScreen extends StatelessWidget {
                         child: Text(
                           'X',
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.bungee(
                             fontSize: 32,
                             color: const Color.fromARGB(255, 237, 40, 40),
-                            fontWeight: FontWeight.w900,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -148,10 +148,10 @@ class SpiritSummaryScreen extends StatelessWidget {
                             width: 112,
                             child: Text(
                               'More',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: Colors.white,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.bold,
                                 shadows: [
                                   Shadow(
                                     // bottomLeft
@@ -255,10 +255,10 @@ class SpiritSummaryScreen extends StatelessWidget {
                           ),
                           child: Text(
                             'Transform',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               fontSize: 16,
                               color: Colors.white,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               shadows: [
                                 Shadow(
                                   // bottomLeft
@@ -352,10 +352,10 @@ class SpiritSummaryScreen extends StatelessWidget {
                           ),
                           child: Text(
                             'Level Up',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               fontSize: 16,
                               color: Colors.white,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               shadows: [
                                 Shadow(
                                   // bottomLeft

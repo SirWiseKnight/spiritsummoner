@@ -191,7 +191,7 @@ class SpiritList extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   spiritNickname,
-                                                  style: GoogleFonts.poppins(
+                                                  style: GoogleFonts.montserrat(
                                                     fontSize: 20,
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.black,
@@ -221,7 +221,7 @@ class SpiritList extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   'Lvl ' + spiritLevel,
-                                                  style: GoogleFonts.poppins(
+                                                  style: GoogleFonts.montserrat(
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.black,
@@ -782,6 +782,29 @@ class SpiritList extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.white,
+                                                      shadows: [
+                                                        Shadow(
+                                                          // bottomLeft
+                                                          offset:
+                                                              Offset(-1, -1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // bottomRight
+                                                          offset: Offset(1, -1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // topRight
+                                                          offset: Offset(1, 1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // topLeft
+                                                          offset: Offset(-1, 1),
+                                                          color: Colors.black,
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ),
@@ -843,6 +866,29 @@ class SpiritList extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.white,
+                                                      shadows: [
+                                                        Shadow(
+                                                          // bottomLeft
+                                                          offset:
+                                                              Offset(-1, -1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // bottomRight
+                                                          offset: Offset(1, -1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // topRight
+                                                          offset: Offset(1, 1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // topLeft
+                                                          offset: Offset(-1, 1),
+                                                          color: Colors.black,
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ),
@@ -904,6 +950,29 @@ class SpiritList extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.white,
+                                                      shadows: [
+                                                        Shadow(
+                                                          // bottomLeft
+                                                          offset:
+                                                              Offset(-1, -1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // bottomRight
+                                                          offset: Offset(1, -1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // topRight
+                                                          offset: Offset(1, 1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // topLeft
+                                                          offset: Offset(-1, 1),
+                                                          color: Colors.black,
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ),
@@ -965,6 +1034,29 @@ class SpiritList extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.white,
+                                                      shadows: [
+                                                        Shadow(
+                                                          // bottomLeft
+                                                          offset:
+                                                              Offset(-1, -1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // bottomRight
+                                                          offset: Offset(1, -1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // topRight
+                                                          offset: Offset(1, 1),
+                                                          color: Colors.black,
+                                                        ),
+                                                        Shadow(
+                                                          // topLeft
+                                                          offset: Offset(-1, 1),
+                                                          color: Colors.black,
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ),

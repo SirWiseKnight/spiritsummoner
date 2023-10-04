@@ -76,8 +76,8 @@ class _SpiritTalentState extends State<SpiritTalent> {
                       alignment: Alignment.center,
                       child: Text(
                         partnerTalent,
-                        style: GoogleFonts.poppins(
-                          fontSize: 18,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16,
                           color: Colors.white,
                         ),
                       ),

@@ -103,10 +103,10 @@ class SpiritListScreen extends StatelessWidget {
                             width: 112,
                             child: Text(
                               'Saved',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: Colors.white,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.bold,
                                 shadows: [
                                   Shadow(
                                     // bottomLeft
@@ -270,10 +270,10 @@ class SpiritListScreen extends StatelessWidget {
                           width: 112,
                           child: Text(
                             'Index',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               fontSize: 14,
                               color: Colors.white,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               shadows: [
                                 Shadow(
                                   // bottomLeft

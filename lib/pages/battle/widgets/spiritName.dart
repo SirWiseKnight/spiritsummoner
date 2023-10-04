@@ -64,7 +64,7 @@ class _SpiritNameState extends State<SpiritName> {
                   ),
                   child: Text(
                     partnerLvl,
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -76,7 +76,7 @@ class _SpiritNameState extends State<SpiritName> {
                   height: 38,
                   child: Text(
                     partnerName,
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,

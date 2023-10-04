@@ -74,7 +74,7 @@ class PartnerGearWIP extends StatelessWidget {
                             alignment: Alignment.center,
                             child: Text(
                               partnerGear,
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 18,
                                 color: Colors.white,
                               ),

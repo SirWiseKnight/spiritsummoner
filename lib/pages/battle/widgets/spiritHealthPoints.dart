@@ -56,7 +56,7 @@ class _SpiritHPState extends State<SpiritHP> {
                 color: Colors.green, borderRadius: BorderRadius.circular(50)),
             child: Text(
               partnerHP + ' HP',
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.montserrat(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,

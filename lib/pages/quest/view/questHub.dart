@@ -46,10 +46,32 @@ class QuestScreen extends StatelessWidget {
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   'Partner',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.bungee(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
+                                    shadows: [
+                                      Shadow(
+                                        // bottomLeft
+                                        offset: Offset(-1, -1),
+                                        color: Colors.black,
+                                      ),
+                                      Shadow(
+                                        // bottomRight
+                                        offset: Offset(1, -1),
+                                        color: Colors.black,
+                                      ),
+                                      Shadow(
+                                        // topRight
+                                        offset: Offset(1, 1),
+                                        color: Colors.black,
+                                      ),
+                                      Shadow(
+                                        // topLeft
+                                        offset: Offset(-1, 1),
+                                        color: Colors.black,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -79,7 +101,11 @@ class QuestScreen extends StatelessWidget {
                                 },
                                 child: Text(
                                   'Spirits',
-                                  style: TextStyle(fontSize: 16),
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ],

@@ -124,7 +124,7 @@ class AreaList extends StatelessWidget {
                               child: Container(
                                 child: Text(
                                   areaName,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,

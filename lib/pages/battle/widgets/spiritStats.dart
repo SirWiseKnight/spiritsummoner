@@ -114,7 +114,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   'ATK',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                   ),
                                 ),
@@ -172,7 +172,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               alignment: Alignment.center,
                               child: Text(
                                 spiritATK,
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -190,7 +190,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   'DEF',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                   ),
                                 ),
@@ -248,7 +248,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               alignment: Alignment.center,
                               child: Text(
                                 spiritDEF,
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -266,7 +266,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   'MGK',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                   ),
                                 ),
@@ -324,7 +324,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               alignment: Alignment.center,
                               child: Text(
                                 spiritMGK,
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -342,7 +342,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   'MDF',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                   ),
                                 ),
@@ -400,7 +400,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               alignment: Alignment.center,
                               child: Text(
                                 spiritMDF,
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -418,7 +418,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   'SPD',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                   ),
                                 ),
@@ -476,7 +476,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               alignment: Alignment.center,
                               child: Text(
                                 spiritSPD,
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -494,7 +494,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   'INT',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                   ),
                                 ),
@@ -552,7 +552,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               alignment: Alignment.center,
                               child: Text(
                                 spiritINT,
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -560,6 +560,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                             ),
                           ],
                         ),
+                        SizedBox(height: 2),
                         Container(
                           width: 188,
                           height: 35,
@@ -582,8 +583,9 @@ class _SpiritStatsState extends State<SpiritStats> {
                             },
                             child: Text(
                               'Edit',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 14,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             ),

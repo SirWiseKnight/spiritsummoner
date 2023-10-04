@@ -66,7 +66,7 @@ class PartnerName extends StatelessWidget {
                             ),
                             child: Text(
                               partnerLvl,
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -78,7 +78,7 @@ class PartnerName extends StatelessWidget {
                             height: 38,
                             child: Text(
                               partnerName,
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,

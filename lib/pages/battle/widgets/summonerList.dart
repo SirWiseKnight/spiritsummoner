@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:spirit_summoner/pages/battle/view/battleScene.dart';
 
@@ -75,17 +76,17 @@ class SummonerList extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(
                             left: 12.0,
-                            right: 8.0,
+                            right: 12.0,
                           ),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
                                 child: Text(
                                   summonerName,
-                                  style: TextStyle(
-                                    fontSize: 17,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
@@ -105,8 +106,9 @@ class SummonerList extends StatelessWidget {
                                       padding: const EdgeInsets.all(6.0),
                                       child: Text(
                                         'Level ' + summonerLevel.toString(),
-                                        style: TextStyle(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 12,
+                                          fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         ),
                                       ),
@@ -132,7 +134,14 @@ class SummonerList extends StatelessWidget {
                                     builder: (context) => BattleScene()),
                               );
                             },
-                            child: Text('Battle'),
+                            child: Text(
+                              'Battle',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ),

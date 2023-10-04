@@ -96,7 +96,7 @@ class PartnerActionButtons extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           'Attacks',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.montserrat(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             shadows: [
@@ -210,7 +210,7 @@ class PartnerActionButtons extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           'Gear',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.montserrat(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             shadows: [
@@ -324,7 +324,7 @@ class PartnerActionButtons extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           'Talent',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.montserrat(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             shadows: [

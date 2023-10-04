@@ -83,7 +83,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     'ATK',
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       color: Colors.white,
                                     ),
                                   ),
@@ -115,7 +115,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: Text(
                                     partnerATK,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -132,7 +132,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     'DEF',
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       color: Colors.white,
                                     ),
                                   ),
@@ -164,7 +164,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: Text(
                                     partnerDEF,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -181,7 +181,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     'MGK',
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       color: Colors.white,
                                     ),
                                   ),
@@ -213,7 +213,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: Text(
                                     partnerMGK,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -230,7 +230,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     'MDF',
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       color: Colors.white,
                                     ),
                                   ),
@@ -262,7 +262,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: Text(
                                     partnerMDF,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -279,7 +279,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     'SPD',
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       color: Colors.white,
                                     ),
                                   ),
@@ -311,7 +311,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: Text(
                                     partnerSPD,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -328,7 +328,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     'INT',
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       color: Colors.white,
                                     ),
                                   ),
@@ -360,7 +360,7 @@ class PartnerStatsWIP extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: Text(
                                     partnerINT,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),

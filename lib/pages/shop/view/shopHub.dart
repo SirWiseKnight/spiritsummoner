@@ -46,10 +46,32 @@ class ShopScreen extends StatelessWidget {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               'Bonus Items',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.bungee(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
+                                shadows: [
+                                  Shadow(
+                                    // bottomLeft
+                                    offset: Offset(-1, -1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // bottomRight
+                                    offset: Offset(1, -1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // topRight
+                                    offset: Offset(1, 1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // topLeft
+                                    offset: Offset(-1, 1),
+                                    color: Colors.black,
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -85,7 +107,11 @@ class ShopScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(4.0),
                                 child: Text(
                                   'Login Bonus',
-                                  style: TextStyle(fontSize: 16),
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
@@ -103,10 +129,32 @@ class ShopScreen extends StatelessWidget {
                             alignment: Alignment.bottomLeft,
                             child: Text(
                               'Shops',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.bungee(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
+                                shadows: [
+                                  Shadow(
+                                    // bottomLeft
+                                    offset: Offset(-1, -1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // bottomRight
+                                    offset: Offset(1, -1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // topRight
+                                    offset: Offset(1, 1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // topLeft
+                                    offset: Offset(-1, 1),
+                                    color: Colors.black,
+                                  ),
+                                ],
                               ),
                             ),
                           ),

@@ -132,7 +132,7 @@ class SpiritSquad3 extends StatelessWidget {
                                           children: [
                                             Text(
                                               spiritNickname,
-                                              style: GoogleFonts.poppins(
+                                              style: GoogleFonts.montserrat(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black,
@@ -162,7 +162,7 @@ class SpiritSquad3 extends StatelessWidget {
                                             ),
                                             Text(
                                               'Lvl ' + spiritLevel,
-                                              style: GoogleFonts.poppins(
+                                              style: GoogleFonts.montserrat(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 
 class QuestList extends StatelessWidget {
@@ -100,8 +101,9 @@ class QuestList extends StatelessWidget {
                               Container(
                                 child: Text(
                                   questProgressTotal.toString() + '%',
-                                  style: TextStyle(
-                                    fontSize: 15,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -119,8 +121,8 @@ class QuestList extends StatelessWidget {
                             Container(
                               child: Text(
                                 questName,
-                                style: TextStyle(
-                                  fontSize: 17,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -140,8 +142,9 @@ class QuestList extends StatelessWidget {
                                     padding: const EdgeInsets.all(6.0),
                                     child: Text(
                                       questEXP + ' EXP',
-                                      style: TextStyle(
-                                        fontSize: 12,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
                                         color: Colors.white,
                                       ),
                                     ),
@@ -160,8 +163,9 @@ class QuestList extends StatelessWidget {
                                     padding: const EdgeInsets.all(6.0),
                                     child: Text(
                                       questGold + ' Gold',
-                                      style: TextStyle(
-                                        fontSize: 12,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
                                         color: Colors.white,
                                       ),
                                     ),
@@ -228,14 +232,19 @@ class QuestList extends StatelessWidget {
                                           const EdgeInsets.only(bottom: 4.0),
                                       child: Text(
                                         questType,
-                                        style: TextStyle(fontSize: 16),
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                     Text(
                                       'EN: ' + questStamina,
-                                      style: TextStyle(
+                                      style: GoogleFonts.montserrat(
                                         fontSize: 12,
-                                        color: Colors.white.withOpacity(0.75),
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
                                       ),
                                     ),
                                   ],

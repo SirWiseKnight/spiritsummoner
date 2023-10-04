@@ -76,8 +76,8 @@ class _SpiritGearState extends State<SpiritGear> {
                       alignment: Alignment.center,
                       child: Text(
                         partnerGear,
-                        style: GoogleFonts.poppins(
-                          fontSize: 18,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16,
                           color: Colors.white,
                         ),
                       ),

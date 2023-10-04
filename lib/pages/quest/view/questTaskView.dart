@@ -45,50 +45,81 @@ class QuestTaskScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const QuestScreen()),
-                                  );
-                                },
                                 child: Container(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.075,
-                                  width: MediaQuery.of(context).size.height *
-                                      0.075,
+                                  alignment: Alignment.center,
+                                  height: 56,
+                                  width: 64,
                                   decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.23),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Colors.white,
+                                        Colors.white,
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
                                     border: GradientBoxBorder(
                                       gradient: LinearGradient(
                                         begin: Alignment.topLeft,
                                         end: Alignment.bottomLeft,
                                         colors: [
-                                          Colors.white.withOpacity(0.4),
-                                          Colors.white.withOpacity(0.01),
-                                          Colors.white.withOpacity(0.1),
+                                          const Color.fromARGB(
+                                              150, 131, 40, 40),
+                                          const Color.fromARGB(
+                                              150, 131, 40, 40),
                                         ],
                                       ),
-                                      width: 1.4,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.0035,
                                     ),
-                                    borderRadius: BorderRadius.circular(100),
+                                    borderRadius: BorderRadius.circular(12),
                                   ),
-                                  child: Icon(
-                                    FontAwesomeIcons.arrowLeft,
-                                    color: Colors.white,
+                                  child: Text(
+                                    'X',
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.bungee(
+                                      fontSize: 32,
+                                      color: const Color.fromARGB(
+                                          255, 237, 40, 40),
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
                               ),
                               Expanded(
                                 child: Container(
                                   alignment: Alignment.center,
                                   child: Text(
                                     'Quest Logs',
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.bungee(
                                       fontSize: 28,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
+                                      shadows: [
+                                        Shadow(
+                                          // bottomLeft
+                                          offset: Offset(-1, -1),
+                                          color: Colors.black,
+                                        ),
+                                        Shadow(
+                                          // bottomRight
+                                          offset: Offset(1, -1),
+                                          color: Colors.black,
+                                        ),
+                                        Shadow(
+                                          // topRight
+                                          offset: Offset(1, 1),
+                                          color: Colors.black,
+                                        ),
+                                        Shadow(
+                                          // topLeft
+                                          offset: Offset(-1, 1),
+                                          color: Colors.black,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),

@@ -97,7 +97,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   partnerATK1,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 14,
                                     color: Colors.white,
                                   ),
@@ -113,7 +113,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                   width: 25,
                                   child: Text(
                                     partnerATK1Power,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -148,7 +148,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   partnerATK2,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 14,
                                     color: Colors.white,
                                   ),
@@ -164,7 +164,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                   width: 25,
                                   child: Text(
                                     partnerATK2Power,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -199,7 +199,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   partnerATK3,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 14,
                                     color: Colors.white,
                                   ),
@@ -215,7 +215,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                   width: 25,
                                   child: Text(
                                     partnerATK3Power,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -250,7 +250,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   partnerATK4,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 14,
                                     color: Colors.white,
                                   ),
@@ -266,7 +266,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                   width: 25,
                                   child: Text(
                                     partnerATK4Power,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -281,7 +281,6 @@ class _SpiritMovesState extends State<SpiritMoves> {
                     ],
                   ),
                 ),
-                SizedBox(height: 1),
                 Container(
                   width: 188,
                   height: 35,
@@ -302,8 +301,9 @@ class _SpiritMovesState extends State<SpiritMoves> {
                     },
                     child: Text(
                       'Edit',
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.montserrat(
                         fontSize: 14,
+                        fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),

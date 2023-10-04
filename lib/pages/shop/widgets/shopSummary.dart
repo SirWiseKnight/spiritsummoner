@@ -121,7 +121,7 @@ class ShopList extends StatelessWidget {
                               child: Container(
                                 child: Text(
                                   shopName,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,

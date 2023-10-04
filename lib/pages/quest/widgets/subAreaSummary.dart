@@ -116,7 +116,7 @@ class SubAreaList extends StatelessWidget {
                                 child: Container(
                                   child: Text(
                                     subAreaName,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.montserrat(
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,

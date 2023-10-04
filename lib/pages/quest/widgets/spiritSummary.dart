@@ -72,7 +72,7 @@ class SpiritCard extends StatelessWidget {
                           children: [
                             Text(
                               'Tottoc',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -80,7 +80,7 @@ class SpiritCard extends StatelessWidget {
                             ),
                             Text(
                               'Lvl ' + '1',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
