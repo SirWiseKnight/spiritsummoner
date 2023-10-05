@@ -142,32 +142,104 @@ class BattleScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: Center(
-                              child: Text(
-                                'BP Timer',
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  shadows: [
-                                    Shadow(
-                                      // bottomLeft
-                                      offset: Offset(-1, -1),
-                                      color: Colors.black,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 12.0,
+                                  right: 12.0,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'BP: ' + '10' + '/' + '10',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        shadows: [
+                                          Shadow(
+                                            // bottomLeft
+                                            offset: Offset(-1, -1),
+                                            color: Colors.black,
+                                          ),
+                                          Shadow(
+                                            // bottomRight
+                                            offset: Offset(1, -1),
+                                            color: Colors.black,
+                                          ),
+                                          Shadow(
+                                            // topRight
+                                            offset: Offset(1, 1),
+                                            color: Colors.black,
+                                          ),
+                                          Shadow(
+                                            // topLeft
+                                            offset: Offset(-1, 1),
+                                            color: Colors.black,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    Shadow(
-                                      // bottomRight
-                                      offset: Offset(1, -1),
-                                      color: Colors.black,
+                                    Text(
+                                      '01:30',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        shadows: [
+                                          Shadow(
+                                            // bottomLeft
+                                            offset: Offset(-1, -1),
+                                            color: Colors.black,
+                                          ),
+                                          Shadow(
+                                            // bottomRight
+                                            offset: Offset(1, -1),
+                                            color: Colors.black,
+                                          ),
+                                          Shadow(
+                                            // topRight
+                                            offset: Offset(1, 1),
+                                            color: Colors.black,
+                                          ),
+                                          Shadow(
+                                            // topLeft
+                                            offset: Offset(-1, 1),
+                                            color: Colors.black,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    Shadow(
-                                      // topRight
-                                      offset: Offset(1, 1),
-                                      color: Colors.black,
-                                    ),
-                                    Shadow(
-                                      // topLeft
-                                      offset: Offset(-1, 1),
-                                      color: Colors.black,
+                                    Text(
+                                      'Refresh Button',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        shadows: [
+                                          Shadow(
+                                            // bottomLeft
+                                            offset: Offset(-1, -1),
+                                            color: Colors.black,
+                                          ),
+                                          Shadow(
+                                            // bottomRight
+                                            offset: Offset(1, -1),
+                                            color: Colors.black,
+                                          ),
+                                          Shadow(
+                                            // topRight
+                                            offset: Offset(1, 1),
+                                            color: Colors.black,
+                                          ),
+                                          Shadow(
+                                            // topLeft
+                                            offset: Offset(-1, 1),
+                                            color: Colors.black,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
