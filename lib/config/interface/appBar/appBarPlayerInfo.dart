@@ -9,32 +9,33 @@ class PlayerInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<QuerySnapshot>(
-        future: FirebaseFirestore.instance
-            .collection('users')
-            .doc(AuthService().uid)
-            .collection('summoner-info')
-            .get(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (snapshot.hasError) {
-            return Center(
-              child: Text('Error: ${snapshot.error}'),
-            );
-          }
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(
-              child: Text('No stats found.'),
-            );
-          }
-          return Container(
-            height: MediaQuery.of(context).size.height * 0.06,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+      future: FirebaseFirestore.instance
+          .collection('users')
+          .doc(AuthService().uid)
+          .collection('summoner-info')
+          .get(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (snapshot.hasError) {
+          return Center(
+            child: Text('Error: ${snapshot.error}'),
+          );
+        }
+        if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          return Center(
+            child: Text('No stats found.'),
+          );
+        }
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.06,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: snapshot.data!.docs.map(
+              (DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
                 String playerLevel = data['level'] ?? '';
@@ -46,10 +47,13 @@ class PlayerInfo extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(
+                      height: 8,
+                    ),
                     Text(
                       playerName,
-                      style: GoogleFonts.poppins(
-                        fontSize: 18,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         shadows: [
                           Shadow(
@@ -88,9 +92,12 @@ class PlayerInfo extends StatelessWidget {
                         color: Color.fromARGB(255, 251, 251, 249),
                       ),
                     ),
+                    SizedBox(
+                      height: 4,
+                    ),
                     Text(
                       playerTitle,
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.montserrat(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         shadows: [
@@ -132,9 +139,11 @@ class PlayerInfo extends StatelessWidget {
                     ),
                   ],
                 );
-              }).toList(),
-            ),
-          );
-        });
+              },
+            ).toList(),
+          ),
+        );
+      },
+    );
   }
 }

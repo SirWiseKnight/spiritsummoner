@@ -64,7 +64,7 @@ class PlayerEXP extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         playerEXPcurr + "/" + playerEXPmax + " EXP",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                           shadows: <Shadow>[

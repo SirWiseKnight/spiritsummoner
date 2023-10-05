@@ -33,7 +33,7 @@ class BattleScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.615,
+                    height: MediaQuery.of(context).size.height * 0.65,
                     child: Column(
                       children: [
                         Padding(
@@ -126,12 +126,247 @@ class BattleScreen extends StatelessWidget {
                           ),
                         ),
                         Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Container(
+                            height: 50,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color.fromARGB(255, 239, 100, 254),
+                                  Color.fromARGB(255, 217, 40, 237),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'BP Timer',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  shadows: [
+                                    Shadow(
+                                      // bottomLeft
+                                      offset: Offset(-1, -1),
+                                      color: Colors.black,
+                                    ),
+                                    Shadow(
+                                      // bottomRight
+                                      offset: Offset(1, -1),
+                                      color: Colors.black,
+                                    ),
+                                    Shadow(
+                                      // topRight
+                                      offset: Offset(1, 1),
+                                      color: Colors.black,
+                                    ),
+                                    Shadow(
+                                      // topLeft
+                                      offset: Offset(-1, 1),
+                                      color: Colors.black,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
                           padding: const EdgeInsets.only(
-                            left: 8.0,
+                            left: 12.0,
+                            right: 12.0,
+                            top: 8.0,
+                            bottom: 8.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 80,
+                                width: 190,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SpiritListScreen()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Rankings',
+                                    style: GoogleFonts.bungee(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      shadows: [
+                                        Shadow(
+                                          // bottomLeft
+                                          offset: Offset(-1, -1),
+                                          color: Colors.black,
+                                        ),
+                                        Shadow(
+                                          // bottomRight
+                                          offset: Offset(1, -1),
+                                          color: Colors.black,
+                                        ),
+                                        Shadow(
+                                          // topRight
+                                          offset: Offset(1, 1),
+                                          color: Colors.black,
+                                        ),
+                                        Shadow(
+                                          // topLeft
+                                          offset: Offset(-1, 1),
+                                          color: Colors.black,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                      Color.fromARGB(255, 215, 50, 50),
+                                    ),
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(16.0),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 80,
+                                width: 190,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SpiritListScreen()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'World Boss',
+                                    style: GoogleFonts.bungee(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      shadows: [
+                                        Shadow(
+                                          // bottomLeft
+                                          offset: Offset(-1, -1),
+                                          color: Colors.black,
+                                        ),
+                                        Shadow(
+                                          // bottomRight
+                                          offset: Offset(1, -1),
+                                          color: Colors.black,
+                                        ),
+                                        Shadow(
+                                          // topRight
+                                          offset: Offset(1, 1),
+                                          color: Colors.black,
+                                        ),
+                                        Shadow(
+                                          // topLeft
+                                          offset: Offset(-1, 1),
+                                          color: Colors.black,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                      Color.fromARGB(255, 50, 215, 75),
+                                    ),
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(16.0),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 12.0,
+                            right: 12.0,
+                            top: 12.0,
                           ),
                           child: Container(
-                            height: 250,
-                            child: SummonerList(),
+                            height: 100,
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SpiritListScreen()),
+                                );
+                              },
+                              child: Text(
+                                'Battle',
+                                style: GoogleFonts.bungee(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  shadows: [
+                                    Shadow(
+                                      // bottomLeft
+                                      offset: Offset(-1, -1),
+                                      color: Colors.black,
+                                    ),
+                                    Shadow(
+                                      // bottomRight
+                                      offset: Offset(1, -1),
+                                      color: Colors.black,
+                                    ),
+                                    Shadow(
+                                      // topRight
+                                      offset: Offset(1, 1),
+                                      color: Colors.black,
+                                    ),
+                                    Shadow(
+                                      // topLeft
+                                      offset: Offset(-1, 1),
+                                      color: Colors.black,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Color.fromARGB(255, 50, 108, 215),
+                                ),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(16.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],

@@ -39,7 +39,7 @@ class PlayerCurrency extends StatelessWidget {
                       ),
                       Text(
                         "9,999,999",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: Color.fromARGB(255, 12, 84, 70),
@@ -70,7 +70,7 @@ class PlayerCurrency extends StatelessWidget {
                       ),
                       Text(
                         "9,999,999",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: Color.fromARGB(255, 12, 84, 70),
@@ -101,7 +101,7 @@ class PlayerCurrency extends StatelessWidget {
                       ),
                       Text(
                         "9,999,999",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: Color.fromARGB(255, 12, 84, 70),
