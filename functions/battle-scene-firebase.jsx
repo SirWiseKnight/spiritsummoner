@@ -595,6 +595,9 @@ class Battle {
   logMessage(message) {
     this.battleLog.push(message);
     console.log(message);
+    // Push the message to Firebase collection
+    firebase.firestore().collection('users').doc('tRzkTK8rFWdM3omN0efkHnQAzPh2').collection('battle-summary').doc('mTK02ow1SAuxt2BCrLam').collection('mTK02ow1SAuxt2BCrLam').add(message);
+    firebase.firestore().collection('users').doc('HV4CA1bZK9Xe0J2AOO5djOH0MvY2').collection('battle-summary').doc('rgjW3NNYZlHe0YSDFzfW').collection('rgjW3NNYZlHe0YSDFzfW').add(message);
   }
   
 // method to simulate a round of battle
@@ -815,6 +818,7 @@ fs.writeFile("battle_log_firebase.json", jsonResult, (err) => {
     console.log("Battle log exported to battle_log_firebase.json successfully!");
   }
 })
+
 // Other code that depends on fetchAttackerData can go here
 }
 
