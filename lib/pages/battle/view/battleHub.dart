@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:spirit_summoner/pages/battle/view/battleListPVP.dart';
 import 'package:spirit_summoner/pages/battle/view/spiritListPage.dart';
 import 'package:spirit_summoner/pages/battle/widgets/spiritSquad1.dart';
 import 'package:spirit_summoner/pages/battle/widgets/spiritSquad2.dart';
@@ -270,8 +271,9 @@ class BattleScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const SpiritListScreen()),
+                                        builder: (context) =>
+                                            const BattlePVPScreen(),
+                                      ),
                                     );
                                   },
                                   child: Text(
@@ -329,8 +331,9 @@ class BattleScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const SpiritListScreen()),
+                                        builder: (context) =>
+                                            const BattlePVPScreen(),
+                                      ),
                                     );
                                   },
                                   child: Text(
@@ -388,8 +391,9 @@ class BattleScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const SpiritListScreen()),
+                                        builder: (context) =>
+                                            const BattlePVPScreen(),
+                                      ),
                                     );
                                   },
                                   child: Text(
@@ -447,8 +451,9 @@ class BattleScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const SpiritListScreen()),
+                                        builder: (context) =>
+                                            const BattlePVPScreen(),
+                                      ),
                                     );
                                   },
                                   child: Text(

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spirit_summoner/pages/battle/view/battleHub.dart';
+import 'package:spirit_summoner/pages/battle/view/battleListPVP.dart';
 
 class BattleScene extends StatefulWidget {
   @override
@@ -118,8 +119,8 @@ class _BattleSceneState extends State<BattleScene>
 
   // Fetch content from the json file
   Future<void> readJson() async {
-    final dynamic response =
-        await rootBundle.loadString('functions/battle_log.json');
+    final dynamic response = await rootBundle.loadString(
+        'functions/battle_log_firebase.json'); // This needs to be returned from Firebase rather than locally stored
     final data = await json.decode(response);
     setState(() {
       _items = data["log"];
@@ -139,11 +140,11 @@ class _BattleSceneState extends State<BattleScene>
     super.initState();
     _pokemonAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 2000),
+      duration: Duration(milliseconds: 1000),
     );
     _healthBarAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 250),
     );
     _attackerReverseAnimationController = null;
     _fadeController = null;
@@ -174,7 +175,7 @@ class _BattleSceneState extends State<BattleScene>
     }
 
     if (indexer == 0) {
-      Future.delayed(const Duration(milliseconds: 1000), () {
+      Future.delayed(const Duration(milliseconds: 500), () {
         setState(() {
           _introAnimation = true;
           _attackerHP = _attackerLeadHP;
@@ -204,7 +205,7 @@ class _BattleSceneState extends State<BattleScene>
         if (_items[indexer]["attackerTeam"] == 1) {
           _defenderHP = _items[indexer]["defenderHealth"];
           _attackerHP = _items[indexer]["attackerHealth"];
-          Future.delayed(const Duration(milliseconds: 500), () {
+          Future.delayed(const Duration(milliseconds: 250), () {
             setState(() {
               _defenderLeadHP = _defenderHP;
             });
@@ -215,7 +216,7 @@ class _BattleSceneState extends State<BattleScene>
         if (_items[indexer]["attackerTeam"] == 2) {
           _attackerHP = _items[indexer]["defenderHealth"];
           _defenderHP = _items[indexer]["attackerHealth"];
-          Future.delayed(const Duration(milliseconds: 500), () {
+          Future.delayed(const Duration(milliseconds: 250), () {
             setState(() {
               _attackerLeadHP = _attackerHP;
             });
@@ -287,7 +288,7 @@ class _BattleSceneState extends State<BattleScene>
       if (_items[indexer]["attackerTeam"] == 1) {
         _defenderHP = _items[indexer]["defenderHealth"];
         _attackerHP = _items[indexer]["attackerHealth"];
-        Future.delayed(const Duration(milliseconds: 500), () {
+        Future.delayed(const Duration(milliseconds: 250), () {
           setState(() {
             _defenderLeadHP = _defenderHP;
           });
@@ -297,7 +298,7 @@ class _BattleSceneState extends State<BattleScene>
       if (_items[indexer]["attackerTeam"] == 2) {
         _attackerHP = _items[indexer]["defenderHealth"];
         _defenderHP = _items[indexer]["attackerHealth"];
-        Future.delayed(const Duration(milliseconds: 500), () {
+        Future.delayed(const Duration(milliseconds: 250), () {
           setState(() {
             _attackerLeadHP = _attackerHP;
           });
@@ -307,7 +308,7 @@ class _BattleSceneState extends State<BattleScene>
       // Start the attacker's reverse animation
       _attackerReverseAnimationController = AnimationController(
         vsync: this,
-        duration: Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 250),
       )..addStatusListener((status) {
           if (status == AnimationStatus.completed) {
             _attackerReverseAnimationController = null;
@@ -332,7 +333,7 @@ class _BattleSceneState extends State<BattleScene>
     // Send in the next Pokemon from Team 2 if available
     if (_items[indexer]["turn"] < _items.length) {
       _activeTeam2PokemonIndex++;
-      Future.delayed(const Duration(milliseconds: 500), () {
+      Future.delayed(const Duration(milliseconds: 250), () {
         setState(() {
           _defenderLeadHP = _team2[_activeTeam2PokemonIndex]["maxHealth"];
           _defenderHP = _defenderLeadHP;
@@ -352,7 +353,7 @@ class _BattleSceneState extends State<BattleScene>
     // Send in the next Pokemon from Team 2 if available
     if (_items[indexer]["turn"] < _items.length) {
       _activeTeam1PokemonIndex++;
-      Future.delayed(const Duration(milliseconds: 500), () {
+      Future.delayed(const Duration(milliseconds: 250), () {
         setState(() {
           _attackerLeadHP = _team1[_activeTeam2PokemonIndex]["maxHealth"];
           _attackerHP = _attackerLeadHP;
@@ -371,12 +372,12 @@ class _BattleSceneState extends State<BattleScene>
     await readJson();
     _fadeController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 250),
     );
 
     // Start the fade-out animation
     _fadeController!.forward(from: 0.0).whenComplete(() {
-      Future.delayed(const Duration(milliseconds: 500), () {
+      Future.delayed(const Duration(milliseconds: 250), () {
         setState(() {
           if (_activeTeam1PokemonIndex > _team1.length) {
             // All Pokemon from Team 1 have fainted, end the battle
@@ -429,7 +430,9 @@ class _BattleSceneState extends State<BattleScene>
                 // Close the dialog and navigate back to the battle page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const BattleScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => const BattlePVPScreen(),
+                  ),
                 );
               },
               child: Text('Close'),
@@ -463,19 +466,19 @@ class _BattleSceneState extends State<BattleScene>
     await readJson();
     _fadeController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1000),
+      duration: Duration(milliseconds: 500),
     );
 
     // Start the fade-out animation
     _fadeController!.forward(from: 0.0).whenComplete(() {
-      Future.delayed(const Duration(milliseconds: 500), () {
+      Future.delayed(const Duration(milliseconds: 250), () {
         setState(() {
           _isPokemonVisible = true; // Reset visibility
         });
       });
     });
 
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 250), () {
       setState(() {
         _isAnimating = true;
         _isPokemonVisible = false;
@@ -486,7 +489,7 @@ class _BattleSceneState extends State<BattleScene>
   // Function to increment the indexer every 10 seconds
   void incrementIndexer() async {
     await readJson();
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 250), () {
       setState(() {
         if (indexer <= _items.length) {
           indexer = indexer + 1;
@@ -503,7 +506,7 @@ class _BattleSceneState extends State<BattleScene>
         crossFadeState: _introAnimation == false
             ? CrossFadeState.showFirst
             : CrossFadeState.showSecond,
-        duration: Duration(milliseconds: 1000),
+        duration: Duration(milliseconds: 500),
         firstCurve: Interval(0, 0),
         secondCurve: Curves.easeIn,
         sizeCurve: Curves.decelerate,
@@ -826,7 +829,7 @@ class battleFieldAnimatedContainer extends StatelessWidget {
                                 alignment: Alignment.topRight,
                                 child: AnimatedOpacity(
                                   opacity: _isPokemonVisible ? 1.0 : 0.0,
-                                  duration: Duration(milliseconds: 500),
+                                  duration: Duration(milliseconds: 250),
                                   child: Image.asset(
                                     'assets/Spirits/${_team2[_activeTeam2PokemonIndex]["id"]}_${_team2[_activeTeam2PokemonIndex]["name"]}.png',
                                     height: 325,
@@ -870,7 +873,7 @@ class battleFieldAnimatedContainer extends StatelessWidget {
                                 alignment: Alignment.bottomLeft,
                                 child: AnimatedOpacity(
                                   opacity: _isPokemonVisible ? 1.0 : 0.0,
-                                  duration: Duration(milliseconds: 500),
+                                  duration: Duration(milliseconds: 250),
                                   child: Image.asset(
                                     'assets/Spirits/${_team1[_activeTeam1PokemonIndex]["id"]}_${_team1[_activeTeam1PokemonIndex]["name"]}.png',
                                     height: 325,

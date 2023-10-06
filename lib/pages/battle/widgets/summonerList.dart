@@ -32,7 +32,7 @@ class SummonerList extends StatelessWidget {
           );
         }
         return Container(
-          height: MediaQuery.of(context).size.height * 0.31,
+          height: MediaQuery.of(context).size.height * 0.28,
           child: ListView(
             shrinkWrap: false,
             padding: EdgeInsets.only(top: 8.0),
@@ -131,7 +131,8 @@ class SummonerList extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => BattleScene()),
+                                  builder: (context) => BattleScene(),
+                                ),
                               );
                             },
                             child: Text(

@@ -19,7 +19,7 @@ class FirestoreConnection {
   async getAttacker1Data(userId) {
     try {
       const userRef = this.db.collection('users').doc(userId);
-      const activeSquadRef = userRef.collection('active-squad');
+      const activeSquadRef = userRef.collection('spirit-list');
       
       // Query documents where the field matches the specified value
       const query = activeSquadRef.where('position', '==', 1); // Use this field to grab only spirits in the respective squad position
@@ -43,7 +43,7 @@ class FirestoreConnection {
   async getAttacker2Data(userId) {
     try {
       const userRef = this.db.collection('users').doc(userId);
-      const activeSquadRef = userRef.collection('active-squad');
+      const activeSquadRef = userRef.collection('spirit-list');
       
       // Query documents where the field matches the specified value
       const query = activeSquadRef.where('position', '==', 2); // Use this field to grab only spirits in the respective squad position
@@ -67,7 +67,7 @@ class FirestoreConnection {
 async getAttacker3Data(userId) {
     try {
       const userRef = this.db.collection('users').doc(userId);
-      const activeSquadRef = userRef.collection('active-squad');
+      const activeSquadRef = userRef.collection('spirit-list');
       
       // Query documents where the field matches the specified value
       const query = activeSquadRef.where('position', '==', 3); // Use this field to grab only spirits in the respective squad position
@@ -91,7 +91,7 @@ async getAttacker3Data(userId) {
   async getDefender1Data(userId) {
       try {
         const userRef = this.db.collection('users').doc(userId);
-        const activeSquadRef = userRef.collection('active-squad');
+        const activeSquadRef = userRef.collection('spirit-list');
         
         // Query documents where the field matches the specified value
         const query = activeSquadRef.where('position', '==', 1); // Use this field to grab only spirits in the respective squad position
@@ -115,7 +115,7 @@ async getAttacker3Data(userId) {
     async getDefender2Data(userId) {
         try {
           const userRef = this.db.collection('users').doc(userId);
-          const activeSquadRef = userRef.collection('active-squad');
+          const activeSquadRef = userRef.collection('spirit-list');
           
           // Query documents where the field matches the specified value
           const query = activeSquadRef.where('position', '==', 2); // Use this field to grab only spirits in the respective squad position
@@ -139,7 +139,7 @@ async getAttacker3Data(userId) {
       async getDefender3Data(userId) {
           try {
             const userRef = this.db.collection('users').doc(userId);
-            const activeSquadRef = userRef.collection('active-squad');
+            const activeSquadRef = userRef.collection('spirit-list');
             
             // Query documents where the field matches the specified value
             const query = activeSquadRef.where('position', '==', 3); // Use this field to grab only spirits in the respective squad position
