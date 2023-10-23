@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		tyxOVNmhPx7sTws5vXbFnmc9228=
+		dzoGu/VNpvvZ5gmbptDQtWLQ780=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		nO9YCqQIfXXdxfoAm15G3O6uupY=
+		Z/dzBPcDjvqww4hHLy38X3fWdYc=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -134,7 +134,7 @@
 		</data>
 		<key>flutter_assets/assets/Icons/iconYellow.png</key>
 		<data>
-		LxSwb4g05NZXCEczcjY/+moZu+I=
+		9sLCNQs1GmCr7BnZ266kyA1wS0I=
 		</data>
 		<key>flutter_assets/assets/Icons/questBattle.png</key>
 		<data>
@@ -340,9 +340,37 @@
 		<data>
 		/CUoTuPQqqdexfyOT9lpJhV+2MQ=
 		</data>
+		<key>flutter_assets/functions/battle-scene-firebase.jsx</key>
+		<data>
+		6mUU9vsuQRwOjB0a7knXER+4Rag=
+		</data>
+		<key>flutter_assets/functions/battle-scene-wip.jsx</key>
+		<data>
+		5T9ZGl/sQI9aOX7k1jvrkY+X3Fw=
+		</data>
 		<key>flutter_assets/functions/battle_log.json</key>
 		<data>
 		NT6oESIWUvXpxV+iQfdpaHYdVGw=
+		</data>
+		<key>flutter_assets/functions/battle_log_firebase.json</key>
+		<data>
+		baBBkki5jFNioaROjsdRyxaBbKY=
+		</data>
+		<key>flutter_assets/functions/bulk-upload.jsx</key>
+		<data>
+		JmtSsDHTh4qMDWKaEpnnnnE+6RY=
+		</data>
+		<key>flutter_assets/functions/package-lock.json</key>
+		<data>
+		tOKrcI/L5WryvIR2pFhGJGySVuQ=
+		</data>
+		<key>flutter_assets/functions/package.json</key>
+		<data>
+		bt9OYDlqaXwSR01iAqkNc9pHeOM=
+		</data>
+		<key>flutter_assets/functions/secretKey.json</key>
+		<data>
+		KeWYzbvCJWSgtdlCAvRl4uk0pgw=
 		</data>
 		<key>flutter_assets/isolate_snapshot_data</key>
 		<data>
@@ -350,7 +378,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		CVi04Kg0Uu8I5ZDJqbaFSyV9sVA=
+		jKP59+Mn5zxCcBLzLEsQp5frLto=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -383,14 +411,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			BeIYf2RzCEsv1Vw9DOv7Z9+5CSAh2Rk9F8K7SdJ4i/A=
+			E+jV57jgQ52Mk6KDd6PLPe+LdKSZsJry5vRaOCOGfv4=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mJUgcOUMdEH7YLMR4o2K/9jjYIiKbxtXBtehUJUB+ZE=
+			7XOJ6ccPvHW6+uIj6KHW0UmTjTaZaBS0ENfddYTJGWk=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -600,7 +628,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			DQDW4AoK/Qa2+SKhL4sjkegKfYLFtVfaYwi7pwcrMWY=
+			VwZL3HEUJs+RwOFAffS80H9jAP8tSfmQAru9Z9IhcW8=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/Icons/questBattle.png</key>
@@ -960,11 +988,60 @@
 			2YZbZxoJ1oPROoYwidiCXg9ho3aWzl19RIvIAjqmJFM=
 			</data>
 		</dict>
+		<key>flutter_assets/functions/battle-scene-firebase.jsx</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			FaZt669hrsF4JWrNI7EqNTrK9DwQv0oqS1GK6VpOMEc=
+			</data>
+		</dict>
+		<key>flutter_assets/functions/battle-scene-wip.jsx</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fhCD37uV4c6qOQSWc22dmwVUYLhxt/LXaw7hvBA5enc=
+			</data>
+		</dict>
 		<key>flutter_assets/functions/battle_log.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			e+tYDLvcHiM3rIePUam8pSbUU0ZuZUHJJXtAfVHwwb4=
+			</data>
+		</dict>
+		<key>flutter_assets/functions/battle_log_firebase.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			y/Jy185FbJszQdAa4TLdoiX+JESmap23+IukQQO2bMc=
+			</data>
+		</dict>
+		<key>flutter_assets/functions/bulk-upload.jsx</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Um+R7ZETDzcjOFYocFabn69hsfU/ohNg/Nuk4v2LnNg=
+			</data>
+		</dict>
+		<key>flutter_assets/functions/package-lock.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			8Mv3kQCNv1YH72CmgH0moosS4z81pddItuQE159oONI=
+			</data>
+		</dict>
+		<key>flutter_assets/functions/package.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			eXg7e/Lbj5aIn2V0CByBW5/p2/WaUgbCfwio43ncsfE=
+			</data>
+		</dict>
+		<key>flutter_assets/functions/secretKey.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			iF/GF/Hyi1WTWgohHyBrZT25oIF5s773MmAckUY+QXs=
 			</data>
 		</dict>
 		<key>flutter_assets/isolate_snapshot_data</key>
@@ -978,7 +1055,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JwpVIqa4qhGqscbWy+AwMgpNeqNUZxm61VOXnzYyvEo=
+			OsS4KA2nSgh0QPKqjOjwBRY4+q82nDIKN6CS4rssEIo=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
