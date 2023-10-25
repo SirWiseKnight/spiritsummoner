@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		E7b9v53cXEWblPPrKd/FAibUPRY=
+		Kh1IDKCgEqAiAcZVTA/PBC77slg=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,15 +54,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		0mYTMbjvjIayStJOs2FvYk/2v4s=
+		yPs97qf7jbM3G8nzVXJPqJSBq7A=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		dzoGu/VNpvvZ5gmbptDQtWLQ780=
+		kJAa/P1XJXh/W3/vIxpZna0qdhQ=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		Z/dzBPcDjvqww4hHLy38X3fWdYc=
+		MaOp0ZhRMTF8dEAmkikQMGAWy5A=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -176,6 +176,22 @@
 		<data>
 		tCXnudJUngyE5EjFhBWqU+jg2Fw=
 		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/amber.png</key>
+		<data>
+		EcLVcTxg78d/PObooB8iopf1B+Q=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/amethyst.png</key>
+		<data>
+		7/qrhKBHruefSWTpqKPuT22/WQI=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/diamond.png</key>
+		<data>
+		iaCCxBL97gtSKnorvLdGKjxIP0g=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/emerald.png</key>
+		<data>
+		yOv9UMMWPOT75JKTPmqh0oL76to=
+		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/Icons/fight_vs@2x.png</key>
 		<data>
 		jaVkprnHRv8vxF9Q43Fnvn503SA=
@@ -184,6 +200,10 @@
 		<data>
 		9sLCNQs1GmCr7BnZ266kyA1wS0I=
 		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/pearl.png</key>
+		<data>
+		DRtY6Qq5mVmS005NKemZpmV45Ig=
+		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/Icons/questBattle.png</key>
 		<data>
 		qgkL03qDBZp6O/+gdqGGWUuS8Tg=
@@ -191,6 +211,18 @@
 		<key>Frameworks/App.framework/flutter_assets/assets/Icons/questQuest.png</key>
 		<data>
 		kIP2d6N/BLvVl5VG8n01e3qyMN8=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/ruby.png</key>
+		<data>
+		09mwUafmKlo4l4NPiy25//kcnNk=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/sapphire.png</key>
+		<data>
+		8G/+KMnPl9M+yJDyXPfnunh+yNo=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/topaz.png</key>
+		<data>
+		wrKtiE/MKRBailU7XybVeAdb1eo=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/Icons/typeDark.png</key>
 		<data>
@@ -426,7 +458,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		jKP59+Mn5zxCcBLzLEsQp5frLto=
+		2MaZ+FnMmwVabPY9sTY4SJML78g=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -1235,7 +1267,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Qtw2TsV7GLPHSivfsZqkBT+5dD/+2iI/RZmRD6R6rxg=
+			bBhMmOeDWJ8nd0A/xmI7atlZxJc1vVC9Sn7Mq12k4B8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1249,21 +1281,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			tnwINoIoRC51bgnArnQLh28uCg3B9ywov8mjqZoRA+E=
+			F+DBfsHYPgnHh2RvN6jsEcHgcQwKCv4AGu32yx5JqkE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			E+jV57jgQ52Mk6KDd6PLPe+LdKSZsJry5vRaOCOGfv4=
+			xaWPoOMNU0/m8Rd3XxKKzt79SNvi1l0kM8NJFHeQqn4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7XOJ6ccPvHW6+uIj6KHW0UmTjTaZaBS0ENfddYTJGWk=
+			DP4dQPBQkuzIyh8NQz1IhfWqxqogMq3FsFDSaHNaZF0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -1462,6 +1494,34 @@
 			Uizme0Gh3ZxyOhUVuhYvT/Z+Yd6h53W2vrvsymlp9tY=
 			</data>
 		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/amber.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			AqjTb3B8LMyF2vLYdxPbCxQORi0BN5K0qIH8Wz3XBEI=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/amethyst.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2l0YaMf0kt8aQipKCLku3tKxA8UIJ+JwT7Ui4nrUNwE=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/diamond.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			hobrp+chDHvlMvcyJyfvQa4S00bmmUkNu2zWEWrTLo8=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/emerald.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QVXda1F2tkcXoetdXl+0Bj0WH0qiByuLPZhDZD16ZBQ=
+			</data>
+		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/Icons/fight_vs@2x.png</key>
 		<dict>
 			<key>hash2</key>
@@ -1476,6 +1536,13 @@
 			VwZL3HEUJs+RwOFAffS80H9jAP8tSfmQAru9Z9IhcW8=
 			</data>
 		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/pearl.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			4BDsnfFHrEJhca+Uq/5lH3rD8xB7UCjSCI7wTfP+kiE=
+			</data>
+		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/Icons/questBattle.png</key>
 		<dict>
 			<key>hash2</key>
@@ -1488,6 +1555,27 @@
 			<key>hash2</key>
 			<data>
 			rsThgNwceaw8ms9cTWHqQ3eNbVGod21hQw5iL3oTcbw=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/ruby.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			lhtGgCEPE49+2wxDq1KOUclwbk4v2breFS9Za8pzkFA=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/sapphire.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NY41vmoRgZ0c8AuMbP9LxJocnIkovsY9q8EWYP6ENbM=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Icons/topaz.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			qczK0OSPM1U6MSLZdmu21raZbjK1rbtdjX3hQ2zc1xk=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/Icons/typeDark.png</key>
@@ -1900,7 +1988,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OsS4KA2nSgh0QPKqjOjwBRY4+q82nDIKN6CS4rssEIo=
+			VDzX2I1/nHfgmi27QuWAtvzdVCqaL2kJcvaTmW2wyQI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
