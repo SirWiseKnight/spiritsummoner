@@ -5,7 +5,6 @@ import 'package:spirit_summoner/pages/battle/view/spiritListPage.dart';
 import 'package:spirit_summoner/pages/battle/widgets/spiritSquad1.dart';
 import 'package:spirit_summoner/pages/battle/widgets/spiritSquad2.dart';
 import 'package:spirit_summoner/pages/battle/widgets/spiritSquad3.dart';
-import 'package:spirit_summoner/pages/battle/widgets/summonerList.dart';
 import 'package:spirit_summoner/config/barrel.dart';
 
 class BattleScreen extends StatelessWidget {

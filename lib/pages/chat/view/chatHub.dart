@@ -1,253 +1,180 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:convert';
-import 'dart:async';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:spirit_summoner/pages/chat/shared/chatBarrel.dart';
+import 'package:spirit_summoner/config/barrel.dart';
 
 class ChatScreen extends StatefulWidget {
+  const ChatScreen({Key? key}) : super(key: key);
+
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  List _items = [];
-  String _results = "";
-  List _team1 = [];
-  List _team2 = [];
-  int indexer = 0;
-  Timer? _timer;
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  // Fetch content from the json file
-  Future<void> readJson() async {
-    final dynamic response =
-        await rootBundle.loadString('functions/battle_log.json');
-    final data = await json.decode(response);
-    setState(() {
-      _items = data["log"];
-      _results = data["winner"];
-      _team1 = data["teams"]["team1"];
-      _team2 = data["teams"]["team2"];
-    });
-  }
-
-  // Function to increment the indexer every 10 seconds
-  void incrementIndexer() {
-    setState(() {
-      if (indexer < _items.length - 1) {
-        indexer = indexer + 1;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Battle Results'),
-      ),
-      body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 124, 203, 89),
+              Color.fromARGB(255, 171, 222, 149),
+              Color.fromARGB(255, 104, 195, 66),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: Column(
           children: [
-            ElevatedButton(
-              child: const Text('Load Battle'),
-              onPressed: readJson,
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            _items.isNotEmpty
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(child: Text("Team 1")),
-                          Container(
-                              child: Text("Spirit 1: ${_team1[0]["name"]}")),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                  child: Text(
-                                      "   Type: ${_team1[0]["coreType"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("   Level: ${_team1[0]["level"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("   HP: ${_team1[0]["maxHealth"]}")),
-                            ],
+            AppBarPane(),
+            SafeArea(
+              top: false,
+              child: Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.615,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: Container(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 16.0,
+                            left: 16.0,
+                            right: 16.0,
                           ),
-                          Container(
-                              child: Text("Spirit 2: ${_team1[1]["name"]}")),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                  child: Text(
-                                      "   Type: ${_team1[1]["coreType"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("  Level: ${_team1[1]["level"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("  HP: ${_team1[1]["maxHealth"]}")),
-                            ],
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Chat Screen',
+                              style: GoogleFonts.bungee(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                shadows: [
+                                  Shadow(
+                                    // bottomLeft
+                                    offset: Offset(-1, -1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // bottomRight
+                                    offset: Offset(1, -1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // topRight
+                                    offset: Offset(1, 1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // topLeft
+                                    offset: Offset(-1, 1),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                          Container(
-                              child: Text("Spirit 3: ${_team1[2]["name"]}")),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                  child: Text(
-                                      "   Type: ${_team1[2]["coreType"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("   Level: ${_team1[2]["level"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("   HP: ${_team1[2]["maxHealth"]}")),
-                            ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            right: 16.0,
+                            left: 16.0,
+                            top: 24.0,
                           ),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(child: Text("Team 2")),
-                          Container(
-                              child: Text("Spirit 4: ${_team2[0]["name"]}")),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                  child: Text(
-                                      "   Type: ${_team2[0]["coreType"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("   Level: ${_team2[0]["level"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("   HP: ${_team2[0]["maxHealth"]}")),
-                            ],
+                          child: Container(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Color.fromARGB(255, 50, 215, 75)
+                                      .withOpacity(0.75),
+                                ),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(16.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              onPressed: () {
+                                print("TEST!");
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Text(
+                                  'Test Button',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
-                          Container(
-                              child: Text("Spirit 5: ${_team2[1]["name"]}")),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                  child: Text(
-                                      "   Type: ${_team2[1]["coreType"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("   Level: ${_team2[1]["level"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("   HP: ${_team2[1]["maxHealth"]}")),
-                            ],
+                        ),
+                        Expanded(
+                          child: Container(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 16.0,
+                            top: 16.0,
                           ),
-                          Container(
-                              child: Text("Spirit 6: ${_team2[2]["name"]}")),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                  child: Text(
-                                      "   Type: ${_team2[2]["coreType"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("   Level: ${_team2[2]["level"]}")),
-                              SizedBox(width: 8.0),
-                              Container(
-                                  child:
-                                      Text("   HP: ${_team2[2]["maxHealth"]}")),
-                            ],
+                          child: Container(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              'Items',
+                              style: GoogleFonts.bungee(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                shadows: [
+                                  Shadow(
+                                    // bottomLeft
+                                    offset: Offset(-1, -1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // bottomRight
+                                    offset: Offset(1, -1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // topRight
+                                    offset: Offset(1, 1),
+                                    color: Colors.black,
+                                  ),
+                                  Shadow(
+                                    // topLeft
+                                    offset: Offset(-1, 1),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ],
-                      ),
-                    ],
-                  )
-                : Container(),
-            SizedBox(
-              height: 12,
-            ),
-            ElevatedButton(
-              child: const Text('Next Turn'),
-              onPressed: () {
-                if (indexer < _items.length - 1) {
-                  _timer?.cancel();
-                  _timer = Timer.periodic(Duration(seconds: 3), (timer) {
-                    incrementIndexer();
-                  });
-                } else {
-                  null;
-                }
-              },
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            _items.isNotEmpty
-                ? Expanded(
-                    child: ListView.builder(
-                      itemCount: 1,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          child: Column(
-                            children: [
-                              Text("Turn: ${_items[indexer]["turn"]}"),
-                              Text("Attacker: ${_items[indexer]["attacker"]}"),
-                              Text("Move Name: ${_items[indexer]["moveName"]}"),
-                              Text("Move Type: ${_items[indexer]["moveType"]}"),
-                              Text("Damage: ${_items[indexer]["damage"]}"),
-                              Text("Defender: ${_items[indexer]["defender"]}"),
-                              Text(
-                                  "Defender Health: ${_items[indexer]["defenderHealth"]}"),
-                              Text("Fainted: ${_items[indexer]["fainted"]}"),
-                              Text("Next: ${_items[indexer]["next"]}"),
-                              Text("Ability: ${_items[indexer]["ability"]}"),
-                              Text(
-                                  "Target Name: ${_items[indexer]["targetName"]}"),
-                              Text(
-                                  "Target Health: ${_items[indexer]["targetHealth"]}"),
-                            ],
-                          ),
-                        );
-                      },
+                        ),
+                        ItemList(),
+                        Expanded(
+                          child: Container(),
+                        ),
+                      ],
                     ),
-                  )
-                : Container(),
-            SizedBox(
-              height: 12,
+                  ),
+                  BottomNavBubbles(),
+                ],
+              ),
             ),
-            _items.isNotEmpty
-                ? Container(child: Text("Winner: ${_results}"))
-                : Container(),
           ],
         ),
       ),
