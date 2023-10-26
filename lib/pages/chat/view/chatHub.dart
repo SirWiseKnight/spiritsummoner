@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spirit_summoner/pages/chat/shared/chatBarrel.dart';
 import 'package:spirit_summoner/config/barrel.dart';
+import 'package:spirit_summoner/pages/chat/widgets/indexList.dart';
 import 'package:spirit_summoner/pages/chat/widgets/moveList.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -165,7 +166,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             ),
                           ),
                         ),
-                        MoveList(),
+                        IndexList(),
                         Expanded(
                           child: Container(),
                         ),
