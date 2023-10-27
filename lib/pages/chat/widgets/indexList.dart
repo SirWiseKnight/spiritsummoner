@@ -57,7 +57,6 @@ class IndexList extends StatelessWidget {
               double bonusMDF = bonusStats['mdf'].toDouble() ?? 1.0;
               double bonusSPD = bonusStats['spd'].toDouble() ?? 1.0;
               double bonusINT = bonusStats['int'].toDouble() ?? 1.0;
-              List<dynamic> moves = data['moves'] as List<dynamic>;
               return Padding(
                 padding: const EdgeInsets.only(
                   top: 8.0,
@@ -135,12 +134,87 @@ class IndexList extends StatelessWidget {
                         Column(
                           children: [
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 8.0),
+                                        child: Container(
+                                          alignment: Alignment.topCenter,
+                                          child: Text(
+                                            '#$spiritID',
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.orange,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 4.0,
+                                        ),
+                                        child: Container(
+                                          child: Text(
+                                            spiritName,
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 4.0),
+                                        child: Container(
+                                          child: Text(
+                                            spiritCategory,
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 14,
+                                              fontStyle: FontStyle.italic,
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black54,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 4.0),
+                                        child: Container(
+                                          height: 30,
+                                          width: 30,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              fit: BoxFit.fitHeight,
+                                              alignment: Alignment.center,
+                                              image: AssetImage(
+                                                  'assets/Icons/type' +
+                                                      spiritCore +
+                                                      '.png'),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: 100,
-                                    width: 100,
+                                    height: 125,
+                                    width: 125,
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                         fit: BoxFit.fitHeight,
@@ -154,63 +228,17 @@ class IndexList extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
-                                      child: Container(
-                                        height: 50,
-                                        width: 50,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            fit: BoxFit.fitHeight,
-                                            alignment: Alignment.center,
-                                            image: AssetImage(
-                                                'assets/Icons/type' +
-                                                    spiritCore +
-                                                    '.png'),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        top: 4.0,
-                                      ),
-                                      child: Container(
-                                        child: Text(
-                                          spiritName,
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
                               ],
                             ),
                             Expanded(child: Container()),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      child: Text(
-                                        spiritCategory + ' | ' + spiritCore,
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
                                     Container(
                                       child: Text(
                                         'Stats',
@@ -223,7 +251,6 @@ class IndexList extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                        left: 16.0,
                                         top: 8.0,
                                         right: 16.0,
                                       ),
@@ -231,8 +258,8 @@ class IndexList extends StatelessWidget {
                                         child: Text(
                                           'ATK+: $baseATK * $bonusATK',
                                           style: GoogleFonts.montserrat(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
                                             color: Colors.white,
                                           ),
                                         ),
@@ -240,7 +267,6 @@ class IndexList extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                        left: 16.0,
                                         top: 8.0,
                                         right: 16.0,
                                       ),
@@ -248,8 +274,8 @@ class IndexList extends StatelessWidget {
                                         child: Text(
                                           'DEF+: $baseDEF * $bonusDEF',
                                           style: GoogleFonts.montserrat(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
                                             color: Colors.white,
                                           ),
                                         ),
@@ -257,7 +283,6 @@ class IndexList extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                        left: 16.0,
                                         top: 8.0,
                                         right: 16.0,
                                       ),
@@ -265,8 +290,8 @@ class IndexList extends StatelessWidget {
                                         child: Text(
                                           'MGK+: $baseMGK * $bonusMGK',
                                           style: GoogleFonts.montserrat(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
                                             color: Colors.white,
                                           ),
                                         ),
@@ -274,7 +299,6 @@ class IndexList extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                        left: 16.0,
                                         top: 8.0,
                                         right: 16.0,
                                       ),
@@ -282,8 +306,8 @@ class IndexList extends StatelessWidget {
                                         child: Text(
                                           'MDF+: $baseMDF * $bonusMDF',
                                           style: GoogleFonts.montserrat(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
                                             color: Colors.white,
                                           ),
                                         ),
@@ -291,7 +315,6 @@ class IndexList extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                        left: 16.0,
                                         top: 8.0,
                                         right: 16.0,
                                       ),
@@ -299,8 +322,8 @@ class IndexList extends StatelessWidget {
                                         child: Text(
                                           'SPD+: $baseSPD * $bonusSPD',
                                           style: GoogleFonts.montserrat(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
                                             color: Colors.white,
                                           ),
                                         ),
@@ -308,7 +331,6 @@ class IndexList extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                        left: 16.0,
                                         top: 8.0,
                                         right: 16.0,
                                         bottom: 16.0,
@@ -317,8 +339,8 @@ class IndexList extends StatelessWidget {
                                         child: Text(
                                           'INT+: $baseINT * $bonusINT',
                                           style: GoogleFonts.montserrat(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
                                             color: Colors.white,
                                           ),
                                         ),
@@ -327,47 +349,36 @@ class IndexList extends StatelessWidget {
                                   ],
                                 ),
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      child: Text(
-                                        'Drop Rate: $spiritDropRate%',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                          color: Colors.white,
-                                        ),
+                                    Text(
+                                      'Move List',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            'Move List',
+                                    for (var moves in document['moves'])
+                                      Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Container(
+                                          child: Text(
+                                            moves.toString(),
                                             style: GoogleFonts.montserrat(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.normal,
                                               color: Colors.white,
                                             ),
                                           ),
-                                          for (var moves in document['moves'])
-                                            Text(
-                                              moves.toString(),
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
                                   ],
                                 )
                               ],
                             ),
+                            Expanded(child: Container()),
                           ],
                         ),
                       ],

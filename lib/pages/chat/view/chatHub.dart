@@ -52,7 +52,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           child: Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              'Chat Screen',
+                              'Test Screen',
                               style: GoogleFonts.bungee(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
@@ -135,7 +135,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           child: Container(
                             alignment: Alignment.bottomLeft,
                             child: Text(
-                              'Items',
+                              'Spirit Index',
                               style: GoogleFonts.bungee(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
