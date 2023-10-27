@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class IndexList extends StatelessWidget {
   const IndexList({Key? key}) : super(key: key);
@@ -35,10 +36,14 @@ class IndexList extends StatelessWidget {
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data =
                   document.data() as Map<String, dynamic>;
+
               String spiritID = document.id;
+              List<dynamic> spiritImages = data['images'] as List<dynamic>;
+              String spiritImageURL = spiritImages[0];
               String spiritName = data['name'] ?? '';
               String spiritCore = data['core-type'] ?? '';
               String spiritCategory = data['category'] ?? '';
+
               double spiritDropRate =
                   (data['drop-rate'].toDouble() * 100) ?? 100.0;
               Map<String, dynamic> baseStats =
@@ -83,13 +88,15 @@ class IndexList extends StatelessWidget {
                             borderRadius: BorderRadius.all(
                               Radius.circular(16),
                             ),
-                            /*image: DecorationImage(
-                              fit: BoxFit.cover,
-                              alignment: Alignment.center,
-                              image: AssetImage('assets/Backgrounds/Shop' +
-                                  itemName +
+                            image: DecorationImage(
+                              fit: BoxFit.fitWidth,
+                              alignment: Alignment.topCenter,
+                              image: AssetImage('assets/Spirits/' +
+                                  spiritID +
+                                  '_' +
+                                  spiritName +
                                   '.png'),
-                            ),*/
+                            ),
                             color: Colors.white,
                           ),
                         ),
@@ -106,6 +113,9 @@ class IndexList extends StatelessWidget {
                               end: Alignment.bottomCenter,
                               colors: [
                                 Colors.black.withOpacity(0.0),
+                                Colors.black.withOpacity(0.0),
+                                Colors.black.withOpacity(0.5),
+                                Colors.black.withOpacity(0.7),
                                 Colors.black.withOpacity(0.8),
                               ],
                             ),
@@ -215,17 +225,6 @@ class IndexList extends StatelessWidget {
                                   child: Container(
                                     height: 125,
                                     width: 125,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.fitHeight,
-                                        alignment: Alignment.center,
-                                        image: AssetImage('assets/Spirits/' +
-                                            spiritID +
-                                            '_' +
-                                            spiritName +
-                                            '.png'),
-                                      ),
-                                    ),
                                   ),
                                 ),
                               ],

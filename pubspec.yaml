@@ -29,7 +29,7 @@ dependencies:
   cupertino_icons:
   firebase_core: ">=2.10.0"
   cloud_firestore:
-  firebase_auth:
+  firebase_auth: ^4.12.0
   google_sign_in:
   #sign_in_with_apple:
   form_field_validator:
@@ -46,6 +46,7 @@ dependencies:
   gradient_borders:
   flutter_launcher_icons:
   popover:
+  firebase_storage:
 
 dev_dependencies:
   flutter_test:

@@ -26,7 +26,7 @@
 		</data>
 		<key>Headers/PigeonParser.h</key>
 		<data>
-		bcpiNTkPnhfQxkGNRXOpKww2guQ=
+		+erVj3lbsVpjki47zDMUtmoKeYo=
 		</data>
 		<key>Headers/firebase_auth-umbrella.h</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>Headers/firebase_auth_messages.g.h</key>
 		<data>
-		n0PL7I7XIvSwogqpfKumroUGopM=
+		jedQEYEXfsK5EEmSGDXDlIOf3b8=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		uecB6i7Ipo1LjiiFYMzHp/yoUOk=
+		Hj2+UuXsRzYjGajdgPN5PaOOKgg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -106,11 +106,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			bcpiNTkPnhfQxkGNRXOpKww2guQ=
+			+erVj3lbsVpjki47zDMUtmoKeYo=
 			</data>
 			<key>hash2</key>
 			<data>
-			CbuqGdAjAlnP5bTiBtNGRVDT3aEOoy7tog/TjeQtA70=
+			DmIc6vzW3h2oveVOJLfL9/7wD0oSgNYDA0saZPPjf4c=
 			</data>
 		</dict>
 		<key>Headers/firebase_auth-umbrella.h</key>
@@ -128,11 +128,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			n0PL7I7XIvSwogqpfKumroUGopM=
+			jedQEYEXfsK5EEmSGDXDlIOf3b8=
 			</data>
 			<key>hash2</key>
 			<data>
-			6dph7DWrN+VflnCQvY0mbj4dOym46ooZ/ceEhjm74U4=
+			XtW3mKR9Da3qC8smVc7DRyWl7vGm+vG5JsMSh5Mj3kk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
