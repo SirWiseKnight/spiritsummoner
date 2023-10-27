@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		VodtrLOjGNMJBwxX3czPriEMuAQ=
+		ja/qnLxfHx11zqFtItVEa4knEt4=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,15 +54,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		5EykHjaup6kHU/a55s5pq35BHPc=
+		K7Rvtf1jf4fCSplTFWoKmEqhaig=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		kJAa/P1XJXh/W3/vIxpZna0qdhQ=
+		TL5r6YRYXzoEi7+y3Nd36EtCIUg=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		MaOp0ZhRMTF8dEAmkikQMGAWy5A=
+		fJPSaHgcsyBUr2PyQO/bULBJ5KM=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -332,6 +332,30 @@
 		<data>
 		YL8TDlV5KYblOou9R5xCCbK8SZE=
 		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/55_Isni.png</key>
+		<data>
+		J5f0Vtx71KdzjGhvBlOvRiNgYw0=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/55_Isni_ALT.png</key>
+		<data>
+		2jrTO98YsVlGYqbPRx4P+hAjvLg=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/56_Isine.png</key>
+		<data>
+		Y0lxjXBcGjK5MS7mlBPromesLqc=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/56_Isine_ALT.png</key>
+		<data>
+		RKL0t4dY1GaVHqbhicqhXbTV3GA=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/57_Isinoar.png</key>
+		<data>
+		z85XYNli3WVc6l/+1ZEZyeebcHU=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/57_Isinoar_ALT.png</key>
+		<data>
+		QJYxHRzNuApVAmCnEtqFljzduxU=
+		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/5_Reindeer.png</key>
 		<data>
 		XbmAZiv/IMFCkw6/Xes/E2Akzdo=
@@ -356,11 +380,11 @@
 		<data>
 		LSRciy4d4jpR9P36H4gQdEBuZZI=
 		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicking.png</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicka.png</key>
 		<data>
 		HGf6bvOnPvyj9/Up/OBF14ZzUFg=
 		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicking_ALT.png</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicka_ALT.png</key>
 		<data>
 		i5+/ACQa+Hn3KyNPqf91F+gdNqQ=
 		</data>
@@ -458,7 +482,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		ETvXUGto+3+RXLY9J+V+ar1F1Q0=
+		Ks6kmukFx//adZwl/ZTNV9Sr81I=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -1108,7 +1132,7 @@
 		</data>
 		<key>Frameworks/grpc.framework/grpc</key>
 		<data>
-		H+LVoJyNbSnS1UL0xsPdABMvRPc=
+		8drSJW7D9S9peOdvx1XSPqYjHDU=
 		</data>
 		<key>Frameworks/grpcpp.framework/Info.plist</key>
 		<data>
@@ -1267,7 +1291,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			DxJ0OZk1h344PfbKaH7C/SEyJpfdB1vxxxW6Oku1FvM=
+			e+t4Af8VdSPvULY5O/B4CPBGjrwam74Dokf88stY+Uk=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1281,21 +1305,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CshCQZwUQgaIeaqRAjTZ3DjBfE1ac5cui5hAK6e7MAU=
+			HWYcRKPjf12Kt17kb+occ/Ht9C8HNW9Fglj4/VxiSxA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xaWPoOMNU0/m8Rd3XxKKzt79SNvi1l0kM8NJFHeQqn4=
+			9AANy+1uMIuyZ11UxYBKp9dk7vys8k4CWatdMnoT+kA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			DP4dQPBQkuzIyh8NQz1IhfWqxqogMq3FsFDSaHNaZF0=
+			Vtc9tOSGaVF4rhLTqNurzApdG/9ATecUc6gvjkFMP6U=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -1767,6 +1791,48 @@
 			bFTRh2Xey6ZPQf3lM8Wz0EJYFhQHVIq5TNzYhAjvqMA=
 			</data>
 		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/55_Isni.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			38wmeIsmokunWkNYYAuo02zAnqFlO3HyaHjh8OvoNpU=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/55_Isni_ALT.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			G6CLcVi0km+RjnZZ6Ng7WP56Lw6OcJSR7HXnz1e2Ph8=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/56_Isine.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			aAkqBdKFIEiX6S3rv3EFuMaZrvXqvOGsE/7y/n39tDk=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/56_Isine_ALT.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			SssOMrqPBoDUoBkyBDhgIGozqNd87b+dgXpGXdmR7XI=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/57_Isinoar.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Q4aiPWY1gjxt4R7Y6T/xEw5D4CzMyhGy1dr8pk5AXyU=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/57_Isinoar_ALT.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			5VrWDnAvvf8XVg1HIuHPlG1v/zrbJwE6O9Vwa5Sofjc=
+			</data>
+		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/5_Reindeer.png</key>
 		<dict>
 			<key>hash2</key>
@@ -1809,14 +1875,14 @@
 			8BYdQGPrl0Phxncn9J1/kBqaQFEQNzMkLwIsJ77AvZY=
 			</data>
 		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicking.png</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicka.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			fpoCS+UU4soSTCKw0TrHJSuC3yGP7CBToAWsCUMJjA4=
 			</data>
 		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicking_ALT.png</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/Spirits/97_Chicka_ALT.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
@@ -1988,7 +2054,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EG+9TJZrnHO9dhVffGxZZGFxEkMs6eCljWdzWXieR9o=
+			tW0DwdE3WCKil7T/dc5259XHCUnAfAGg7F1PwSfxfi8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -2869,7 +2935,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4frGA5gAhYVy3p8c9HYGU9Z3J/x4j2p5iFVj9pM76VY=
+			wN0VznP6Yo/QM8LIrAIKD3Waje0TXgGGymim5PptCTY=
 			</data>
 		</dict>
 		<key>Frameworks/grpcpp.framework/Info.plist</key>

@@ -12,8 +12,9 @@ class SpiritList extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder<QuerySnapshot>(
       future: FirebaseFirestore.instance
+          .collection('users')
+          .doc(AuthService().uid)
           .collection('spirit-list')
-          .where("uid", isEqualTo: AuthService().uid)
           //.orderBy('last_updt_ts', descending: true)
           .get(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -49,61 +50,32 @@ class SpiritList extends StatelessWidget {
                         document.data() as Map<String, dynamic>;
                     String docId = document.id;
                     String spiritName = data['name'] ?? '';
-                    String spiritNickname = data['name-alt'] ?? '';
-                    String spiritIndex = data['index'] ?? '';
+                    String spiritNickname = data['nickname'] ?? '';
+                    int spiritIndex = data['index'] ?? 1;
                     String spiritDeviant = data['deviant'] ?? '';
-                    String spiritType = data['core-type'] ?? '';
-                    String spiritLevel = data['level'] ?? '';
-                    String spiritATK = data['stat-atk'] ?? '';
-                    String spiritAttackBonus = data['stat-atk-bonus'] ?? '';
-                    String spiritDEF = data['stat-def'] ?? '';
-                    String spiritDefenseBonus = data['stat-def-bonus'] ?? '';
-                    String spiritMGK = data['stat-mgk'] ?? '';
-                    String spiritMagicAttackBonus =
-                        data['stat-mgk-bonus'] ?? '';
-                    String spiritMDF = data['stat-mdf'] ?? '';
-                    String spiritMagicDefenseBonus =
-                        data['stat-mdf-bonus'] ?? '';
-                    String spiritSPD = data['stat-spd'] ?? '';
-                    String spiritSpeedBonus = data['stat-spd-bonus'] ?? '';
-                    String spiritINT = data['stat-int'] ?? '';
-                    String spiritIntelligenceBonus =
-                        data['stat-int-bonus'] ?? '';
-                    int spiritStatTotal = ((double.parse(spiritATK)).round() +
-                            (double.parse(spiritDEF)).round() +
-                            (double.parse(spiritMGK)).round() +
-                            (double.parse(spiritMDF)).round() +
-                            (double.parse(spiritSPD)).round() +
-                            (double.parse(spiritINT)).round()) *
-                        (2 - ((double.parse(spiritLevel).round()) / 100))
-                            .round();
-                    double spiritAttackTotal =
-                        (double.parse(spiritATK) / spiritStatTotal);
-                    double spiritAttackBonusTotal =
-                        spiritAttackTotal * double.parse(spiritAttackBonus);
-                    double spiritDefenseTotal =
-                        (double.parse(spiritDEF) / spiritStatTotal);
-                    double spiritDefenseBonusTotal =
-                        spiritDefenseTotal * double.parse(spiritDefenseBonus);
-                    double spiritMagicAttackTotal =
-                        (double.parse(spiritMGK) / spiritStatTotal);
-                    double spiritMagicAttackBonusTotal =
-                        spiritMagicAttackTotal *
-                            double.parse(spiritMagicAttackBonus);
+                    String spiritType = data['coreType'] ?? '';
+                    int spiritLevel = data['level'] ?? 1;
+                    double spiritATK = data['attack'].toDouble() ?? 1;
+                    double spiritDEF = data['defense'].toDouble() ?? 1;
+                    double spiritMGK = data['magicAttack'].toDouble() ?? 1;
+                    double spiritMDF = data['magicDefense'].toDouble() ?? 1;
+                    double spiritSPD = data['speed'].toDouble() ?? 1;
+                    double spiritINT = data['intelligence'].toDouble() ?? 1;
+                    int spiritStatTotal = (spiritATK.round().round() +
+                            spiritDEF.round() +
+                            spiritMGK.round().round() +
+                            spiritMDF.round().round() +
+                            spiritSPD.round().round() +
+                            spiritINT.round().round())
+                        .round();
+                    double spiritAttackTotal = spiritATK / spiritStatTotal;
+                    double spiritDefenseTotal = spiritDEF / spiritStatTotal;
+                    double spiritMagicAttackTotal = spiritMGK / spiritStatTotal;
                     double spiritMagicDefenseTotal =
-                        (double.parse(spiritMDF) / spiritStatTotal);
-                    double spiritMagicDefenseBonusTotal =
-                        spiritMagicDefenseTotal *
-                            double.parse(spiritMagicDefenseBonus);
-                    double spiritSpeedTotal =
-                        (double.parse(spiritSPD) / spiritStatTotal);
-                    double spiritSpeedBonusTotal =
-                        spiritSpeedTotal * double.parse(spiritSpeedBonus);
+                        spiritMDF / spiritStatTotal;
+                    double spiritSpeedTotal = spiritSPD / spiritStatTotal;
                     double spiritIntelligenceTotal =
-                        (double.parse(spiritINT) / spiritStatTotal);
-                    double spiritIntelligenceBonusTotal =
-                        spiritIntelligenceTotal *
-                            double.parse(spiritIntelligenceBonus);
+                        spiritINT / spiritStatTotal;
                     return Padding(
                       padding: const EdgeInsets.only(
                         right: 4.0,
@@ -167,7 +139,7 @@ class SpiritList extends StatelessWidget {
                                                   fit: BoxFit.cover,
                                                   image: AssetImage(
                                                       'assets/Spirits/' +
-                                                          spiritIndex +
+                                                          '$spiritIndex' +
                                                           '_' +
                                                           spiritName +
                                                           spiritDeviant +
@@ -190,7 +162,7 @@ class SpiritList extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  spiritNickname,
+                                                  spiritName,
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 20,
                                                     fontWeight: FontWeight.bold,
@@ -220,7 +192,7 @@ class SpiritList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  'Lvl ' + spiritLevel,
+                                                  'Lvl $spiritLevel',
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.bold,
@@ -318,8 +290,7 @@ class SpiritList extends StatelessWidget {
                                                                             10)),
                                                             child:
                                                                 LinearProgressIndicator(
-                                                              value:
-                                                                  spiritAttackBonusTotal,
+                                                              value: 0,
                                                               valueColor:
                                                                   AlwaysStoppedAnimation<
                                                                       Color>(
@@ -393,8 +364,7 @@ class SpiritList extends StatelessWidget {
                                                                             10)),
                                                             child:
                                                                 LinearProgressIndicator(
-                                                              value:
-                                                                  spiritDefenseBonusTotal,
+                                                              value: 0,
                                                               valueColor:
                                                                   AlwaysStoppedAnimation<
                                                                       Color>(
@@ -467,8 +437,7 @@ class SpiritList extends StatelessWidget {
                                                                             10)),
                                                             child:
                                                                 LinearProgressIndicator(
-                                                              value:
-                                                                  spiritMagicAttackBonusTotal,
+                                                              value: 0,
                                                               valueColor:
                                                                   AlwaysStoppedAnimation<
                                                                       Color>(
@@ -541,8 +510,7 @@ class SpiritList extends StatelessWidget {
                                                                             10)),
                                                             child:
                                                                 LinearProgressIndicator(
-                                                              value:
-                                                                  spiritMagicDefenseBonusTotal,
+                                                              value: 0,
                                                               valueColor:
                                                                   AlwaysStoppedAnimation<
                                                                       Color>(
@@ -616,8 +584,7 @@ class SpiritList extends StatelessWidget {
                                                                             10)),
                                                             child:
                                                                 LinearProgressIndicator(
-                                                              value:
-                                                                  spiritSpeedBonusTotal,
+                                                              value: 0,
                                                               valueColor:
                                                                   AlwaysStoppedAnimation<
                                                                       Color>(
@@ -690,8 +657,7 @@ class SpiritList extends StatelessWidget {
                                                                             10)),
                                                             child:
                                                                 LinearProgressIndicator(
-                                                              value:
-                                                                  spiritIntelligenceBonusTotal,
+                                                              value: 0,
                                                               valueColor:
                                                                   AlwaysStoppedAnimation<
                                                                       Color>(
