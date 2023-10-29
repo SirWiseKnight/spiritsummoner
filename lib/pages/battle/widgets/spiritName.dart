@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:spirit_summoner/domain/authentication/auth.dart';
 
 class SpiritName extends StatefulWidget {
   final String docId;
@@ -16,8 +17,12 @@ class _SpiritNameState extends State<SpiritName> {
   Widget build(BuildContext context) {
     final String docId = ModalRoute.of(context)?.settings.arguments as String;
     return FutureBuilder<DocumentSnapshot>(
-      future:
-          FirebaseFirestore.instance.collection('spirit-list').doc(docId).get(),
+      future: FirebaseFirestore.instance
+          .collection('users')
+          .doc(AuthService().uid)
+          .collection('spirit-list')
+          .doc(docId)
+          .get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -40,8 +45,8 @@ class _SpiritNameState extends State<SpiritName> {
         Map<String, dynamic> data =
             snapshot.data!.data() as Map<String, dynamic>;
         String partnerName = data['name'] ?? '';
-        String partnerLvl = data['level'] ?? '';
-        String partnerCoreType = data['core-type'] ?? '';
+        int partnerLvl = data['level'] ?? 1;
+        String partnerCoreType = data['coreType'] ?? '';
         return Container(
           width: 300,
           decoration: BoxDecoration(
@@ -63,7 +68,7 @@ class _SpiritNameState extends State<SpiritName> {
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
-                    partnerLvl,
+                    '$partnerLvl',
                     style: GoogleFonts.montserrat(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

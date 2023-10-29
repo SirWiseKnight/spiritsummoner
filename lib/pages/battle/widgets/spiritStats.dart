@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:spirit_summoner/domain/authentication/auth.dart';
 
 class SpiritStats extends StatefulWidget {
   final String docId;
@@ -17,6 +18,8 @@ class _SpiritStatsState extends State<SpiritStats> {
     final String docId = ModalRoute.of(context)?.settings.arguments as String;
     return FutureBuilder<DocumentSnapshot>(
         future: FirebaseFirestore.instance
+            .collection('users')
+            .doc(AuthService().uid)
             .collection('spirit-list')
             .doc(docId)
             .get(),
@@ -42,49 +45,41 @@ class _SpiritStatsState extends State<SpiritStats> {
           // Access the document data
           Map<String, dynamic> data =
               snapshot.data!.data() as Map<String, dynamic>;
-          String spiritLevel = data['level'] ?? '';
-          String spiritATK = data['stat-atk'] ?? '';
-          String spiritAttackBonus = data['stat-atk-bonus'] ?? '';
-          String spiritDEF = data['stat-def'] ?? '';
-          String spiritDefenseBonus = data['stat-def-bonus'] ?? '';
-          String spiritMGK = data['stat-mgk'] ?? '';
-          String spiritMagicAttackBonus = data['stat-mgk-bonus'] ?? '';
-          String spiritMDF = data['stat-mdf'] ?? '';
-          String spiritMagicDefenseBonus = data['stat-mdf-bonus'] ?? '';
-          String spiritSPD = data['stat-spd'] ?? '';
-          String spiritSpeedBonus = data['stat-spd-bonus'] ?? '';
-          String spiritINT = data['stat-int'] ?? '';
-          String spiritIntelligenceBonus = data['stat-int-bonus'] ?? '';
-          int spiritStatTotal = ((double.parse(spiritATK)).round() +
-                  (double.parse(spiritDEF)).round() +
-                  (double.parse(spiritMGK)).round() +
-                  (double.parse(spiritMDF)).round() +
-                  (double.parse(spiritSPD)).round() +
-                  (double.parse(spiritINT)).round()) *
-              (2 - ((double.parse(spiritLevel).round()) / 100)).round();
-          double spiritAttackTotal =
-              (double.parse(spiritATK) / spiritStatTotal);
-          double spiritAttackBonusTotal =
-              spiritAttackTotal * double.parse(spiritAttackBonus);
-          double spiritDefenseTotal =
-              (double.parse(spiritDEF) / spiritStatTotal);
+          int spiritLevel = data['level'] ?? 1;
+          double spiritATK = data['attack'].toDouble() ?? 1.0;
+          double spiritAttackBonus = 1.0;
+          double spiritDEF = data['defense'].toDouble() ?? 1.0;
+          double spiritDefenseBonus = 1.0;
+          double spiritMGK = data['magicAttack'].toDouble() ?? 1.0;
+          double spiritMagicAttackBonus = 1.0;
+          double spiritMDF = data['magicDefense'].toDouble() ?? 1.0;
+          double spiritMagicDefenseBonus = 1.0;
+          double spiritSPD = data['speed'].toDouble() ?? 1.0;
+          double spiritSpeedBonus = 1.0;
+          double spiritINT = data['intelligence'].toDouble() ?? 1.0;
+          double spiritIntelligenceBonus = 1.0;
+          int spiritStatTotal = spiritATK.round() +
+              spiritDEF.round() +
+              spiritMGK.round() +
+              spiritMDF.round() +
+              spiritSPD.round() +
+              spiritINT.round() * (2 - (spiritLevel / 100)).round();
+          double spiritAttackTotal = (spiritATK / spiritStatTotal);
+          double spiritAttackBonusTotal = spiritAttackTotal * spiritAttackBonus;
+          double spiritDefenseTotal = (spiritDEF / spiritStatTotal);
           double spiritDefenseBonusTotal =
-              spiritDefenseTotal * double.parse(spiritDefenseBonus);
-          double spiritMagicAttackTotal =
-              (double.parse(spiritMGK) / spiritStatTotal);
+              spiritDefenseTotal * spiritDefenseBonus;
+          double spiritMagicAttackTotal = (spiritMGK / spiritStatTotal);
           double spiritMagicAttackBonusTotal =
-              spiritMagicAttackTotal * double.parse(spiritMagicAttackBonus);
-          double spiritMagicDefenseTotal =
-              (double.parse(spiritMDF) / spiritStatTotal);
+              spiritMagicAttackTotal * spiritMagicAttackBonus;
+          double spiritMagicDefenseTotal = (spiritMDF / spiritStatTotal);
           double spiritMagicDefenseBonusTotal =
-              spiritMagicDefenseTotal * double.parse(spiritMagicDefenseBonus);
-          double spiritSpeedTotal = (double.parse(spiritSPD) / spiritStatTotal);
-          double spiritSpeedBonusTotal =
-              spiritSpeedTotal * double.parse(spiritSpeedBonus);
-          double spiritIntelligenceTotal =
-              (double.parse(spiritINT) / spiritStatTotal);
+              spiritMagicDefenseTotal * spiritMagicDefenseBonus;
+          double spiritSpeedTotal = (spiritSPD / spiritStatTotal);
+          double spiritSpeedBonusTotal = spiritSpeedTotal * spiritSpeedBonus;
+          double spiritIntelligenceTotal = (spiritINT / spiritStatTotal);
           double spiritIntelligenceBonusTotal =
-              spiritIntelligenceTotal * double.parse(spiritIntelligenceBonus);
+              spiritIntelligenceTotal * spiritIntelligenceBonus;
 
           return Padding(
             padding: const EdgeInsets.all(8.0),
@@ -153,8 +148,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
                                       child: LinearProgressIndicator(
-                                        value: (double.parse(spiritATK) /
-                                            spiritStatTotal),
+                                        value: (spiritATK / spiritStatTotal),
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
                                           Colors.red,
@@ -171,7 +165,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               width: MediaQuery.of(context).size.width * 0.1,
                               alignment: Alignment.center,
                               child: Text(
-                                spiritATK,
+                                '$spiritATK',
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -229,8 +223,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
                                       child: LinearProgressIndicator(
-                                        value: (double.parse(spiritDEF) /
-                                            spiritStatTotal),
+                                        value: (spiritDEF / spiritStatTotal),
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
                                           Colors.blue,
@@ -247,7 +240,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               width: MediaQuery.of(context).size.width * 0.1,
                               alignment: Alignment.center,
                               child: Text(
-                                spiritDEF,
+                                '$spiritDEF',
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -305,8 +298,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
                                       child: LinearProgressIndicator(
-                                        value: (double.parse(spiritMGK) /
-                                            spiritStatTotal),
+                                        value: (spiritMGK / spiritStatTotal),
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
                                           Colors.purple,
@@ -323,7 +315,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               width: MediaQuery.of(context).size.width * 0.1,
                               alignment: Alignment.center,
                               child: Text(
-                                spiritMGK,
+                                '$spiritMGK',
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -381,8 +373,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
                                       child: LinearProgressIndicator(
-                                        value: (double.parse(spiritMDF) /
-                                            spiritStatTotal),
+                                        value: (spiritMDF / spiritStatTotal),
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
                                           Colors.green,
@@ -399,7 +390,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               width: MediaQuery.of(context).size.width * 0.1,
                               alignment: Alignment.center,
                               child: Text(
-                                spiritMDF,
+                                '$spiritMDF',
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -457,8 +448,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
                                       child: LinearProgressIndicator(
-                                        value: (double.parse(spiritSPD) /
-                                            spiritStatTotal),
+                                        value: (spiritSPD / spiritStatTotal),
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
                                           Colors.yellow,
@@ -475,7 +465,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               width: MediaQuery.of(context).size.width * 0.1,
                               alignment: Alignment.center,
                               child: Text(
-                                spiritSPD,
+                                '$spiritSPD',
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -533,8 +523,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
                                       child: LinearProgressIndicator(
-                                        value: (double.parse(spiritINT) /
-                                            spiritStatTotal),
+                                        value: (spiritINT / spiritStatTotal),
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
                                           Colors.orange,
@@ -551,7 +540,7 @@ class _SpiritStatsState extends State<SpiritStats> {
                               width: MediaQuery.of(context).size.width * 0.1,
                               alignment: Alignment.center,
                               child: Text(
-                                spiritINT,
+                                '$spiritINT',
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,

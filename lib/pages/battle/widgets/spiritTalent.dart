@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:spirit_summoner/domain/authentication/auth.dart';
 
 class SpiritTalent extends StatefulWidget {
   final String docId;
@@ -17,8 +18,12 @@ class _SpiritTalentState extends State<SpiritTalent> {
   Widget build(BuildContext context) {
     final String docId = ModalRoute.of(context)?.settings.arguments as String;
     return FutureBuilder<DocumentSnapshot>(
-      future:
-          FirebaseFirestore.instance.collection('spirit-list').doc(docId).get(),
+      future: FirebaseFirestore.instance
+          .collection('users')
+          .doc(AuthService().uid)
+          .collection('spirit-list')
+          .doc(docId)
+          .get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -41,7 +46,7 @@ class _SpiritTalentState extends State<SpiritTalent> {
         // Access the document data
         Map<String, dynamic> data =
             snapshot.data!.data() as Map<String, dynamic>;
-        String partnerTalent = data['talent'] ?? '';
+        String partnerTalent = data['ability'] ?? '';
         return Container(
           width: 200,
           height: 60,

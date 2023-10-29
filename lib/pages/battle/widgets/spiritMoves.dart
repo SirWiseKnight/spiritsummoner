@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:spirit_summoner/domain/authentication/auth.dart';
 
 class SpiritMoves extends StatefulWidget {
   final String docId;
@@ -16,8 +17,12 @@ class _SpiritMovesState extends State<SpiritMoves> {
   Widget build(BuildContext context) {
     final String docId = ModalRoute.of(context)?.settings.arguments as String;
     return FutureBuilder<DocumentSnapshot>(
-      future:
-          FirebaseFirestore.instance.collection('spirit-list').doc(docId).get(),
+      future: FirebaseFirestore.instance
+          .collection('users')
+          .doc(AuthService().uid)
+          .collection('spirit-list')
+          .doc(docId)
+          .get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -40,18 +45,27 @@ class _SpiritMovesState extends State<SpiritMoves> {
         // Access the document data
         Map<String, dynamic> data =
             snapshot.data!.data() as Map<String, dynamic>;
-        String partnerATK1 = data['attack1name'] ?? '';
-        String partnerATK1Type = data['attack1type'] ?? '';
-        String partnerATK1Power = data['attack1power'] ?? '';
-        String partnerATK2 = data['attack2name'] ?? '';
-        String partnerATK2Type = data['attack2type'] ?? '';
-        String partnerATK2Power = data['attack2power'] ?? '';
-        String partnerATK3 = data['attack3name'] ?? '';
-        String partnerATK3Type = data['attack3type'] ?? '';
-        String partnerATK3Power = data['attack3power'] ?? '';
-        String partnerATK4 = data['attack4name'] ?? '';
-        String partnerATK4Type = data['attack4type'] ?? '';
-        String partnerATK4Power = data['attack4power'] ?? '';
+        List<dynamic> spiritMoves = data['moves'] as List<dynamic>;
+        Map<String, dynamic> spiritMove1 =
+            spiritMoves[0] as Map<String, dynamic>;
+        Map<String, dynamic> spiritMove2 =
+            spiritMoves[1] as Map<String, dynamic>;
+        Map<String, dynamic> spiritMove3 =
+            spiritMoves[2] as Map<String, dynamic>;
+        Map<String, dynamic> spiritMove4 =
+            spiritMoves[3] as Map<String, dynamic>;
+        String partnerATK1 = spiritMove1['name'] ?? '';
+        String partnerATK1Element = spiritMove1['element'] ?? '';
+        int partnerATK1Power = spiritMove1['power'] ?? 0;
+        String partnerATK2 = spiritMove2['name'] ?? '';
+        String partnerATK2Element = spiritMove2['element'] ?? '';
+        int partnerATK2Power = spiritMove2['power'] ?? 0;
+        String partnerATK3 = spiritMove3['name'] ?? '';
+        String partnerATK3Element = spiritMove3['element'] ?? '';
+        int partnerATK3Power = spiritMove3['power'] ?? 0;
+        String partnerATK4 = spiritMove4['name'] ?? '';
+        String partnerATK4Element = spiritMove4['element'] ?? '';
+        int partnerATK4Power = spiritMove4['power'] ?? 0;
         return Padding(
           padding: const EdgeInsets.only(
             top: 8.0,
@@ -90,7 +104,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                 height: 20,
                                 width: 25,
                                 child: Image.asset('assets/Types/type' +
-                                    partnerATK1Type +
+                                    partnerATK1Element +
                                     '.png'),
                               ),
                               Container(
@@ -112,7 +126,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                   alignment: Alignment.center,
                                   width: 25,
                                   child: Text(
-                                    partnerATK1Power,
+                                    '$partnerATK1Power',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -141,7 +155,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                 height: 20,
                                 width: 25,
                                 child: Image.asset('assets/Types/type' +
-                                    partnerATK2Type +
+                                    partnerATK2Element +
                                     '.png'),
                               ),
                               Container(
@@ -163,7 +177,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                   alignment: Alignment.center,
                                   width: 25,
                                   child: Text(
-                                    partnerATK2Power,
+                                    '$partnerATK2Power',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -192,7 +206,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                 height: 20,
                                 width: 25,
                                 child: Image.asset('assets/Types/type' +
-                                    partnerATK3Type +
+                                    partnerATK3Element +
                                     '.png'),
                               ),
                               Container(
@@ -214,7 +228,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                   alignment: Alignment.center,
                                   width: 25,
                                   child: Text(
-                                    partnerATK3Power,
+                                    '$partnerATK3Power',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -243,7 +257,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                 height: 20,
                                 width: 25,
                                 child: Image.asset('assets/Types/type' +
-                                    partnerATK4Type +
+                                    partnerATK4Element +
                                     '.png'),
                               ),
                               Container(
@@ -265,7 +279,7 @@ class _SpiritMovesState extends State<SpiritMoves> {
                                   alignment: Alignment.center,
                                   width: 25,
                                   child: Text(
-                                    partnerATK4Power,
+                                    '$partnerATK4Power',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,

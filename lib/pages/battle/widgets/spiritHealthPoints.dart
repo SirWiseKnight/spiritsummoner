@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:spirit_summoner/domain/authentication/auth.dart';
 
 class SpiritHP extends StatefulWidget {
   final String docId;
@@ -16,8 +17,12 @@ class _SpiritHPState extends State<SpiritHP> {
   Widget build(BuildContext context) {
     final String docId = ModalRoute.of(context)?.settings.arguments as String;
     return FutureBuilder<DocumentSnapshot>(
-      future:
-          FirebaseFirestore.instance.collection('spirit-list').doc(docId).get(),
+      future: FirebaseFirestore.instance
+          .collection('users')
+          .doc(AuthService().uid)
+          .collection('spirit-list')
+          .doc(docId)
+          .get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -40,7 +45,7 @@ class _SpiritHPState extends State<SpiritHP> {
         // Access the document data
         Map<String, dynamic> data =
             snapshot.data!.data() as Map<String, dynamic>;
-        String partnerHP = data['stat-hp'] ?? '';
+        int partnerHP = data['health'] ?? 0;
         return Padding(
           padding: const EdgeInsets.only(
             top: 8.0,
@@ -55,7 +60,7 @@ class _SpiritHPState extends State<SpiritHP> {
             decoration: BoxDecoration(
                 color: Colors.green, borderRadius: BorderRadius.circular(50)),
             child: Text(
-              partnerHP + ' HP',
+              '$partnerHP HP',
               style: GoogleFonts.montserrat(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,

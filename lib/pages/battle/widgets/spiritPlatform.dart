@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:spirit_summoner/domain/authentication/auth.dart';
 
 class SpiritPlatform extends StatefulWidget {
   final String docId;
@@ -15,8 +16,12 @@ class _SpiritPlatformState extends State<SpiritPlatform> {
   Widget build(BuildContext context) {
     final String docId = ModalRoute.of(context)?.settings.arguments as String;
     return FutureBuilder<DocumentSnapshot>(
-      future:
-          FirebaseFirestore.instance.collection('spirit-list').doc(docId).get(),
+      future: FirebaseFirestore.instance
+          .collection('users')
+          .doc(AuthService().uid)
+          .collection('spirit-list')
+          .doc(docId)
+          .get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -39,7 +44,7 @@ class _SpiritPlatformState extends State<SpiritPlatform> {
         // Access the document data
         Map<String, dynamic> data =
             snapshot.data!.data() as Map<String, dynamic>;
-        String partnerPlatformType = data['core-type'] ?? '';
+        String partnerPlatformType = data['coreType'] ?? '';
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
